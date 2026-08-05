@@ -1,0 +1,6 @@
+"use client";
+import * as Tabs from "@radix-ui/react-tabs";
+import { Check, Copy } from "lucide-react";
+import { useState } from "react";
+import type { CodeLanguage } from "@/content/library";
+export function CodeTabs({ code }: { code: Record<CodeLanguage, string> }) { const langs = Object.keys(code) as CodeLanguage[]; const [copied, setCopied] = useState(false); const copy = async (value: string) => { await navigator.clipboard.writeText(value); setCopied(true); setTimeout(() => setCopied(false), 1500); }; return <Tabs.Root defaultValue={langs[0]}><Tabs.List className="flex gap-1 border-b border-white/10 px-2 pt-2">{langs.map(x => <Tabs.Trigger key={x} value={x} className="rounded-md px-2.5 py-2 text-xs text-zinc-500 data-[state=active]:bg-white/10 data-[state=active]:text-white">{x}</Tabs.Trigger>)}</Tabs.List>{langs.map(x => <Tabs.Content key={x} value={x} className="relative"><button onClick={() => copy(code[x])} className="absolute right-3 top-3 rounded-md p-1.5 text-zinc-500 hover:bg-white/10 hover:text-white">{copied ? <Check size={15}/> : <Copy size={15}/>}</button><pre className="overflow-x-auto p-5 text-[13px] leading-6 text-indigo-100"><code>{code[x]}</code></pre></Tabs.Content>)}</Tabs.Root>; }

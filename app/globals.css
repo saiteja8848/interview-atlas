@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root { --background: #09090b; --foreground: #f4f4f5; --muted: #a1a1aa; --panel: #121215; --border: rgba(255,255,255,.09); --accent: #8b5cf6; --accent-soft: rgba(139,92,246,.20); --accent-2: #38bdf8; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+::selection { background: #4f46e5; color: white; }
+.grid-glow { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 40px 40px; mask-image: linear-gradient(to bottom, black, transparent 72%); }
+.glass { background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); border: 1px solid var(--border); box-shadow: inset 0 1px rgba(255,255,255,.05); }
+.prose-copy p { color: #c4c4cc; line-height: 1.75; }
+.prose-copy strong { color: #fafafa; }
+.theme-hero { background: radial-gradient(circle at 15% 25%, var(--accent-soft), transparent 30%), radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--accent-2) 24%, transparent), transparent 32%), #09090b; }
+.theme-button { background: var(--accent); }
+.theme-text { color: var(--accent); }
+[data-mode="light"] { --background: #fbfbfc; --foreground: #18181b; --muted: #52525b; --panel: #ffffff; --border: rgba(24,24,27,.11); }
+[data-mode="light"] body { background: #fbfbfc; color: #18181b; }
+[data-mode="light"] .bg-\[\#09090b\], [data-mode="light"] .bg-\[\#0c0c0f\], [data-mode="light"] .bg-\[\#111114\], [data-mode="light"] .bg-\[\#111116\], [data-mode="light"] .bg-\[\#151518\], [data-mode="light"] .bg-\[\#0b0b0d\] { background-color: #fff !important; }
+[data-mode="light"] .text-white { color: #18181b !important; }
+[data-mode="light"] .border-white\/10, [data-mode="light"] .border-white\/\[\.07\], [data-mode="light"] .border-white\/\[\.08\], [data-mode="light"] .border-white\/\[\.09\] { border-color: rgba(24,24,27,.12) !important; }
+[data-mode="light"] .bg-white\/\[\.02\], [data-mode="light"] .bg-white\/\[\.025\], [data-mode="light"] .bg-white\/\[\.03\], [data-mode="light"] .bg-white\/\[\.04\], [data-mode="light"] .bg-white\/\[\.06\] { background-color: rgba(24,24,27,.03) !important; }
+[data-mode="light"] .theme-hero { background: radial-gradient(circle at 15% 25%, var(--accent-soft), transparent 30%), radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 32%), #fbfbfc; }
