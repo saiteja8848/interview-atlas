@@ -1,0 +1,2 @@
+import { Link } from "@/components/link";
+export function NotFound() { return <main className="grid min-h-screen place-items-center px-5 text-center"><div><p className="text-sm text-zinc-500">404</p><h1 className="mt-2 text-3xl font-semibold">Page not found</h1><Link href="/" className="theme-button mt-6 inline-flex rounded-xl px-4 py-2 text-sm font-semibold text-white">Return home</Link></div></main>; }

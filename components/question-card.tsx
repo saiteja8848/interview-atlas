@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Question } from "@/content/library";
 const colors = { Easy: "text-emerald-400 bg-emerald-400/10", Medium: "text-amber-400 bg-amber-400/10", Hard: "text-rose-400 bg-rose-400/10" };

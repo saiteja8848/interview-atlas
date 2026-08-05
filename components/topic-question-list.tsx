@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/components/link";
 import { ChevronDown, ExternalLink, FolderOpen } from "lucide-react";
 import { useState } from "react";
 import { dsaCurriculum } from "@/content/library";

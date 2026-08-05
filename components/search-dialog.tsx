@@ -1,6 +1,6 @@
 "use client";
 import * as Dialog from "@radix-ui/react-dialog";
-import Link from "next/link";
+import { Link } from "@/components/link";
 import { Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { questions, systemDesignTopics } from "@/content/library";

@@ -1,15 +1,10 @@
-"use client";
-import Link from "next/link";
-import { Command, Sparkles } from "lucide-react";
+import { Link } from "@/components/link";
+import { BookOpen, ChevronDown, Command, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { SearchDialog } from "@/components/search-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
-  const [searchOpen, setSearchOpen] = useState(false);
-  return <><header className="sticky top-0 z-40 border-b border-white/[.07] bg-[#09090b]/80 backdrop-blur-xl"><div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
-    <Link href="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight"><span className="grid h-7 w-7 place-items-center rounded-lg bg-indigo-500 text-white"><Sparkles size={15}/></span>Interview Atlas</Link>
-    <nav className="hidden items-center gap-6 text-sm text-zinc-400 md:flex"><Link href="/dsa" className="hover:text-white">DSA</Link><Link href="/system-design" className="hover:text-white">System Design</Link><a href="#roadmap" className="hover:text-white">Roadmap</a></nav>
-    <div className="flex items-center gap-2"><ThemeToggle/><button onClick={() => setSearchOpen(true)} className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[.04] px-3 py-1.5 text-xs text-zinc-400 hover:bg-white/[.08]"><Command size={14}/><span className="hidden sm:block">Search the library</span><kbd className="hidden rounded border border-white/10 px-1 text-[10px] md:block">⌘ K</kbd></button></div>
-  </div></header><SearchDialog open={searchOpen} onOpenChange={setSearchOpen}/></>;
+  const [searchOpen, setSearchOpen] = useState(false); const [coursesOpen, setCoursesOpen] = useState(false);
+  return <><header className="sticky top-0 z-40 border-b border-white/[.07] bg-[#09090b]/80 backdrop-blur-xl"><div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5"><Link href="/" className="flex items-center gap-2.5 text-[15px] font-semibold tracking-[-.025em]"><span className="grid h-8 w-8 place-items-center rounded-lg bg-indigo-500 text-white shadow-lg shadow-indigo-500/20"><Sparkles size={16}/></span>AlgoCraft</Link><div className="relative"><button onClick={() => setCoursesOpen(!coursesOpen)} className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-zinc-300 transition hover:bg-white/[.06] hover:text-white">Courses <ChevronDown size={15} className={`transition ${coursesOpen ? "rotate-180" : ""}`}/></button>{coursesOpen && <div className="absolute left-1/2 top-11 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#151518] p-2 shadow-2xl"><Link onClick={() => setCoursesOpen(false)} href="/dsa" className="flex items-start gap-3 rounded-xl p-3 hover:bg-white/[.06]"><BookOpen size={17} className="mt-0.5 text-indigo-300"/><span><span className="block text-sm font-medium">DSA course</span><span className="mt-0.5 block text-xs text-zinc-500">Patterns, problems, and editorials</span></span></Link><Link onClick={() => setCoursesOpen(false)} href="/system-design" className="flex items-start gap-3 rounded-xl p-3 hover:bg-white/[.06]"><Sparkles size={17} className="mt-0.5 text-cyan-300"/><span><span className="block text-sm font-medium">System Design</span><span className="mt-0.5 block text-xs text-zinc-500">Architecture and trade-offs</span></span></Link></div>}</div><div className="flex items-center gap-2"><ThemeToggle/><button onClick={() => setSearchOpen(true)} className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[.04] px-3 py-1.5 text-xs text-zinc-400 hover:bg-white/[.08]"><Command size={14}/><span className="hidden sm:block">Search</span><kbd className="hidden rounded border border-white/10 px-1 text-[10px] md:block">⌘ K</kbd></button></div></div></header><SearchDialog open={searchOpen} onOpenChange={setSearchOpen}/></>;
 }
