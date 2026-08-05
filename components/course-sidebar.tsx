@@ -43,17 +43,39 @@ const topicIcons: Record<string, LucideIcon> = {
   Graphs: Network,
 };
 
+function getDsaSidebarContext() {
+  if (typeof window === "undefined") return { topic: null as string | null, pattern: null as string | null };
+
+  const { pathname, search } = window.location;
+  const topicRoute = pathname.match(/^\/dsa\/([^/]+)$/);
+  const problemRoute = pathname.match(/^\/dsa\/(?:problems|questions)\/([^/]+)$/);
+  const topic = topicRoute
+    ? dsaCurriculum.find((item) => slugify(item.title) === decodeURIComponent(topicRoute[1]))
+    : problemRoute
+      ? dsaCurriculum.find((item) => item.questions.some((question) => slugify(question.title) === decodeURIComponent(problemRoute[1])))
+      : undefined;
+
+  if (!topic) return { topic: null as string | null, pattern: null as string | null };
+
+  const patternFromUrl = new URLSearchParams(search).get("pattern");
+  const activeQuestion = problemRoute ? topic.questions.find((question) => slugify(question.title) === decodeURIComponent(problemRoute[1])) : undefined;
+  const group = getPatternGroups(topic).find((item) => (patternFromUrl ? slugify(item.pattern) === patternFromUrl : activeQuestion ? item.questions.some((question) => question.title === activeQuestion.title) : false));
+
+  return { topic: topic.title, pattern: group ? `${topic.title}::${group.pattern}` : null };
+}
+
 export function CourseSidebar({ activeCourse = "dsa" }: { activeCourse?: "dsa" | "system-design" }) {
   const [collapsed, setCollapsed] = useState(false);
-  const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
-  const [expandedPattern, setExpandedPattern] = useState<string | null>(null);
+  const [expandedTopic, setExpandedTopic] = useState<string | null>(() => getDsaSidebarContext().topic);
+  const [expandedPattern, setExpandedPattern] = useState<string | null>(() => getDsaSidebarContext().pattern);
   const courseLabel = activeCourse === "dsa" ? "DSA course" : "System Design course";
+  const visuallyCollapsed = collapsed;
 
   return (
-    <aside className={`hidden shrink-0 border-r border-white/[.09] bg-[#09090b] transition-[width] duration-300 lg:block ${collapsed ? "w-20" : "w-[18.75rem]"}`}>
+    <aside className={`hidden shrink-0 border-r border-white/[.09] bg-[#09090b] transition-[width] duration-300 lg:block ${visuallyCollapsed ? "w-20" : "w-[18.75rem]"}`}>
       <div className="sticky top-16 flex h-[calc(100vh-4rem)] flex-col overflow-y-auto px-3 py-4">
-        <div className={`flex items-center ${collapsed ? "justify-center" : "justify-between gap-3 px-2"}`}>
-          {!collapsed && (
+        <div className={`flex items-center ${visuallyCollapsed ? "justify-center" : "justify-between gap-3 px-2"}`}>
+          {!visuallyCollapsed && (
             <Link href="/" className="min-w-0">
               <span className="block truncate text-xl font-semibold tracking-[-.035em] text-white">AlgoCraft</span>
               <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[.16em] text-zinc-500">{courseLabel}</span>
@@ -61,14 +83,14 @@ export function CourseSidebar({ activeCourse = "dsa" }: { activeCourse?: "dsa" |
           )}
           <button
             onClick={() => setCollapsed((value) => !value)}
-            aria-label={collapsed ? "Expand course sidebar" : "Collapse course sidebar"}
+            aria-label={visuallyCollapsed ? "Expand course sidebar" : "Collapse course sidebar"}
             className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/[.10] bg-white/[.035] text-zinc-400 transition hover:border-white/[.18] hover:bg-white/[.07] hover:text-white"
           >
-            {collapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
+            {visuallyCollapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
           </button>
         </div>
 
-        {collapsed ? (
+        {visuallyCollapsed ? (
           <nav className="mt-8 space-y-3" aria-label="Courses">
             <Link href="/dsa" title="DSA course" className={`grid h-11 place-items-center rounded-xl transition ${activeCourse === "dsa" ? "bg-indigo-500/15 text-indigo-200" : "text-zinc-500 hover:bg-white/[.06] hover:text-white"}`}><Code2 size={19} /></Link>
             <Link href="/system-design" title="System Design course" className={`grid h-11 place-items-center rounded-xl transition ${activeCourse === "system-design" ? "bg-cyan-400/10 text-cyan-200" : "text-zinc-500 hover:bg-white/[.06] hover:text-white"}`}><Layers3 size={19} /></Link>
@@ -108,15 +130,19 @@ export function CourseSidebar({ activeCourse = "dsa" }: { activeCourse?: "dsa" |
                               const isPatternExpanded = expandedPattern === patternKey;
                               return (
                                 <div key={patternKey}>
-                                  <button
-                                    onClick={() => setExpandedPattern(isPatternExpanded ? null : patternKey)}
-                                    aria-label={`${isPatternExpanded ? "Collapse" : "Expand"} ${group.pattern} pattern`}
-                                    className="flex w-full items-center gap-1.5 rounded-md py-1.5 text-left text-[13px] text-zinc-500 transition hover:bg-white/[.045] hover:text-zinc-200"
-                                  >
-                                    {isPatternExpanded ? <ChevronDown size={14} className="shrink-0" /> : <ChevronRight size={14} className="shrink-0" />}
-                                    <span className="truncate">{group.pattern}</span>
-                                    <span className="ml-auto pr-2 text-[10px] text-zinc-600">{group.questions.length}</span>
-                                  </button>
+                                  <div className="flex items-center rounded-md transition hover:bg-white/[.045]">
+                                    <button
+                                      onClick={() => setExpandedPattern(isPatternExpanded ? null : patternKey)}
+                                      aria-label={`${isPatternExpanded ? "Collapse" : "Expand"} ${group.pattern} pattern`}
+                                      className="grid h-7 w-5 shrink-0 place-items-center text-zinc-500 transition hover:text-zinc-200"
+                                    >
+                                      {isPatternExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                                    </button>
+                                    <Link href={`/dsa/${topicSlug}?tab=patterns&pattern=${slugify(group.pattern)}`} onClick={() => { setExpandedTopic(topic.title); setExpandedPattern(patternKey); }} className="flex min-w-0 flex-1 items-center gap-1.5 py-1.5 pr-2 text-[13px] text-zinc-500 transition hover:text-indigo-200">
+                                      <span className="truncate">{group.pattern}</span>
+                                      <span className="ml-auto text-[10px] text-zinc-600">{group.questions.length}</span>
+                                    </Link>
+                                  </div>
                                   {isPatternExpanded && (
                                     <div className="ml-4 border-l border-white/[.07] pl-3">
                                       {group.questions.map((question) => (

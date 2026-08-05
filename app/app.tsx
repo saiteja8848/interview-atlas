@@ -24,6 +24,11 @@ export function App() {
   const question = pathname.match(/^\/dsa\/questions\/([^/]+)$/);
   if (question) return <ProblemPage slug={decodeURIComponent(question[1])} />;
   const topic = pathname.match(/^\/dsa\/([^/]+)$/);
-  if (topic) { const tab = new URLSearchParams(search).get("tab"); return tab === "problems" ? <TopicPage topicSlug={decodeURIComponent(topic[1])} tab="problems" /> : <ConceptGuide topicSlug={decodeURIComponent(topic[1])} />; }
+  if (topic) {
+    const params = new URLSearchParams(search);
+    const tab = params.get("tab");
+    if (tab === "patterns" || tab === "problems") return <TopicPage topicSlug={decodeURIComponent(topic[1])} tab="patterns" selectedPattern={params.get("pattern")} />;
+    return <ConceptGuide topicSlug={decodeURIComponent(topic[1])} />;
+  }
   return <NotFound />;
 }
