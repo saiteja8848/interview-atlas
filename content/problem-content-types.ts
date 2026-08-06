@@ -15,6 +15,7 @@ export type OptimizedProblemApproach = ProblemApproach & {
 };
 
 export type ProblemContent = {
+  sourceUrl?: string;
   statement: string;
   examples: ProblemExample[];
   constraints: string[];

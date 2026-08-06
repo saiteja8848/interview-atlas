@@ -12,7 +12,7 @@ export default function DsaPage() {
   return (
     <main className="min-h-screen course-page">
       <SiteHeader />
-      <div className="mx-auto flex max-w-[1440px]">
+      <div className="mx-auto flex w-full max-w-[1800px]">
         <CourseSidebar />
         <div className="min-w-0 flex-1 px-5 py-10 md:px-10 lg:px-14">
           <div className="mx-auto max-w-6xl">

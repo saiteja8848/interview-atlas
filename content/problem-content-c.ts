@@ -1,4 +1,4 @@
-import type { ProblemContent } from "@/content/problem-content-types";
+import type { ProblemContent } from "./problem-content-types";
 
 const code = String.raw;
 
@@ -978,15 +978,15 @@ export const problemContentC: Record<string, ProblemContent> = {
       complexity: "O(n) time · O(n) extra space",
       code: code`class Solution {
     public ListNode oddEvenList(ListNode head) {
-        java.util.List<ListNode> nodes = new java.util.ArrayList<>();
-        int index = 1;
-        for (ListNode node = head; node != null; node = node.next, index += 2) nodes.add(node);
-        index = 1;
-        ListNode node = head == null ? null : head.next;
-        while (node != null) {
-            nodes.add(node);
-            node = node.next == null ? null : node.next.next;
+        java.util.List<ListNode> odd = new java.util.ArrayList<>();
+        java.util.List<ListNode> even = new java.util.ArrayList<>();
+        int position = 1;
+        for (ListNode node = head; node != null; node = node.next) {
+            if ((position++ & 1) == 1) odd.add(node);
+            else even.add(node);
         }
+        java.util.List<ListNode> nodes = new java.util.ArrayList<>(odd);
+        nodes.addAll(even);
         for (int i = 0; i + 1 < nodes.size(); i++) nodes.get(i).next = nodes.get(i + 1);
         if (!nodes.isEmpty()) nodes.get(nodes.size() - 1).next = null;
         return nodes.isEmpty() ? null : nodes.get(0);
@@ -2002,3 +2002,1275 @@ export const problemContentC: Record<string, ProblemContent> = {
 }`
     }
   },
+  "implement-queue-using-stacks": {
+    statement: "Implement a first-in-first-out queue using only standard stack operations. Support push, pop, peek, and empty with the same observable behavior as a queue.",
+    examples: [
+      { input: "push(1), push(2), peek(), pop(), empty()", output: "[null,null,1,1,false]", explanation: "The first inserted value is both peeked and removed first." },
+      { input: "push(7), pop(), empty()", output: "[null,7,true]", explanation: "Removing the only value leaves the queue empty." }
+    ],
+    constraints: ["1 <= x <= 9.", "At most 100 operations are made.", "pop and peek are called only when the queue is nonempty."],
+    brute: {
+      explanation: "Keep one main stack. To pop or peek the oldest value, move every value to a temporary stack, access the bottom value, and then move the remaining values back.",
+      drawback: "Every pop and peek moves nearly the entire queue twice, so repeated front operations cost O(n) each.",
+      complexity: "push O(1), pop/peek O(n), empty O(1) · O(n) space",
+      code: code`class MyQueue {
+    private final java.util.Deque<Integer> stack = new java.util.ArrayDeque<>();
+
+    public MyQueue() {
+    }
+
+    public void push(int x) {
+        stack.push(x);
+    }
+
+    public int pop() {
+        java.util.Deque<Integer> temp = new java.util.ArrayDeque<>();
+        while (stack.size() > 1) temp.push(stack.pop());
+        int value = stack.pop();
+        while (!temp.isEmpty()) stack.push(temp.pop());
+        return value;
+    }
+
+    public int peek() {
+        java.util.Deque<Integer> temp = new java.util.ArrayDeque<>();
+        while (stack.size() > 1) temp.push(stack.pop());
+        int value = stack.peek();
+        while (!temp.isEmpty()) stack.push(temp.pop());
+        return value;
+    }
+
+    public boolean empty() {
+        return stack.isEmpty();
+    }
+}`
+    },
+    optimized: {
+      explanation: "Use an input stack for new values and an output stack for the queue front. Transfer all input values to output only when output is empty. The reversal places the oldest value on top, and each value transfers at most once.",
+      complexity: "O(1) amortized per operation · O(n) space",
+      steps: ["Push new values onto input.", "Before pop or peek, transfer input to output only if output is empty.", "Read or remove output's top; the queue is empty only when both stacks are empty."],
+      code: code`class MyQueue {
+    private final java.util.Deque<Integer> input = new java.util.ArrayDeque<>();
+    private final java.util.Deque<Integer> output = new java.util.ArrayDeque<>();
+
+    public MyQueue() {
+    }
+
+    public void push(int x) {
+        input.push(x);
+    }
+
+    public int pop() {
+        move();
+        return output.pop();
+    }
+
+    public int peek() {
+        move();
+        return output.peek();
+    }
+
+    public boolean empty() {
+        return input.isEmpty() && output.isEmpty();
+    }
+
+    private void move() {
+        if (output.isEmpty()) while (!input.isEmpty()) output.push(input.pop());
+    }
+}`
+    }
+  },
+  "design-circular-queue": {
+    statement: "Design a fixed-capacity circular queue supporting enQueue, deQueue, Front, Rear, isEmpty, and isFull. Failed insertions or removals return false, and Front or Rear returns -1 for an empty queue.",
+    examples: [
+      { input: "k = 3; enQueue(1), enQueue(2), enQueue(3), enQueue(4), Rear(), isFull(), deQueue(), enQueue(4), Rear()", output: "[true,true,true,false,3,true,true,true,4]", explanation: "The fourth initial insertion fails; after removing the front, the freed slot is reused." },
+      { input: "k = 1; enQueue(8), Front(), Rear(), deQueue(), isEmpty()", output: "[true,8,8,true,true]", explanation: "For one element, front and rear are the same slot." }
+    ],
+    constraints: ["1 <= k <= 1,000.", "0 <= value <= 1,000.", "At most 3,000 operations are made."],
+    brute: {
+      explanation: "Use an ArrayList in logical queue order. Append for enQueue and remove index zero for deQueue; front and rear read the list ends.",
+      drawback: "Removing index zero shifts all remaining elements, so deQueue takes O(k).",
+      complexity: "deQueue O(k), other operations O(1) amortized · O(k) space",
+      code: code`class MyCircularQueue {
+    private final int capacity;
+    private final java.util.List<Integer> values = new java.util.ArrayList<>();
+
+    public MyCircularQueue(int k) {
+        capacity = k;
+    }
+
+    public boolean enQueue(int value) {
+        if (isFull()) return false;
+        values.add(value);
+        return true;
+    }
+
+    public boolean deQueue() {
+        if (isEmpty()) return false;
+        values.remove(0);
+        return true;
+    }
+
+    public int Front() {
+        return isEmpty() ? -1 : values.get(0);
+    }
+
+    public int Rear() {
+        return isEmpty() ? -1 : values.get(values.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return values.isEmpty();
+    }
+
+    public boolean isFull() {
+        return values.size() == capacity;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Store values in a fixed array with the index of the logical front and a size. The rear insertion index is (front + size) modulo capacity, and removing the front advances it modulo capacity. No elements move.",
+      complexity: "O(1) per operation · O(k) space",
+      steps: ["Track front, size, and the fixed capacity.", "Insert at the wrapped index front + size and increment size.", "Remove by advancing front and decrementing size; derive rear from front and size."],
+      code: code`class MyCircularQueue {
+    private final int[] values;
+    private int front;
+    private int size;
+
+    public MyCircularQueue(int k) {
+        values = new int[k];
+    }
+
+    public boolean enQueue(int value) {
+        if (isFull()) return false;
+        values[(front + size) % values.length] = value;
+        size++;
+        return true;
+    }
+
+    public boolean deQueue() {
+        if (isEmpty()) return false;
+        front = (front + 1) % values.length;
+        size--;
+        return true;
+    }
+
+    public int Front() {
+        return isEmpty() ? -1 : values[front];
+    }
+
+    public int Rear() {
+        return isEmpty() ? -1 : values[(front + size - 1) % values.length];
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == values.length;
+    }
+}`
+    }
+  },
+  "design-circular-deque": {
+    statement: "Design a fixed-capacity circular double-ended queue supporting insertion and deletion at both ends, reading both ends, and checking empty or full state.",
+    examples: [
+      { input: "k = 3; insertLast(1), insertLast(2), insertFront(3), insertFront(4), getRear(), isFull(), deleteLast(), insertFront(4), getFront()", output: "[true,true,true,false,2,true,true,true,4]", explanation: "The fourth insertion fails while full; deletion frees one reusable circular slot." },
+      { input: "k = 1; insertFront(9), getFront(), getRear(), deleteFront(), isEmpty()", output: "[true,9,9,true,true]", explanation: "A single stored item is visible from both ends." }
+    ],
+    constraints: ["1 <= k <= 1,000.", "0 <= value <= 1,000.", "At most 2,000 operations are made."],
+    brute: {
+      explanation: "Keep logical deque order in an ArrayList. Insert or delete at index zero for front operations and use the list end for rear operations.",
+      drawback: "Front insertion and deletion shift every existing item, costing O(k).",
+      complexity: "front updates O(k), rear updates and reads O(1) amortized · O(k) space",
+      code: code`class MyCircularDeque {
+    private final int capacity;
+    private final java.util.List<Integer> values = new java.util.ArrayList<>();
+
+    public MyCircularDeque(int k) {
+        capacity = k;
+    }
+
+    public boolean insertFront(int value) {
+        if (isFull()) return false;
+        values.add(0, value);
+        return true;
+    }
+
+    public boolean insertLast(int value) {
+        if (isFull()) return false;
+        values.add(value);
+        return true;
+    }
+
+    public boolean deleteFront() {
+        if (isEmpty()) return false;
+        values.remove(0);
+        return true;
+    }
+
+    public boolean deleteLast() {
+        if (isEmpty()) return false;
+        values.remove(values.size() - 1);
+        return true;
+    }
+
+    public int getFront() {
+        return isEmpty() ? -1 : values.get(0);
+    }
+
+    public int getRear() {
+        return isEmpty() ? -1 : values.get(values.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return values.isEmpty();
+    }
+
+    public boolean isFull() {
+        return values.size() == capacity;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Use a fixed array, a front index, and size. Front insertion decrements front with wraparound; rear insertion writes at front + size. Deletions adjust front or only size, so every operation touches constant state.",
+      complexity: "O(1) per operation · O(k) space",
+      steps: ["Represent the occupied segment by front and size.", "Wrap front changes with modulo arithmetic.", "Derive the rear index from front + size - 1 and update size after each mutation."],
+      code: code`class MyCircularDeque {
+    private final int[] values;
+    private int front;
+    private int size;
+
+    public MyCircularDeque(int k) {
+        values = new int[k];
+    }
+
+    public boolean insertFront(int value) {
+        if (isFull()) return false;
+        front = (front - 1 + values.length) % values.length;
+        values[front] = value;
+        size++;
+        return true;
+    }
+
+    public boolean insertLast(int value) {
+        if (isFull()) return false;
+        values[(front + size) % values.length] = value;
+        size++;
+        return true;
+    }
+
+    public boolean deleteFront() {
+        if (isEmpty()) return false;
+        front = (front + 1) % values.length;
+        size--;
+        return true;
+    }
+
+    public boolean deleteLast() {
+        if (isEmpty()) return false;
+        size--;
+        return true;
+    }
+
+    public int getFront() {
+        return isEmpty() ? -1 : values[front];
+    }
+
+    public int getRear() {
+        return isEmpty() ? -1 : values[(front + size - 1) % values.length];
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == values.length;
+    }
+}`
+    }
+  },
+  "implement-stack-using-queues": {
+    statement: "Implement a last-in-first-out stack using only standard queue operations. Support push, pop, top, and empty with stack behavior.",
+    examples: [
+      { input: "push(1), push(2), top(), pop(), empty()", output: "[null,null,2,2,false]", explanation: "The most recently pushed value is read and removed first." },
+      { input: "push(5), pop(), empty()", output: "[null,5,true]", explanation: "Removing the only item empties the stack." }
+    ],
+    constraints: ["1 <= x <= 9.", "At most 100 operations are made.", "pop and top are called only when the stack is nonempty."],
+    brute: {
+      explanation: "Enqueue values normally. For pop, move the first n - 1 values into a temporary queue, remove the final value, and swap queue roles. top performs the same rotation but puts the final value back.",
+      drawback: "Both pop and top move almost every element, so repeated reads of the stack top are linear.",
+      complexity: "push O(1), pop/top O(n), empty O(1) · O(n) space",
+      code: code`class MyStack {
+    private java.util.Queue<Integer> queue = new java.util.ArrayDeque<>();
+
+    public MyStack() {
+    }
+
+    public void push(int x) {
+        queue.offer(x);
+    }
+
+    public int pop() {
+        for (int i = 1; i < queue.size(); i++) queue.offer(queue.poll());
+        return queue.poll();
+    }
+
+    public int top() {
+        for (int i = 1; i < queue.size(); i++) queue.offer(queue.poll());
+        int value = queue.poll();
+        queue.offer(value);
+        return value;
+    }
+
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}`
+    },
+    optimized: {
+      explanation: "After each push, rotate every older queue value behind the new value. The queue front is then always the stack top, making pop and top constant time.",
+      complexity: "push O(n), pop/top/empty O(1) · O(n) space",
+      steps: ["Enqueue the new value.", "Rotate the previous queue size by polling and offering each older value.", "Use the queue front directly for top and pop."],
+      code: code`class MyStack {
+    private final java.util.Queue<Integer> queue = new java.util.ArrayDeque<>();
+
+    public MyStack() {
+    }
+
+    public void push(int x) {
+        int older = queue.size();
+        queue.offer(x);
+        while (older-- > 0) queue.offer(queue.poll());
+    }
+
+    public int pop() {
+        return queue.poll();
+    }
+
+    public int top() {
+        return queue.peek();
+    }
+
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}`
+    }
+  },
+  "moving-average-from-data-stream": {
+    statement: "Given a positive window size, design MovingAverage so each next(value) returns the arithmetic mean of the most recent size values, or all values seen so far when fewer have arrived.",
+    examples: [
+      { input: "size = 3; next(1), next(10), next(3), next(5)", output: "[1.0,5.5,4.66667,6.0]", explanation: "The final average uses the latest window [10,3,5]." },
+      { input: "size = 1; next(-2), next(8)", output: "[-2.0,8.0]", explanation: "A size-one window always contains only the newest value." }
+    ],
+    constraints: ["1 <= size <= 1,000.", "-100,000 <= value <= 100,000.", "At most 10,000 next calls are made."],
+    brute: {
+      explanation: "Store every value. On each call, sum the last min(size, count) entries and divide by that count.",
+      drawback: "The same values are summed again for consecutive overlapping windows, costing O(size) per call.",
+      complexity: "O(size) per next · O(n) space",
+      code: code`class MovingAverage {
+    private final int size;
+    private final java.util.List<Integer> values = new java.util.ArrayList<>();
+
+    public MovingAverage(int size) {
+        this.size = size;
+    }
+
+    public double next(int val) {
+        values.add(val);
+        long sum = 0;
+        int start = Math.max(0, values.size() - size);
+        for (int i = start; i < values.size(); i++) sum += values.get(i);
+        return (double) sum / (values.size() - start);
+    }
+}`
+    },
+    optimized: {
+      explanation: "Keep exactly the active window in a queue and maintain its running sum. Add the new value, subtract the oldest if capacity is exceeded, and divide the sum by the queue size.",
+      complexity: "O(1) per next · O(size) space",
+      steps: ["Enqueue the new value and add it to sum.", "If the queue is too large, dequeue and subtract its oldest value.", "Return sum divided by the current queue size."],
+      code: code`class MovingAverage {
+    private final int size;
+    private final java.util.Queue<Integer> window = new java.util.ArrayDeque<>();
+    private long sum;
+
+    public MovingAverage(int size) {
+        this.size = size;
+    }
+
+    public double next(int val) {
+        window.offer(val);
+        sum += val;
+        if (window.size() > size) sum -= window.poll();
+        return (double) sum / window.size();
+    }
+}`
+    }
+  },
+  "number-of-recent-calls": {
+    statement: "Design RecentCounter. Each ping(t) records a request at strictly increasing millisecond t and returns how many recorded requests lie in the inclusive interval [t - 3000, t].",
+    examples: [
+      { input: "ping(1), ping(100), ping(3001), ping(3002)", output: "[1,2,3,3]", explanation: "At 3002, timestamp 1 is outside the window while 100, 3001, and 3002 remain." },
+      { input: "ping(3000), ping(6000), ping(6001)", output: "[1,2,2]", explanation: "At 6001, timestamp 3000 is too old but the latest two requests remain." }
+    ],
+    constraints: ["1 <= t <= 1,000,000,000.", "Every t is strictly greater than the previous one.", "At most 10,000 ping calls are made."],
+    brute: {
+      explanation: "Store every timestamp. For each ping, scan the full history and count timestamps at least t - 3000.",
+      drawback: "Expired requests remain stored and are reconsidered on every later call, producing quadratic total work.",
+      complexity: "O(n) per ping · O(n) space",
+      code: code`class RecentCounter {
+    private final java.util.List<Integer> times = new java.util.ArrayList<>();
+
+    public RecentCounter() {
+    }
+
+    public int ping(int t) {
+        times.add(t);
+        int count = 0;
+        for (int time : times) if (time >= t - 3000) count++;
+        return count;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Because timestamps arrive in increasing order, expired requests form a prefix. Enqueue t and remove front timestamps below t - 3000. The queue size is exactly the number of recent calls.",
+      complexity: "O(1) amortized per ping · O(w) space for calls in one window",
+      steps: ["Enqueue the new increasing timestamp.", "Remove timestamps strictly smaller than t - 3000 from the front.", "Return the number of timestamps left."],
+      code: code`class RecentCounter {
+    private final java.util.Queue<Integer> times = new java.util.ArrayDeque<>();
+
+    public RecentCounter() {
+    }
+
+    public int ping(int t) {
+        times.offer(t);
+        while (times.peek() < t - 3000) times.poll();
+        return times.size();
+    }
+}`
+    }
+  },
+  "first-unique-number": {
+    statement: "Design FirstUnique from an initial integer array. showFirstUnique returns the earliest value whose total frequency is one, or -1 when none exists. add(value) appends a value to the stream.",
+    examples: [
+      { input: "initial = [2,3,5]; show(), add(5), show(), add(2), show(), add(3), show()", output: "[2,2,3,-1]", explanation: "Values stop being unique as their second copies arrive." },
+      { input: "initial = [7,7,7,7,7,7]; show(), add(7), add(3), add(3), add(7), add(17), show()", output: "[-1,17]", explanation: "17 is the first value whose count remains one." }
+    ],
+    constraints: ["1 <= initial length <= 100,000.", "1 <= value <= 100,000,000.", "At most 50,000 method calls are made."],
+    brute: {
+      explanation: "Maintain the complete arrival list and a frequency map. add updates both. showFirstUnique scans from the beginning until it finds a value with frequency one.",
+      drawback: "When no early value is unique, every show call rescans a long prefix.",
+      complexity: "add O(1) average, show O(n) · O(n) space",
+      code: code`class FirstUnique {
+    private final java.util.List<Integer> order = new java.util.ArrayList<>();
+    private final java.util.Map<Integer, Integer> count = new java.util.HashMap<>();
+
+    public FirstUnique(int[] nums) {
+        for (int value : nums) add(value);
+    }
+
+    public int showFirstUnique() {
+        for (int value : order) if (count.get(value) == 1) return value;
+        return -1;
+    }
+
+    public void add(int value) {
+        order.add(value);
+        count.merge(value, 1, Integer::sum);
+    }
+}`
+    },
+    optimized: {
+      explanation: "Keep all first arrivals in a queue and maintain frequencies. Before returning, remove queue-front values whose frequency is greater than one. Such values can never become unique again, so each leaves the queue once.",
+      complexity: "O(1) amortized per operation · O(n) space",
+      steps: ["Increment the frequency and enqueue a value only on its first arrival.", "Before show, discard nonunique values from the queue front.", "Return the front or -1 when the queue is empty."],
+      code: code`class FirstUnique {
+    private final java.util.Queue<Integer> candidates = new java.util.ArrayDeque<>();
+    private final java.util.Map<Integer, Integer> count = new java.util.HashMap<>();
+
+    public FirstUnique(int[] nums) {
+        for (int value : nums) add(value);
+    }
+
+    public int showFirstUnique() {
+        while (!candidates.isEmpty() && count.get(candidates.peek()) > 1) candidates.poll();
+        return candidates.isEmpty() ? -1 : candidates.peek();
+    }
+
+    public void add(int value) {
+        int frequency = count.getOrDefault(value, 0) + 1;
+        count.put(value, frequency);
+        if (frequency == 1) candidates.offer(value);
+    }
+}`
+    }
+  },
+  "design-hit-counter": {
+    statement: "Design a hit counter. hit(timestamp) records a hit, and getHits(timestamp) returns hits received in the previous 300 seconds, meaning timestamps in (timestamp - 300, timestamp]. Calls arrive in nondecreasing timestamp order.",
+    examples: [
+      { input: "hit(1), hit(2), hit(3), getHits(4), hit(300), getHits(300), getHits(301)", output: "[3,4,3]", explanation: "At 301, the hit at timestamp 1 is exactly 300 seconds old and is excluded." },
+      { input: "hit(1), hit(1), getHits(1)", output: "3", explanation: "Multiple hits at one timestamp are counted independently." }
+    ],
+    constraints: ["1 <= timestamp <= 2,000,000,000.", "Timestamps are supplied in nondecreasing order.", "At most 300 calls are made in the standard problem setting."],
+    brute: {
+      explanation: "Store one timestamp per hit. For getHits, scan all stored hits and count those greater than timestamp - 300.",
+      drawback: "Expired hits are kept forever and rescanned in every query.",
+      complexity: "hit O(1), getHits O(n) · O(n) space",
+      code: code`class HitCounter {
+    private final java.util.List<Integer> hits = new java.util.ArrayList<>();
+
+    public HitCounter() {
+    }
+
+    public void hit(int timestamp) {
+        hits.add(timestamp);
+    }
+
+    public int getHits(int timestamp) {
+        int count = 0;
+        for (int hit : hits) if (hit > timestamp - 300) count++;
+        return count;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Use 300 circular second-buckets. A bucket stores its timestamp and hit count. On hit, reset a reused bucket if its timestamp differs. On query, sum only buckets whose timestamp is less than 300 seconds old.",
+      complexity: "hit O(1), getHits O(300) = O(1) · O(300) = O(1) space",
+      steps: ["Map timestamp to index timestamp modulo 300.", "Reset a stale bucket before incrementing its count.", "Sum buckets whose stored timestamp lies inside the requested window."],
+      code: code`class HitCounter {
+    private final int[] times = new int[300];
+    private final int[] counts = new int[300];
+
+    public HitCounter() {
+    }
+
+    public void hit(int timestamp) {
+        int index = timestamp % 300;
+        if (times[index] != timestamp) {
+            times[index] = timestamp;
+            counts[index] = 0;
+        }
+        counts[index]++;
+    }
+
+    public int getHits(int timestamp) {
+        int total = 0;
+        for (int i = 0; i < 300; i++) {
+            if (timestamp - times[i] < 300) total += counts[i];
+        }
+        return total;
+    }
+}`
+    }
+  },
+  "time-needed-to-buy-tickets": {
+    statement: "People stand in a queue, where tickets[i] is how many tickets person i wants. Each second the front person buys one ticket and, if still needing more, rejoins the rear. Return the seconds until person k finishes.",
+    examples: [
+      { input: "tickets = [2,3,2], k = 2", output: "6", explanation: "After two full turns, person 2 buys their second ticket at second 6." },
+      { input: "tickets = [5,1,1,1], k = 0", output: "8", explanation: "The three other people leave after one turn; person 0 then buys four more tickets." },
+      { input: "tickets = [1], k = 0", output: "1", explanation: "The only person finishes in one second." }
+    ],
+    constraints: ["1 <= tickets.length <= 100.", "1 <= tickets[i] <= 100.", "0 <= k < tickets.length."],
+    brute: {
+      explanation: "Simulate the queue with indices. Poll the front, decrement that person's need, and either return when k reaches zero or re-enqueue the person if tickets remain.",
+      drawback: "The loop runs once per purchased ticket, so large ticket counts cause far more work than the number of people.",
+      complexity: "O(sum(tickets)) time · O(n) extra space",
+      code: code`class Solution {
+    public int timeRequiredToBuy(int[] tickets, int k) {
+        java.util.Queue<Integer> queue = new java.util.ArrayDeque<>();
+        for (int i = 0; i < tickets.length; i++) queue.offer(i);
+        int seconds = 0;
+        while (true) {
+            int person = queue.poll();
+            tickets[person]--;
+            seconds++;
+            if (person == k && tickets[person] == 0) return seconds;
+            if (tickets[person] > 0) queue.offer(person);
+        }
+    }
+}`
+    },
+    optimized: {
+      explanation: "Person k participates in exactly tickets[k] rounds. A person at or before k can buy at most tickets[k] times before k finishes; a person after k can buy at most tickets[k] - 1 times because the final round stops at k. Sum these contributions directly.",
+      complexity: "O(n) time · O(1) extra space",
+      steps: ["Let target be tickets[k].", "For indices through k, add min(tickets[i], target).", "For indices after k, add min(tickets[i], target - 1)."],
+      code: code`class Solution {
+    public int timeRequiredToBuy(int[] tickets, int k) {
+        int seconds = 0;
+        for (int i = 0; i < tickets.length; i++) {
+            int limit = i <= k ? tickets[k] : tickets[k] - 1;
+            seconds += Math.min(tickets[i], limit);
+        }
+        return seconds;
+    }
+}`
+    }
+  },
+  "dota2-senate": {
+    statement: "A senate string contains Radiant and Dire members in speaking order. On each turn, an active senator bans one active opponent's future rights. Turns repeat cyclically until only one party has active senators. Return 'Radiant' or 'Dire'.",
+    examples: [
+      { input: "senate = 'RD'", output: "'Radiant'", explanation: "R acts first and bans the only D senator." },
+      { input: "senate = 'RDD'", output: "'Dire'", explanation: "R bans the first D, but the remaining D later bans R." },
+      { input: "senate = 'RRDDD'", output: "'Radiant'", explanation: "Turn order and carried bans eventually leave only Radiant senators." }
+    ],
+    constraints: ["1 <= senate.length <= 10,000.", "Every character is 'R' or 'D'."],
+    brute: {
+      explanation: "Keep active senators in a mutable character list. Move cyclically; for the current senator, search forward with wraparound for the nearest opponent and remove that opponent. Continue until all remaining characters match.",
+      drawback: "Finding and removing an opponent can scan and shift O(n) positions per ban, resulting in quadratic time.",
+      complexity: "O(n²) time · O(n) extra space",
+      code: code`class Solution {
+    public String predictPartyVictory(String senate) {
+        java.util.List<Character> active = new java.util.ArrayList<>();
+        for (char party : senate.toCharArray()) active.add(party);
+        int current = 0;
+        while (true) {
+            boolean mixed = false;
+            for (char party : active) if (party != active.get(0)) mixed = true;
+            if (!mixed) return active.get(0) == 'R' ? "Radiant" : "Dire";
+            char party = active.get(current);
+            int opponent = (current + 1) % active.size();
+            while (active.get(opponent) == party) opponent = (opponent + 1) % active.size();
+            active.remove(opponent);
+            if (opponent < current) current--;
+            current = (current + 1) % active.size();
+        }
+    }
+}`
+    },
+    optimized: {
+      explanation: "Store Radiant and Dire indices in separate queues. Remove the earliest index from each; the smaller index acts first, bans the other, and returns for the next cycle with index + n. The nonempty queue identifies the winner.",
+      complexity: "O(n) time · O(n) extra space",
+      steps: ["Enqueue each original index by party.", "Compare the two earliest active indices and remove both.", "Re-enqueue the earlier senator at index + n until one party's queue empties."],
+      code: code`class Solution {
+    public String predictPartyVictory(String senate) {
+        java.util.Queue<Integer> radiant = new java.util.ArrayDeque<>();
+        java.util.Queue<Integer> dire = new java.util.ArrayDeque<>();
+        int n = senate.length();
+        for (int i = 0; i < n; i++) {
+            if (senate.charAt(i) == 'R') radiant.offer(i);
+            else dire.offer(i);
+        }
+        while (!radiant.isEmpty() && !dire.isEmpty()) {
+            int r = radiant.poll();
+            int d = dire.poll();
+            if (r < d) radiant.offer(r + n);
+            else dire.offer(d + n);
+        }
+        return radiant.isEmpty() ? "Dire" : "Radiant";
+    }
+}`
+    }
+  },
+  "factorial": {
+    statement: "Given a nonnegative integer n, return n factorial, the product of every positive integer from 1 through n. By definition, 0 factorial is 1.",
+    examples: [
+      { input: "n = 5", output: "120", explanation: "5 × 4 × 3 × 2 × 1 equals 120." },
+      { input: "n = 0", output: "1", explanation: "The empty product is defined as one." },
+      { input: "n = 1", output: "1", explanation: "The product contains only 1." }
+    ],
+    constraints: ["0 <= n <= 20.", "The answer fits in a signed 64-bit integer."],
+    brute: {
+      explanation: "Use the recurrence factorial(n) = n × factorial(n - 1) with factorial(0) = 1. Each call waits for the smaller call before multiplying.",
+      drawback: "The call stack retains one frame per integer, even though only a running product is needed.",
+      complexity: "O(n) time · O(n) recursion space",
+      code: code`class Solution {
+    public long factorial(int n) {
+        if (n <= 1) return 1L;
+        return n * factorial(n - 1);
+    }
+}`
+    },
+    optimized: {
+      explanation: "Maintain the product directly while iterating from 2 through n. This evaluates the same recurrence without retaining pending recursive multiplications.",
+      complexity: "O(n) time · O(1) extra space",
+      steps: ["Initialize the product to one, which covers n equal to zero or one.", "Multiply by every integer from two through n.", "Return the accumulated long value."],
+      code: code`class Solution {
+    public long factorial(int n) {
+        long result = 1L;
+        for (int value = 2; value <= n; value++) result *= value;
+        return result;
+    }
+}`
+    }
+  },
+  "fibonacci-number": {
+    statement: "Given n, return the nth Fibonacci number, where F(0) = 0, F(1) = 1, and F(n) = F(n - 1) + F(n - 2) for n at least 2.",
+    examples: [
+      { input: "n = 2", output: "1", explanation: "F(2) is F(1) + F(0), or 1 + 0." },
+      { input: "n = 4", output: "3", explanation: "The sequence begins 0, 1, 1, 2, 3." },
+      { input: "n = 0", output: "0", explanation: "This is the first base case." }
+    ],
+    constraints: ["0 <= n <= 30."],
+    brute: {
+      explanation: "Translate the definition directly: return n for the two base cases, otherwise recursively calculate both previous Fibonacci numbers and add them.",
+      drawback: "The recursion tree recomputes the same F(k) through many branches; for example F(n - 2) appears inside both major subtrees.",
+      complexity: "O(2^n) time · O(n) recursion space",
+      code: code`class Solution {
+    public int fib(int n) {
+        if (n < 2) return n;
+        return fib(n - 1) + fib(n - 2);
+    }
+}`
+    },
+    optimized: {
+      explanation: "Keep the recursive recurrence but memoize each n. The first call computes and stores F(n); every repeated call returns the stored value, collapsing the recursion tree to one state per index.",
+      complexity: "O(n) time · O(n) memo and recursion space",
+      steps: ["Allocate a memo array and mark unknown states.", "Return n at the base cases or a saved result when available.", "Compute the two smaller states once, save their sum, and return it."],
+      code: code`class Solution {
+    public int fib(int n) {
+        int[] memo = new int[n + 1];
+        java.util.Arrays.fill(memo, -1);
+        return solve(n, memo);
+    }
+
+    private int solve(int n, int[] memo) {
+        if (n < 2) return n;
+        if (memo[n] != -1) return memo[n];
+        memo[n] = solve(n - 1, memo) + solve(n - 2, memo);
+        return memo[n];
+    }
+}`
+    }
+  },
+  "recursive-binary-search": {
+    statement: "Given an ascending array of distinct integers and a target, return the target's index using recursion, or -1 if the target is absent.",
+    examples: [
+      { input: "nums = [-1,0,3,5,9,12], target = 9", output: "4", explanation: "The value 9 is stored at index 4." },
+      { input: "nums = [-1,0,3,5,9,12], target = 2", output: "-1", explanation: "Repeated interval halving produces an empty range." },
+      { input: "nums = [5], target = 5", output: "0", explanation: "The first midpoint is the answer." }
+    ],
+    constraints: ["1 <= nums.length <= 10,000.", "-10,000 < nums[i], target < 10,000.", "nums is strictly increasing."],
+    brute: {
+      explanation: "Recursively inspect one index at a time. If the current value is not the target, call the function for the next index.",
+      drawback: "It ignores sorted order, may recurse once per element, and risks deep-stack failure for large arrays.",
+      complexity: "O(n) time · O(n) recursion space",
+      code: code`class Solution {
+    public int search(int[] nums, int target) {
+        return linear(nums, target, 0);
+    }
+
+    private int linear(int[] nums, int target, int index) {
+        if (index == nums.length) return -1;
+        if (nums[index] == target) return index;
+        return linear(nums, target, index + 1);
+    }
+}`
+    },
+    optimized: {
+      explanation: "A recursive call represents an inclusive sorted interval. Compare its midpoint with target and recurse only into the half that can still contain the target. An interval with left greater than right is absent.",
+      complexity: "O(log n) time · O(log n) recursion space",
+      steps: ["Call the helper with the full inclusive interval.", "Return the midpoint when equal; otherwise choose the only possible sorted half.", "Return -1 when the interval becomes empty."],
+      code: code`class Solution {
+    public int search(int[] nums, int target) {
+        return binary(nums, target, 0, nums.length - 1);
+    }
+
+    private int binary(int[] nums, int target, int left, int right) {
+        if (left > right) return -1;
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) return mid;
+        if (target < nums[mid]) return binary(nums, target, left, mid - 1);
+        return binary(nums, target, mid + 1, right);
+    }
+}`
+    }
+  },
+  "merge-sort": {
+    statement: "Given an integer array, return its values sorted in nondecreasing order. This lesson focuses on implementing merge sort through recursive divide and conquer.",
+    examples: [
+      { input: "nums = [5,2,3,1]", output: "[1,2,3,5]", explanation: "The array is divided, each half is sorted, and ordered halves are merged." },
+      { input: "nums = [5,1,1,2,0,0]", output: "[0,0,1,1,2,5]", explanation: "Duplicate values remain in nondecreasing order." },
+      { input: "nums = []", output: "[]", explanation: "An empty array needs no work." }
+    ],
+    constraints: ["0 <= nums.length <= 50,000.", "-50,000 <= nums[i] <= 50,000."],
+    brute: {
+      explanation: "Use insertion sort: recursively sort the prefix ending before index, then shift larger prefix values right and insert the current value.",
+      drawback: "A reverse-sorted input shifts the full sorted prefix for every insertion, producing quadratic time.",
+      complexity: "O(n²) time · O(n) recursion space",
+      code: code`class Solution {
+    public int[] sortArray(int[] nums) {
+        insertion(nums, nums.length);
+        return nums;
+    }
+
+    private void insertion(int[] nums, int length) {
+        if (length <= 1) return;
+        insertion(nums, length - 1);
+        int value = nums[length - 1];
+        int index = length - 2;
+        while (index >= 0 && nums[index] > value) {
+            nums[index + 1] = nums[index];
+            index--;
+        }
+        nums[index + 1] = value;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Recursively sort the left and right halves. During merge, compare the smallest not-yet-used value from each half and copy the smaller one. Each recursion level processes all n values, and there are logarithmically many levels.",
+      complexity: "O(n log n) time · O(n) auxiliary array plus O(log n) recursion space",
+      steps: ["Stop when a range has at most one element.", "Recursively sort both halves around the midpoint.", "Merge the ordered halves into a temporary array and copy it back."],
+      code: code`class Solution {
+    public int[] sortArray(int[] nums) {
+        int[] temp = new int[nums.length];
+        sort(nums, temp, 0, nums.length - 1);
+        return nums;
+    }
+
+    private void sort(int[] nums, int[] temp, int left, int right) {
+        if (left >= right) return;
+        int mid = left + (right - left) / 2;
+        sort(nums, temp, left, mid);
+        sort(nums, temp, mid + 1, right);
+        int i = left;
+        int j = mid + 1;
+        int write = left;
+        while (i <= mid && j <= right) temp[write++] = nums[i] <= nums[j] ? nums[i++] : nums[j++];
+        while (i <= mid) temp[write++] = nums[i++];
+        while (j <= right) temp[write++] = nums[j++];
+        for (int k = left; k <= right; k++) nums[k] = temp[k];
+    }
+}`
+    }
+  },
+  "quick-sort": {
+    statement: "Given an integer array, sort it in nondecreasing order using the quick-sort divide-and-conquer idea: partition values around a pivot and recursively sort the resulting ranges.",
+    examples: [
+      { input: "nums = [10,7,8,9,1,5]", output: "[1,5,7,8,9,10]", explanation: "Partitioning repeatedly places smaller values before larger values." },
+      { input: "nums = [3,3,2,1,3]", output: "[1,2,3,3,3]", explanation: "Equal pivot values are grouped together." },
+      { input: "nums = [1]", output: "[1]", explanation: "A one-value range is already sorted." }
+    ],
+    constraints: ["0 <= nums.length <= 50,000.", "-50,000 <= nums[i] <= 50,000."],
+    brute: {
+      explanation: "Choose the final value as pivot, partition with Lomuto's method, then recurse on both sides. The algorithm is correct but a consistently smallest or largest pivot creates highly unbalanced ranges.",
+      drawback: "Already sorted or reverse-sorted input can shrink by only one value per call, causing O(n²) comparisons and O(n) stack depth.",
+      complexity: "O(n²) worst-case time · O(n) worst-case recursion space",
+      code: code`class Solution {
+    public int[] sortArray(int[] nums) {
+        quicksort(nums, 0, nums.length - 1);
+        return nums;
+    }
+
+    private void quicksort(int[] nums, int left, int right) {
+        if (left >= right) return;
+        int pivot = partition(nums, left, right);
+        quicksort(nums, left, pivot - 1);
+        quicksort(nums, pivot + 1, right);
+    }
+
+    private int partition(int[] nums, int left, int right) {
+        int write = left;
+        for (int i = left; i < right; i++) {
+            if (nums[i] <= nums[right]) {
+                int temp = nums[write];
+                nums[write++] = nums[i];
+                nums[i] = temp;
+            }
+        }
+        int temp = nums[write];
+        nums[write] = nums[right];
+        nums[right] = temp;
+        return write;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Choose the middle value as pivot and use three-way partitioning. Values smaller than pivot move left, greater values move right, and equal values stay in the middle. Recurse only outside the equal block, which handles duplicates efficiently.",
+      complexity: "O(n log n) average time, O(n²) worst case · O(log n) average recursion space",
+      steps: ["Select a pivot value and maintain less, scan, and greater boundaries.", "Move each scanned value into the smaller, equal, or greater region.", "Recursively sort only the smaller and greater regions."],
+      code: code`class Solution {
+    public int[] sortArray(int[] nums) {
+        quicksort(nums, 0, nums.length - 1);
+        return nums;
+    }
+
+    private void quicksort(int[] nums, int left, int right) {
+        if (left >= right) return;
+        int pivot = nums[left + (right - left) / 2];
+        int less = left;
+        int scan = left;
+        int greater = right;
+        while (scan <= greater) {
+            if (nums[scan] < pivot) swap(nums, less++, scan++);
+            else if (nums[scan] > pivot) swap(nums, scan, greater--);
+            else scan++;
+        }
+        quicksort(nums, left, less - 1);
+        quicksort(nums, greater + 1, right);
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}`
+    }
+  },
+  "sort-an-array": {
+    statement: "Given an integer array, return it sorted in nondecreasing order without using a built-in sorting function. The solution should handle many duplicate and negative values efficiently.",
+    examples: [
+      { input: "nums = [5,2,3,1]", output: "[1,2,3,5]", explanation: "Every value is placed in ascending order." },
+      { input: "nums = [5,1,1,2,0,0]", output: "[0,0,1,1,2,5]", explanation: "Both copies of zero and one are preserved." },
+      { input: "nums = [-2,3,-5]", output: "[-5,-2,3]", explanation: "Negative values are ordered normally." }
+    ],
+    constraints: ["1 <= nums.length <= 50,000.", "-50,000 <= nums[i] <= 50,000."],
+    brute: {
+      explanation: "Selection sort repeatedly finds the minimum value in the unsorted suffix and swaps it into the next output position.",
+      drawback: "Finding each next minimum scans the remaining suffix, so n output positions require quadratic comparisons.",
+      complexity: "O(n²) time · O(1) extra space",
+      code: code`class Solution {
+    public int[] sortArray(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int smallest = i;
+            for (int j = i + 1; j < nums.length; j++) if (nums[j] < nums[smallest]) smallest = j;
+            int temp = nums[i];
+            nums[i] = nums[smallest];
+            nums[smallest] = temp;
+        }
+        return nums;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Merge sort recursively reduces the array to one-value ranges and merges them in order. One shared temporary array avoids repeated allocation while guaranteeing O(n log n) time on every input order.",
+      complexity: "O(n log n) time · O(n) extra space",
+      steps: ["Divide each multi-value interval at its midpoint.", "Recursively sort both halves.", "Merge them into shared temporary storage and copy the sorted interval back."],
+      code: code`class Solution {
+    public int[] sortArray(int[] nums) {
+        mergeSort(nums, new int[nums.length], 0, nums.length - 1);
+        return nums;
+    }
+
+    private void mergeSort(int[] nums, int[] temp, int left, int right) {
+        if (left >= right) return;
+        int mid = left + (right - left) / 2;
+        mergeSort(nums, temp, left, mid);
+        mergeSort(nums, temp, mid + 1, right);
+        int i = left;
+        int j = mid + 1;
+        int write = left;
+        while (i <= mid && j <= right) temp[write++] = nums[i] <= nums[j] ? nums[i++] : nums[j++];
+        while (i <= mid) temp[write++] = nums[i++];
+        while (j <= right) temp[write++] = nums[j++];
+        for (int k = left; k <= right; k++) nums[k] = temp[k];
+    }
+}`
+    }
+  },
+  "k-th-symbol-in-grammar": {
+    statement: "Row 1 is '0'. Each later row replaces every 0 with 01 and every 1 with 10. Given row n and one-based position k, return the symbol at that position.",
+    examples: [
+      { input: "n = 1, k = 1", output: "0", explanation: "The first row contains only zero." },
+      { input: "n = 2, k = 2", output: "1", explanation: "Row 2 is 01." },
+      { input: "n = 4, k = 5", output: "1", explanation: "Row 4 is 01101001, whose fifth symbol is 1." }
+    ],
+    constraints: ["1 <= n <= 30.", "1 <= k <= 2^(n - 1)."],
+    brute: {
+      explanation: "Build each complete row string from the previous row by appending 01 for zero and 10 for one, then read index k - 1.",
+      drawback: "Row length doubles each time, so both work and memory grow exponentially even though only one symbol is requested.",
+      complexity: "O(2^n) time · O(2^n) space",
+      code: code`class Solution {
+    public int kthGrammar(int n, int k) {
+        String row = "0";
+        for (int level = 2; level <= n; level++) {
+            StringBuilder next = new StringBuilder(row.length() * 2);
+            for (char symbol : row.toCharArray()) next.append(symbol == '0' ? "01" : "10");
+            row = next.toString();
+        }
+        return row.charAt(k - 1) - '0';
+    }
+}`
+    },
+    optimized: {
+      explanation: "Position k has parent position (k + 1) / 2 in the previous row. An odd-position child equals its parent; an even-position child is inverted. Recurse to the first row and apply that relationship while returning.",
+      complexity: "O(n) time · O(n) recursion space",
+      steps: ["Return zero at row one.", "Recursively obtain the parent symbol at position (k + 1) / 2.", "Return the parent for odd k and its inverse for even k."],
+      code: code`class Solution {
+    public int kthGrammar(int n, int k) {
+        if (n == 1) return 0;
+        int parent = kthGrammar(n - 1, (k + 1) / 2);
+        return (k & 1) == 1 ? parent : 1 - parent;
+    }
+}`
+    }
+  },
+  "different-ways-to-add-parentheses": {
+    statement: "Given an expression of integers joined by '+', '-', and '*', return every result obtainable by adding parentheses in all valid ways. Results may repeat when different parenthesizations produce the same value.",
+    examples: [
+      { input: "expression = '2-1-1'", output: "[0,2]", explanation: "(2-1)-1 is 0, while 2-(1-1) is 2." },
+      { input: "expression = '2*3-4*5'", output: "[-34,-14,-10,-10,10]", explanation: "Five binary parenthesization trees produce these results." },
+      { input: "expression = '11'", output: "[11]", explanation: "With no operator, the number itself is the only result." }
+    ],
+    constraints: ["1 <= expression.length <= 20.", "The expression contains digits and the operators +, -, *.", "Every integer is between 0 and 99 and every result fits a signed 32-bit integer."],
+    brute: {
+      explanation: "For every operator, recursively compute all results on its left and right, then combine every pair with that operator. Repeat this decomposition independently whenever the same substring appears.",
+      drawback: "The same substring is solved many times in different parenthesization branches, adding substantial repeated work beyond the unavoidable output count.",
+      complexity: "Exponential time plus output size · O(n) recursion depth",
+      code: code`class Solution {
+    public java.util.List<Integer> diffWaysToCompute(String expression) {
+        java.util.List<Integer> results = new java.util.ArrayList<>();
+        for (int i = 0; i < expression.length(); i++) {
+            char operator = expression.charAt(i);
+            if (operator != '+' && operator != '-' && operator != '*') continue;
+            java.util.List<Integer> left = diffWaysToCompute(expression.substring(0, i));
+            java.util.List<Integer> right = diffWaysToCompute(expression.substring(i + 1));
+            for (int a : left) for (int b : right) results.add(apply(a, b, operator));
+        }
+        if (results.isEmpty()) results.add(Integer.parseInt(expression));
+        return results;
+    }
+
+    private int apply(int a, int b, char operator) {
+        if (operator == '+') return a + b;
+        if (operator == '-') return a - b;
+        return a * b;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Use the same operator-root recursion, but memoize each expression substring. Every distinct substring's result list is built once and reused anywhere that substring occurs again.",
+      complexity: "Output-sensitive exponential time · O(number of substring results) memo space",
+      steps: ["Return a cached result list when the substring was solved before.", "Split at every operator and combine all cached left and right results.", "Parse an operator-free substring as one number and cache the completed list."],
+      code: code`class Solution {
+    private final java.util.Map<String, java.util.List<Integer>> memo = new java.util.HashMap<>();
+
+    public java.util.List<Integer> diffWaysToCompute(String expression) {
+        if (memo.containsKey(expression)) return memo.get(expression);
+        java.util.List<Integer> results = new java.util.ArrayList<>();
+        for (int i = 0; i < expression.length(); i++) {
+            char operator = expression.charAt(i);
+            if (operator != '+' && operator != '-' && operator != '*') continue;
+            for (int left : diffWaysToCompute(expression.substring(0, i))) {
+                for (int right : diffWaysToCompute(expression.substring(i + 1))) {
+                    if (operator == '+') results.add(left + right);
+                    else if (operator == '-') results.add(left - right);
+                    else results.add(left * right);
+                }
+            }
+        }
+        if (results.isEmpty()) results.add(Integer.parseInt(expression));
+        memo.put(expression, results);
+        return results;
+    }
+}`
+    }
+  },
+  "tower-of-hanoi": {
+    statement: "Move n differently sized disks from rod A to rod C using rod B. Move one top disk at a time and never place a larger disk on a smaller one. Return the ordered moves as strings such as 'A->C'.",
+    examples: [
+      { input: "n = 1", output: "['A->C']", explanation: "The single disk moves directly to the destination." },
+      { input: "n = 2", output: "['A->B','A->C','B->C']", explanation: "Move the small disk away, move the large disk, then place the small disk on it." },
+      { input: "n = 3", output: "7 moves", explanation: "The minimum move count is 2^3 - 1." }
+    ],
+    constraints: ["1 <= n <= 20.", "All disks begin on A ordered from largest at bottom to smallest at top."],
+    brute: {
+      explanation: "Breadth-first search all legal configurations. Each state records the rod holding every disk and its move path; the first state with all disks on C gives a shortest valid solution.",
+      drawback: "The search stores exponentially many configurations and full paths, while the recursive structure determines the unique minimal strategy directly.",
+      complexity: "O(3^n) state exploration · O(3^n · n) space",
+      code: code`class Solution {
+    private static class State {
+        int[] rods;
+        java.util.List<String> moves;
+        State(int[] rods, java.util.List<String> moves) {
+            this.rods = rods;
+            this.moves = moves;
+        }
+    }
+
+    public java.util.List<String> towerOfHanoi(int n) {
+        java.util.Queue<State> queue = new java.util.ArrayDeque<>();
+        java.util.Set<String> seen = new java.util.HashSet<>();
+        int[] start = new int[n];
+        queue.offer(new State(start, new java.util.ArrayList<>()));
+        seen.add(java.util.Arrays.toString(start));
+        while (!queue.isEmpty()) {
+            State state = queue.poll();
+            boolean done = true;
+            for (int rod : state.rods) if (rod != 2) done = false;
+            if (done) return state.moves;
+            int[] top = {-1, -1, -1};
+            for (int disk = 0; disk < n; disk++) if (top[state.rods[disk]] == -1) top[state.rods[disk]] = disk;
+            for (int from = 0; from < 3; from++) {
+                if (top[from] == -1) continue;
+                for (int to = 0; to < 3; to++) {
+                    if (from == to || top[to] != -1 && top[from] > top[to]) continue;
+                    int[] next = state.rods.clone();
+                    next[top[from]] = to;
+                    String key = java.util.Arrays.toString(next);
+                    if (!seen.add(key)) continue;
+                    java.util.List<String> moves = new java.util.ArrayList<>(state.moves);
+                    moves.add(String.valueOf((char) ('A' + from)) + "->" + (char) ('A' + to));
+                    queue.offer(new State(next, moves));
+                }
+            }
+        }
+        return java.util.Collections.emptyList();
+    }
+}`
+    },
+    optimized: {
+      explanation: "To move n disks from source to destination, first move the top n - 1 disks to the helper, move the largest disk to destination, then move those n - 1 disks from helper to destination. The base case moves one disk.",
+      complexity: "O(2^n) time for 2^n - 1 required moves · O(n) recursion space",
+      steps: ["Return after recording the direct move when n equals one.", "Recursively move n - 1 disks from source to helper.", "Move the largest disk, then recursively move n - 1 disks from helper to destination."],
+      code: code`class Solution {
+    public java.util.List<String> towerOfHanoi(int n) {
+        java.util.List<String> moves = new java.util.ArrayList<>();
+        move(n, 'A', 'B', 'C', moves);
+        return moves;
+    }
+
+    private void move(int disks, char source, char helper, char destination, java.util.List<String> moves) {
+        if (disks == 0) return;
+        move(disks - 1, source, destination, helper, moves);
+        moves.add(String.valueOf(source) + "->" + destination);
+        move(disks - 1, helper, source, destination, moves);
+    }
+}`
+    }
+  },
+  "josephus-problem": {
+    statement: "n people numbered 1 through n stand in a circle. Starting at person 1, repeatedly count k active people and remove the kth, continuing after the removed person. Return the final survivor's number.",
+    examples: [
+      { input: "n = 5, k = 2", output: "3", explanation: "People leave in order 2,4,1,5, leaving person 3." },
+      { input: "n = 6, k = 5", output: "1", explanation: "Circular counting and removal eventually leaves person 1." },
+      { input: "n = 1, k = 7", output: "1", explanation: "The only person survives regardless of k." }
+    ],
+    constraints: ["1 <= n <= 500.", "1 <= k <= 1,000,000."],
+    brute: {
+      explanation: "Put people in a queue. Rotate the first k - 1 active people to the rear, remove the kth, and repeat until one person remains.",
+      drawback: "The queue performs k operations per elimination, so a large k causes substantial repeated rotation.",
+      complexity: "O(nk) time · O(n) extra space",
+      code: code`class Solution {
+    public int findTheWinner(int n, int k) {
+        java.util.Queue<Integer> people = new java.util.ArrayDeque<>();
+        for (int person = 1; person <= n; person++) people.offer(person);
+        while (people.size() > 1) {
+            for (int count = 1; count < k; count++) people.offer(people.poll());
+            people.poll();
+        }
+        return people.peek();
+    }
+}`
+    },
+    optimized: {
+      explanation: "For a circle of size one, survivor index is zero. When expanding a solved circle of size m - 1 to size m, counting shifts every index by k, so survivor(m) = (survivor(m - 1) + k) modulo m. Convert the final zero-based index to one-based.",
+      complexity: "O(n) time · O(n) recursion space",
+      steps: ["Use zero as the survivor for one person.", "Recursively solve n - 1 people.", "Shift by k modulo n and add one only to the final returned label."],
+      code: code`class Solution {
+    public int findTheWinner(int n, int k) {
+        return survivor(n, k) + 1;
+    }
+
+    private int survivor(int n, int k) {
+        if (n == 1) return 0;
+        return (survivor(n - 1, k) + k) % n;
+    }
+}`
+    }
+  },
+  "pow-x-n": {
+    statement: "Given a double x and a signed integer n, return x raised to power n. Negative exponents represent reciprocals, and the implementation must handle the minimum 32-bit exponent safely.",
+    examples: [
+      { input: "x = 2.0, n = 10", output: "1024.0", explanation: "Multiplying ten factors of two gives 1024." },
+      { input: "x = 2.1, n = 3", output: "9.261", explanation: "2.1 × 2.1 × 2.1 equals 9.261." },
+      { input: "x = 2.0, n = -2", output: "0.25", explanation: "A negative exponent gives 1 / 2²." }
+    ],
+    constraints: ["-100.0 < x < 100.0.", "-2,147,483,648 <= n <= 2,147,483,647.", "Either x is nonzero or n is positive.", "The result fits a double."],
+    brute: {
+      explanation: "Convert n to long, multiply the result by x exactly |n| times, and take the reciprocal for a negative exponent.",
+      drawback: "The loop can require more than two billion multiplications, making it impractical for large exponents.",
+      complexity: "O(|n|) time · O(1) extra space",
+      code: code`class Solution {
+    public double myPow(double x, int n) {
+        long exponent = n;
+        boolean negative = exponent < 0;
+        if (negative) exponent = -exponent;
+        double result = 1.0;
+        while (exponent-- > 0) result *= x;
+        return negative ? 1.0 / result : result;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Exponentiation by squaring uses x^n = (x²)^(n/2) for even n and multiplies one extra x for odd n. Convert to long before negating the minimum int, invert x for a negative exponent, and recursively halve the exponent.",
+      complexity: "O(log |n|) time · O(log |n|) recursion space",
+      steps: ["Promote n to long; for a negative exponent invert x and negate the long exponent.", "Recursively calculate the power for exponent divided by two.", "Square the half result and multiply by x only when the exponent is odd."],
+      code: code`class Solution {
+    public double myPow(double x, int n) {
+        long exponent = n;
+        if (exponent < 0) {
+            x = 1.0 / x;
+            exponent = -exponent;
+        }
+        return power(x, exponent);
+    }
+
+    private double power(double x, long exponent) {
+        if (exponent == 0) return 1.0;
+        double half = power(x, exponent / 2);
+        double result = half * half;
+        return (exponent & 1L) == 0 ? result : result * x;
+    }
+}`
+    }
+  },
+  "nested-list-weight-sum": {
+    statement: "Given a nested list of integers, return the sum of every integer multiplied by its depth. Integers in the outer list have depth 1, and each nested list increases depth by one.",
+    examples: [
+      { input: "nestedList = [[1,1],2,[1,1]]", output: "10", explanation: "Four ones have depth 2 and value 2 has depth 1, giving 8 + 2." },
+      { input: "nestedList = [1,[4,[6]]]", output: "27", explanation: "1 × 1 + 4 × 2 + 6 × 3 equals 27." },
+      { input: "nestedList = [0]", output: "0", explanation: "Zero contributes nothing at depth one." }
+    ],
+    constraints: ["1 <= nestedList.size <= 50.", "Nested depth is at most 50.", "-100 <= each integer <= 100.", "The total number of integers is at most 50."],
+    brute: {
+      explanation: "First find the maximum depth. For every depth from one through that maximum, traverse the entire nested structure again and sum only integers found at that exact depth, multiplied by the depth.",
+      drawback: "The full structure is revisited once per depth, repeating the same navigation work in deeply nested input.",
+      complexity: "O(N · D) time · O(D) recursion space",
+      code: code`class Solution {
+    public int depthSum(java.util.List<NestedInteger> nestedList) {
+        int maximum = maxDepth(nestedList, 1);
+        int total = 0;
+        for (int depth = 1; depth <= maximum; depth++) total += sumAt(nestedList, 1, depth) * depth;
+        return total;
+    }
+
+    private int maxDepth(java.util.List<NestedInteger> list, int depth) {
+        int maximum = depth;
+        for (NestedInteger item : list) if (!item.isInteger()) maximum = Math.max(maximum, maxDepth(item.getList(), depth + 1));
+        return maximum;
+    }
+
+    private int sumAt(java.util.List<NestedInteger> list, int depth, int target) {
+        int sum = 0;
+        for (NestedInteger item : list) {
+            if (item.isInteger() && depth == target) sum += item.getInteger();
+            else if (!item.isInteger()) sum += sumAt(item.getList(), depth + 1, target);
+        }
+        return sum;
+    }
+}`
+    },
+    optimized: {
+      explanation: "Traverse once with a recursive depth parameter. An integer contributes value × depth immediately; a nested list recursively contributes its own weighted sum at depth + 1.",
+      complexity: "O(N) time · O(D) recursion space",
+      steps: ["Start the outer list at depth one.", "Add integer value times current depth when an integer is reached.", "Recurse into each list with depth plus one and add its returned sum."],
+      code: code`class Solution {
+    public int depthSum(java.util.List<NestedInteger> nestedList) {
+        return sum(nestedList, 1);
+    }
+
+    private int sum(java.util.List<NestedInteger> list, int depth) {
+        int total = 0;
+        for (NestedInteger item : list) {
+            if (item.isInteger()) total += item.getInteger() * depth;
+            else total += sum(item.getList(), depth + 1);
+        }
+        return total;
+    }
+}`
+    }
+  }
+};

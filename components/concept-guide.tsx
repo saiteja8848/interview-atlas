@@ -34,12 +34,12 @@ export function ConceptGuide({ topicSlug }: { topicSlug: string }) {
   const code = javaOnly(lesson.java);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen course-page">
       <SiteHeader />
-      <div className="mx-auto flex max-w-[1440px]">
+      <div className="mx-auto flex w-full max-w-[1800px]">
         <CourseSidebar />
-        <article className="min-w-0 flex-1 px-5 py-12 md:px-10 lg:px-14">
-          <div className="mx-auto max-w-4xl">
+        <article className="min-w-0 flex-1 px-5 py-10 md:px-10 lg:px-14">
+          <div className="mx-auto max-w-5xl">
             <Link href="/dsa" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition hover:text-white">
               <ArrowLeft size={16} /> Back to DSA
             </Link>

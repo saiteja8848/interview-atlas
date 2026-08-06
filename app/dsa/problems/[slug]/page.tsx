@@ -210,6 +210,16 @@ function Workspace({ question, content, lists, topicTitle }: { question: Curricu
             <section className="mt-7">
               <h2 className="text-base font-semibold">Problem statement</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-400">{content.statement}</p>
+              {content.sourceUrl && (
+                <a
+                  href={content.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-indigo-300 transition hover:text-indigo-200"
+                >
+                  <ExternalLink size={14} /> View original problem on LeetCode
+                </a>
+              )}
             </section>
             <section className="mt-7">
               <h2 className="text-base font-semibold">Constraints</h2>

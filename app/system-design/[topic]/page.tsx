@@ -13,7 +13,7 @@ export default function SystemDesignTopicPage({ topicSlug }: { topicSlug: string
   return (
     <main className="min-h-screen">
       <SiteHeader />
-      <div className="mx-auto flex max-w-[1440px]">
+      <div className="mx-auto flex w-full max-w-[1800px]">
         <CourseSidebar activeCourse="system-design" />
         <article className="min-w-0 flex-1 px-5 py-12 md:px-10 lg:px-14">
           <div className="mx-auto max-w-5xl">
