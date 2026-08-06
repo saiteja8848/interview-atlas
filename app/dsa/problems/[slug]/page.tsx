@@ -15,9 +15,7 @@ import {
 } from "lucide-react";
 import {
   dsaCurriculum,
-  getEditorialGuide,
   getInterviewLists,
-  getStudyContent,
   getVideoResource,
   slugify,
   type CurriculumQuestion,
@@ -26,6 +24,8 @@ import { SiteHeader } from "@/components/site-header";
 import { CourseSidebar } from "@/components/course-sidebar";
 import { CodeTabs } from "@/components/code-tabs";
 import { isQuestionCompleted, toggleQuestionCompletion } from "@/content/dsa-progress";
+import { getProblemContent } from "@/content/problem-content";
+import type { ProblemContent } from "@/content/problem-content-types";
 
 const colors = {
   Easy: "bg-emerald-400/10 text-emerald-300",
@@ -33,29 +33,21 @@ const colors = {
   Hard: "bg-rose-400/10 text-rose-300",
 };
 
-function TestCases({ title }: { title: string }) {
-  const cases = title === "Two Sum"
-    ? [["[2, 7, 11, 15]", "9", "[0, 1]"], ["[3, 2, 4]", "6", "[1, 2]"], ["[3, 3]", "6", "[0, 1]"]]
-    : [];
-
+function TestCases({ examples }: { examples: ProblemContent["examples"] }) {
   return (
     <section className="mt-7">
       <h2 className="flex items-center gap-2 text-base font-semibold">
         <Braces size={17} className="text-cyan-300" /> Test cases
       </h2>
       <div className="mt-4 grid gap-3 md:grid-cols-3">
-        {cases.length ? cases.map(([input, target, output], index) => (
-          <div key={`${input}-${target}`} className="rounded-xl border border-white/[.08] bg-black/20 p-4 font-mono text-xs leading-6">
+        {examples.map((example, index) => (
+          <div key={`${example.input}-${example.output}`} className="rounded-xl border border-white/[.08] bg-black/20 p-4 text-xs leading-6">
             <p className="mb-2 font-sans text-xs font-medium text-zinc-500">Example {index + 1}</p>
-            <p>input = {input}</p>
-            <p>target = {target}</p>
-            <p className="mt-2 text-emerald-300">output = {output}</p>
+            <p className="font-mono text-zinc-300">Input: {example.input}</p>
+            <p className="mt-1 font-mono text-emerald-300">Output: {example.output}</p>
+            <p className="mt-3 font-sans leading-5 text-zinc-500">{example.explanation}</p>
           </div>
-        )) : (
-          <p className="rounded-xl border border-white/[.08] bg-black/20 p-4 text-sm text-zinc-400">
-            Trace a smallest valid input, one boundary case, and one repeated-value case against the Java method signature.
-          </p>
-        )}
+        ))}
       </div>
     </section>
   );
@@ -103,9 +95,7 @@ function VideoPanel({ question }: { question: CurriculumQuestion }) {
   );
 }
 
-function Editorial({ question }: { question: CurriculumQuestion }) {
-  const editorial = getEditorialGuide(question);
-
+function Editorial({ question, content }: { question: CurriculumQuestion; content: ProblemContent }) {
   return (
     <section>
       <p className="text-xs font-semibold uppercase tracking-[.16em] text-indigo-300">Editorial</p>
@@ -119,7 +109,7 @@ function Editorial({ question }: { question: CurriculumQuestion }) {
           <BookOpen size={18} className="text-cyan-300" />
           <h3 className="font-semibold">1. What is the problem asking?</h3>
         </div>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-300">{editorial.plainEnglish}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-300">{content.statement}</p>
       </section>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
@@ -128,15 +118,15 @@ function Editorial({ question }: { question: CurriculumQuestion }) {
             <Timer size={18} className="text-amber-300" />
             <h3 className="font-semibold">2. Start with brute force</h3>
           </div>
-          <p className="mt-3 text-sm leading-7 text-zinc-300">{editorial.brute}</p>
+          <p className="mt-3 text-sm leading-7 text-zinc-300">{content.brute.explanation}</p>
           <p className="mt-4 rounded-lg bg-black/15 px-3 py-2 text-xs font-medium text-amber-100">
-            Brute-force cost: {editorial.bruteComplexity}
+            Brute-force cost: {content.brute.complexity}
           </p>
           <div className="mt-5 border-t border-amber-300/15 pt-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-amber-100">
               <CircleAlert size={16} /> Why this is not enough
             </div>
-            <p className="mt-2 text-sm leading-7 text-zinc-400">{editorial.drawback}</p>
+            <p className="mt-2 text-sm leading-7 text-zinc-400">{content.brute.drawback}</p>
           </div>
         </section>
 
@@ -145,15 +135,15 @@ function Editorial({ question }: { question: CurriculumQuestion }) {
             <Zap size={18} className="text-indigo-300" />
             <h3 className="font-semibold">3. Improve it with the optimized approach</h3>
           </div>
-          <p className="mt-3 text-sm leading-7 text-zinc-200">{editorial.optimized}</p>
+          <p className="mt-3 text-sm leading-7 text-zinc-200">{content.optimized.explanation}</p>
           <p className="mt-4 rounded-lg bg-indigo-400/[.09] px-3 py-2 text-xs font-medium text-indigo-100">
-            Optimized cost: {editorial.optimizedComplexity}
+            Optimized cost: {content.optimized.complexity}
           </p>
           <div className="mt-5 border-t border-indigo-300/15 pt-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-indigo-100">
-              <Zap size={16} /> What the Java code eliminates
+              <Zap size={16} /> Why this fixes the drawback
             </div>
-            <p className="mt-2 text-sm leading-7 text-zinc-300">{editorial.improvement}</p>
+            <p className="mt-2 text-sm leading-7 text-zinc-300">The optimized Java code stores or carries forward exactly the information identified above, so it no longer repeats the brute-force work.</p>
           </div>
         </section>
       </div>
@@ -164,7 +154,7 @@ function Editorial({ question }: { question: CurriculumQuestion }) {
           <h3 className="font-semibold">4. Read the optimized Java code in this order</h3>
         </div>
         <ol className="mt-4 space-y-3">
-          {editorial.codeSteps.map((step, index) => (
+          {content.optimized.steps.map((step, index) => (
             <li key={step} className="flex gap-3 text-sm leading-6 text-zinc-300">
               <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-indigo-400/10 text-xs text-indigo-200">
                 {index + 1}
@@ -178,7 +168,9 @@ function Editorial({ question }: { question: CurriculumQuestion }) {
   );
 }
 
-function Workspace({ question, study, lists, topicTitle }: { question: CurriculumQuestion; study: ReturnType<typeof getStudyContent>; lists: string[]; topicTitle: string }) {
+const javaOnly = (code: string) => ({ Java: code, Python: "", JavaScript: "", "C++": "" });
+
+function Workspace({ question, content, lists, topicTitle }: { question: CurriculumQuestion; content: ProblemContent; lists: string[]; topicTitle: string }) {
   const [tab, setTab] = useState<"problem" | "editorial" | "video" | "code">("problem");
   const [completed, setCompleted] = useState(false);
   const tabs = [["problem", "Problem"], ["editorial", "Editorial"], ["video", "Video"], ["code", "Code"]] as const;
@@ -217,37 +209,32 @@ function Workspace({ question, study, lists, topicTitle }: { question: Curriculu
             <h1 className="mt-5 text-3xl font-semibold tracking-tight">{question.title}</h1>
             <section className="mt-7">
               <h2 className="text-base font-semibold">Problem statement</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-400">{study.statement}</p>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-400">{content.statement}</p>
             </section>
             <section className="mt-7">
               <h2 className="text-base font-semibold">Constraints</h2>
               <ul className="mt-3 space-y-2">
-                {["Use each input element at most once where the problem permits.", "Check empty, repeated, negative, and boundary inputs.", "Return the result in the required output format."].map((item) => (
+                {content.constraints.map((item) => (
                   <li key={item} className="flex gap-2 text-sm text-zinc-400"><CheckCircle2 size={16} className="shrink-0 text-indigo-300" />{item}</li>
                 ))}
               </ul>
             </section>
-            <TestCases title={question.title} />
+            <TestCases examples={content.examples} />
           </>
         )}
-        {tab === "editorial" && <Editorial question={question} />}
+        {tab === "editorial" && <Editorial question={question} content={content} />}
         {tab === "video" && <VideoPanel question={question} />}
         {tab === "code" && (
           <div className="space-y-6">
-            {"sourcePath" in study && (
-              <p className="rounded-xl border border-indigo-400/20 bg-indigo-400/[.06] px-4 py-3 text-xs leading-5 text-indigo-100">
-                Canonical Java source imported from <span className="font-mono text-indigo-200">{study.sourcePath}</span>.
-              </p>
-            )}
             <div>
               <div className="flex items-center gap-2"><Code2 size={18} className="text-amber-300" /><h2 className="text-lg font-semibold">Brute-force solution</h2></div>
-              <p className="mt-2 text-sm text-zinc-400">Use the editorial baseline above to understand what this approach checks.</p>
-              <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0d]"><CodeTabs code={study.bruteCode} /></div>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">{content.brute.explanation} <span className="text-amber-200">{content.brute.complexity}</span></p>
+              <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0d]"><CodeTabs code={javaOnly(content.brute.code)} /></div>
             </div>
             <div>
               <div className="flex items-center gap-2"><Zap size={18} className="text-indigo-300" /><h2 className="text-lg font-semibold">Optimized solution</h2></div>
-              <p className="mt-2 text-sm text-zinc-400">{study.complexity}</p>
-              <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0d]"><CodeTabs code={study.optimizedCode} /></div>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">{content.optimized.explanation} <span className="text-indigo-200">{content.optimized.complexity}</span></p>
+              <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0d]"><CodeTabs code={javaOnly(content.optimized.code)} /></div>
             </div>
           </div>
         )}
@@ -261,7 +248,7 @@ export default function ProblemPage({ slug }: { slug: string }) {
   const question = topic?.questions.find((item) => slugify(item.title) === slug);
   if (!topic || !question) return <NotFound />;
 
-  const study = getStudyContent(question);
+  const content = getProblemContent(question.title);
   return (
     <main className="min-h-screen">
       <SiteHeader />
@@ -272,7 +259,7 @@ export default function ProblemPage({ slug }: { slug: string }) {
             <ArrowLeft size={16} /> Back to {topic.title} problems
           </Link>
           <div className="mx-auto mt-5 max-w-6xl">
-            <Workspace question={question} study={study} lists={getInterviewLists(question.title, topic.title)} topicTitle={topic.title} />
+            <Workspace question={question} content={content} lists={getInterviewLists(question.title, topic.title)} topicTitle={topic.title} />
           </div>
         </article>
       </div>
