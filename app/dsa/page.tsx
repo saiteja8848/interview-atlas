@@ -18,7 +18,7 @@ export default function DsaPage() {
           <div className="mx-auto max-w-6xl">
             <section className="course-intro course-intro-dsa">
               <div className="relative z-10 max-w-3xl"><p className="section-kicker">Course · DSA</p><h1 className="display-heading mt-3 text-4xl font-semibold md:text-5xl">Build pattern recognition, one clear idea at a time.</h1><p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-400">Start with the fundamentals, learn the reusable pattern, then practise the exact questions that reinforce it. Every problem keeps the explanation and Java solution close together.</p></div>
-              <div className="course-intro-stats relative z-10 mt-7 grid gap-3 sm:grid-cols-3"><div><strong>{dsaCurriculum.length}</strong><span>topics</span></div><div><strong>{problemCount}+</strong><span>practice problems</span></div><div><strong>Java</strong><span>focused solutions</span></div></div>
+              <div className="course-intro-stats relative z-10 mt-7 grid gap-3 sm:grid-cols-3"><div><strong>{dsaCurriculum.length}</strong><span>topics</span></div><div><strong>{problemCount}</strong><span>curated interview problems</span></div><div><strong>Java</strong><span>focused solutions</span></div></div>
               <Link href="/dsa/dashboard" className="relative z-10 mt-6 inline-flex items-center gap-2 rounded-xl border border-violet-300/25 bg-violet-400/10 px-4 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-300/40 hover:bg-violet-400/20"><LayoutDashboard size={16} /> Open progress dashboard <ArrowRight size={15} /></Link>
               <Sparkles className="course-intro-mark" size={185} aria-hidden="true" />
             </section>

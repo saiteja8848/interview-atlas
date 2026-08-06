@@ -1,5 +1,6 @@
 import { repositoryProblems, repositorySolutions } from "@/content/repository-solutions";
 import { problemVideos } from "@/content/video-library";
+import { interview300Topics } from "@/content/interview-300";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 export type CodeLanguage = "Java" | "Python" | "JavaScript" | "C++";
@@ -544,6 +545,36 @@ if (dynamicProgrammingTopic) {
     repositoryKey: repositoryProblems.find((problem) => problem.slug === slugify(title))?.key,
   }));
 }
+
+// Keep the source catalog available for real Java solutions and richer descriptions,
+// then replace the broad catalog with the finite, high-return Interview 300 path.
+const sourceQuestionsBySlug = new Map(
+  dsaCurriculum.flatMap((topic) => topic.questions).map((question) => [slugify(question.title), question]),
+);
+const repositoryQuestionsBySlug = new Map(repositoryProblems.map((question) => [question.slug, question]));
+const curatedQuestion = (title: string, difficulty: Difficulty, pattern: string): CurriculumQuestion => {
+  const source = sourceQuestionsBySlug.get(slugify(title));
+  const repository = repositoryQuestionsBySlug.get(slugify(title));
+  return {
+    title,
+    difficulty,
+    tags: [pattern],
+    description: source?.description || repository?.description || `Master the ${pattern} approach using this high-frequency interview problem.`,
+    repositoryKey: source?.repositoryKey || repository?.key,
+  };
+};
+
+dsaCurriculum.splice(
+  0,
+  dsaCurriculum.length,
+  ...interview300Topics.map((topic) => ({
+    title: topic.title,
+    concepts: topic.concepts,
+    patterns: topic.patterns,
+    questions: topic.questions.map(([title, difficulty, pattern]) => curatedQuestion(title, difficulty, pattern)),
+  })),
+);
+
 const learningOrder = ["Bitwise", "Math", "Two Pointers", "Sliding Window", "Intervals & Greedy", "Binary Search", "Heaps", "Arrays", "Strings", "Linked Lists", "Stack", "Queue", "Recursion", "Backtracking", "Dynamic Programming", "Trees", "Graphs"];
 dsaCurriculum.sort((left, right) => { const leftIndex = learningOrder.indexOf(left.title); const rightIndex = learningOrder.indexOf(right.title); return (leftIndex < 0 ? 999 : leftIndex) - (rightIndex < 0 ? 999 : rightIndex); });
 export const patterns = ["Two Pointers", "Sliding Window", "Hash Map", "Binary Search", "DFS", "BFS", "Backtracking", "Dynamic Programming", "Intervals", "Greedy", "Trie"];
