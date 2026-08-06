@@ -53,7 +53,12 @@ export function getPatternGroups(topic: CurriculumTopic): PatternGroup[] {
   const groups = new Map(topic.patterns.map(pattern => [pattern, [] as CurriculumQuestion[]]));
   topic.questions.forEach((question, index) => {
     const taggedQuestion = { ...question, tags: [...question.tags, ...getInterviewLists(question.title, topic.title)] };
-    const match = topic.patterns.find(pattern => question.tags.some(tag => tag.toLowerCase().includes(pattern.toLowerCase()) || pattern.toLowerCase().includes(tag.toLowerCase())));
+    const matches = topic.patterns.filter(pattern => question.tags.some(tag => tag.toLowerCase() === pattern.toLowerCase()));
+    if (topic.title === "Dynamic Programming" && matches.length) {
+      matches.forEach(pattern => groups.get(pattern)?.push(taggedQuestion));
+      return;
+    }
+    const match = matches[0] || topic.patterns.find(pattern => question.tags.some(tag => tag.toLowerCase().includes(pattern.toLowerCase()) || pattern.toLowerCase().includes(tag.toLowerCase())));
     const pattern = match || topic.patterns[index % Math.max(topic.patterns.length, 1)];
     if (pattern) groups.get(pattern)?.push(taggedQuestion);
   });
@@ -433,6 +438,111 @@ for (const repositoryProblem of repositoryProblems) {
   const existingTopic = dsaCurriculum.find((topic) => topic.title === repositoryProblem.topic);
   if (!existingTopic || existingTopic.questions.some((question) => slugify(question.title) === repositoryProblem.slug)) continue;
   existingTopic.questions.push({ title: repositoryProblem.title, difficulty: repositoryProblem.difficulty, tags: repositoryProblem.tags, description: repositoryProblem.description, repositoryKey: repositoryProblem.key });
+}
+const dynamicProgrammingPatternNames = [
+  "Fibonacci Sequence", "Kadane's Algorithm", "Pick or Skip Linear DP", "0/1 Knapsack", "Unbounded Knapsack",
+  "Longest Common Subsequence (LCS)", "Longest Increasing Subsequence (LIS)", "Palindromic Subsequence",
+  "Edit Distance", "Subset Sum", "String Partition", "String Segmentation DP", "Catalan Numbers", "Matrix Chain Multiplication",
+  "Count Distinct Ways", "DP on Grids", "DP on Trees", "DP on Graphs", "Digit DP",
+  "Bitmasking DP", "Probability DP", "State Machine DP",
+];
+export const dynamicProgrammingPatternGuide: Record<string, string> = {
+  "Fibonacci Sequence": "Use when one state depends on a small fixed set of earlier states, such as n - 1 and n - 2.",
+  "Kadane's Algorithm": "Use when the best contiguous subarray ending here can either extend the previous one or restart here.",
+  "Pick or Skip Linear DP": "Use when choosing the current value blocks nearby choices, so each index compares taking against skipping.",
+  "0/1 Knapsack": "Use when each item is available once and every state decides take or skip.",
+  "Unbounded Knapsack": "Use when a choice may be used repeatedly, such as coins, cuts, or square numbers.",
+  "Longest Common Subsequence (LCS)": "Use when two sequences must preserve relative order and you can match or skip a character.",
+  "Longest Increasing Subsequence (LIS)": "Use when a subsequence must respect an ordering rule while values may be skipped.",
+  "Palindromic Subsequence": "Use when matching string ends reduces the problem to an inner range.",
+  "Edit Distance": "Use when two sequences are transformed by insert, delete, and replace decisions.",
+  "Subset Sum": "Use when a subset must hit an exact target; the state is usually index plus remaining target.",
+  "String Partition": "Use when a string must be split into valid pieces and each split leaves a suffix subproblem.",
+  "String Segmentation DP": "Use when a prefix or suffix must be built from valid dictionary pieces, decodings, or partitions.",
+  "Catalan Numbers": "Use when counting recursively composable structures such as unique BSTs or valid parenthesis shapes.",
+  "Matrix Chain Multiplication": "Use interval recursion when combining a range has a cost that depends on where it is split.",
+  "Count Distinct Ways": "Use when the question asks how many valid paths, decodings, or constructions exist.",
+  "DP on Grids": "Use state (row, column) when each cell derives its answer from legal neighboring moves.",
+  "DP on Trees": "Use a recursive node state that is derived from child states, often with take/skip choices.",
+  "DP on Graphs": "Use a state over node and extra constraints when graph transitions form an acyclic or bounded dependency structure.",
+  "Digit DP": "Use digit position, tightness, and started/constraint state to count values up to a very large bound.",
+  "Bitmasking DP": "Use a bitmask for selected or visited items when the number of items is small enough for 2ⁿ states.",
+  "Probability DP": "Use when a state's answer is an expected value or probability built from weighted next-state probabilities.",
+  "State Machine DP": "Use when each day or position can be in a small fixed mode such as holding, sold, cooldown, or transactions left.",
+};
+const dynamicProgrammingRoadmap: Array<[string, Difficulty, string]> = [
+  ["Fibonacci Sequence", "Easy", "Climbing Stairs"], ["Fibonacci Sequence", "Easy", "Fibonacci Number"], ["Fibonacci Sequence", "Easy", "Min Cost Climbing Stairs"],
+  ["Kadane's Algorithm", "Medium", "Maximum Subarray"], ["Kadane's Algorithm", "Medium", "Maximum Sum Circular Subarray"], ["Kadane's Algorithm", "Medium", "Maximum Product Subarray"],
+  ["0/1 Knapsack", "Medium", "Partition Equal Subset Sum"], ["0/1 Knapsack", "Medium", "Target Sum"], ["0/1 Knapsack", "Medium", "Last Stone Weight II"],
+  ["Unbounded Knapsack", "Medium", "Coin Change"], ["Unbounded Knapsack", "Medium", "Coin Change II"], ["Unbounded Knapsack", "Medium", "Perfect Squares"],
+  ["Longest Common Subsequence (LCS)", "Medium", "Longest Common Subsequence"], ["Longest Common Subsequence (LCS)", "Medium", "Delete Operation for Two Strings"], ["Longest Common Subsequence (LCS)", "Hard", "Shortest Common Supersequence"],
+  ["Longest Increasing Subsequence (LIS)", "Medium", "Longest Increasing Subsequence"], ["Longest Increasing Subsequence (LIS)", "Medium", "Number of Longest Increasing Subsequence"], ["Longest Increasing Subsequence (LIS)", "Hard", "Russian Doll Envelopes"],
+  ["Palindromic Subsequence", "Medium", "Longest Palindromic Subsequence"], ["Palindromic Subsequence", "Medium", "Palindromic Substrings"], ["Palindromic Subsequence", "Medium", "Minimum Insertion Steps to Make a String Palindrome"],
+  ["Edit Distance", "Medium", "Edit Distance"], ["Edit Distance", "Medium", "Delete Operation for Two Strings"], ["Edit Distance", "Hard", "Minimum ASCII Delete Sum for Two Strings"],
+  ["Subset Sum", "Medium", "Partition Equal Subset Sum"], ["Subset Sum", "Medium", "Target Sum"], ["Subset Sum", "Hard", "Partition to K Equal Sum Subsets"],
+  ["String Partition", "Medium", "Word Break"], ["String Partition", "Hard", "Palindrome Partitioning II"], ["String Partition", "Hard", "Concatenated Words"],
+  ["Catalan Numbers", "Medium", "Unique Binary Search Trees"], ["Catalan Numbers", "Medium", "Generate Parentheses"],
+  ["Matrix Chain Multiplication", "Medium", "Minimum Score Triangulation of Polygon"], ["Matrix Chain Multiplication", "Hard", "Burst Balloons"], ["Matrix Chain Multiplication", "Hard", "Minimum Cost to Merge Stones"],
+  ["Count Distinct Ways", "Medium", "Decode Ways"], ["Count Distinct Ways", "Medium", "Count Number of Texts"],
+  ["DP on Grids", "Medium", "Unique Paths"], ["DP on Grids", "Medium", "Minimum Path Sum"], ["DP on Grids", "Hard", "Longest Increasing Path in a Matrix"],
+  ["DP on Trees", "Medium", "House Robber III"], ["DP on Trees", "Hard", "Binary Tree Maximum Path Sum"], ["DP on Trees", "Hard", "Binary Tree Cameras"],
+  ["DP on Graphs", "Medium", "Cheapest Flights Within K Stops"], ["DP on Graphs", "Medium", "Find the City With the Smallest Number of Neighbors at a Threshold Distance"],
+  ["Digit DP", "Medium", "Count Numbers with Unique Digits"], ["Digit DP", "Hard", "Number of Digit One"], ["Digit DP", "Hard", "Numbers At Most N Given Digit Set"],
+  ["Bitmasking DP", "Medium", "Minimum Number of Work Sessions to Finish the Tasks"], ["Bitmasking DP", "Medium", "Fair Distribution of Cookies"], ["Bitmasking DP", "Hard", "Shortest Path Visiting All Nodes"],
+  ["Probability DP", "Medium", "Knight Probability in Chessboard"], ["Probability DP", "Medium", "Soup Servings"], ["Probability DP", "Medium", "New 21 Game"],
+  ["State Machine DP", "Medium", "Best Time to Buy and Sell Stock with Cooldown"], ["State Machine DP", "Hard", "Best Time to Buy and Sell Stock III"],
+];
+const additionalDynamicProgrammingRoadmap: Array<[string, Difficulty, string]> = [
+  ["Fibonacci Sequence", "Medium", "Frog Jump"], ["Fibonacci Sequence", "Medium", "Decode Ways"],
+  ["Pick or Skip Linear DP", "Medium", "House Robber"], ["Pick or Skip Linear DP", "Medium", "House Robber II"], ["Pick or Skip Linear DP", "Medium", "Maximum Sum of Non-Adjacent Elements"], ["Pick or Skip Linear DP", "Medium", "Delete and Earn"],
+  ["0/1 Knapsack", "Medium", "0/1 Knapsack"], ["0/1 Knapsack", "Medium", "Subset Sum Equals Target"], ["0/1 Knapsack", "Medium", "Count Subsets With Sum K"], ["0/1 Knapsack", "Medium", "Ones and Zeroes"],
+  ["Unbounded Knapsack", "Medium", "Rod Cutting"], ["Unbounded Knapsack", "Medium", "Combination Sum IV"],
+  ["Longest Increasing Subsequence (LIS)", "Medium", "Largest Divisible Subset"],
+  ["Longest Common Subsequence (LCS)", "Hard", "Distinct Subsequences"], ["Longest Common Subsequence (LCS)", "Hard", "Wildcard Matching"], ["Longest Common Subsequence (LCS)", "Hard", "Regular Expression Matching"],
+  ["DP on Grids", "Medium", "Unique Paths II"], ["DP on Grids", "Medium", "Triangle"], ["DP on Grids", "Medium", "Maximal Square"], ["DP on Grids", "Hard", "Dungeon Game"],
+  ["State Machine DP", "Easy", "Best Time to Buy and Sell Stock"], ["State Machine DP", "Medium", "Best Time to Buy and Sell Stock II"], ["State Machine DP", "Hard", "Best Time to Buy and Sell Stock IV"], ["State Machine DP", "Medium", "Best Time to Buy and Sell Stock with Transaction Fee"],
+  ["String Segmentation DP", "Medium", "Word Break"], ["String Segmentation DP", "Medium", "Extra Characters in a String"], ["String Segmentation DP", "Medium", "Decode Ways"], ["String Segmentation DP", "Hard", "Palindrome Partitioning II"],
+  ["DP on Trees", "Medium", "Diameter of Binary Tree"], ["DP on Trees", "Medium", "Longest ZigZag Path in a Binary Tree"],
+];
+const patternQuestion = (title: string, difficulty: Difficulty, pattern: string): CurriculumQuestion => ({
+  title,
+  difficulty,
+  tags: [pattern],
+  description: "Practice the " + pattern + " problem shape with a clear recursive state and base case.",
+  repositoryKey: repositoryProblems.find((problem) => problem.slug === slugify(title))?.key,
+});
+const recursionTopic = dsaCurriculum.find((topic) => topic.title === "Recursion");
+if (recursionTopic) {
+  recursionTopic.patterns = ["Single Recursive Reduction", "Multiple Required Recursive Calls", "Recursive Decomposition"];
+  recursionTopic.questions = [
+    ["Factorial", "Easy", "Single Recursive Reduction"], ["Reverse Linked List", "Easy", "Single Recursive Reduction"], ["Pow(x, n)", "Medium", "Single Recursive Reduction"], ["Josephus Problem", "Medium", "Single Recursive Reduction"],
+    ["Tower of Hanoi", "Medium", "Multiple Required Recursive Calls"], ["Merge Sort", "Medium", "Multiple Required Recursive Calls"], ["Tree Height", "Easy", "Multiple Required Recursive Calls"], ["Diameter of Binary Tree", "Medium", "Multiple Required Recursive Calls"], ["Binary Tree Maximum Path Sum", "Hard", "Multiple Required Recursive Calls"],
+    ["Integer to English Words", "Hard", "Recursive Decomposition"], ["Decode String", "Medium", "Recursive Decomposition"], ["Different Ways to Add Parentheses", "Medium", "Recursive Decomposition"],
+  ].map(([title, difficulty, pattern]) => patternQuestion(title, difficulty as Difficulty, pattern));
+}
+const backtrackingTopic = dsaCurriculum.find((topic) => topic.title === "Backtracking");
+if (backtrackingTopic) {
+  backtrackingTopic.patterns = ["Binary Decision: Pick or Skip", "Combination Selection", "Permutations", "Partitioning", "Grid DFS with Backtracking", "Constraint Satisfaction", "Memoized Backtracking"];
+  backtrackingTopic.questions = [
+    ["Subsets", "Medium", "Binary Decision: Pick or Skip"], ["Subsets II", "Medium", "Binary Decision: Pick or Skip"], ["Generate Parentheses", "Medium", "Binary Decision: Pick or Skip"], ["Matchsticks to Square", "Medium", "Binary Decision: Pick or Skip"],
+    ["Combinations", "Medium", "Combination Selection"], ["Combination Sum", "Medium", "Combination Selection"], ["Combination Sum II", "Medium", "Combination Selection"], ["Combination Sum III", "Medium", "Combination Selection"], ["Letter Combinations of a Phone Number", "Medium", "Combination Selection"],
+    ["Permutations", "Medium", "Permutations"], ["Permutations II", "Medium", "Permutations"], ["Letter Case Permutation", "Medium", "Permutations"],
+    ["Palindrome Partitioning", "Medium", "Partitioning"], ["Restore IP Addresses", "Medium", "Partitioning"], ["Split String Into Descending Consecutive Values", "Medium", "Partitioning"],
+    ["Word Search", "Medium", "Grid DFS with Backtracking"], ["Word Search II", "Hard", "Grid DFS with Backtracking"], ["Unique Paths III", "Hard", "Grid DFS with Backtracking"], ["Path with Maximum Gold", "Medium", "Grid DFS with Backtracking"],
+    ["N-Queens", "Hard", "Constraint Satisfaction"], ["N-Queens II", "Hard", "Constraint Satisfaction"], ["Sudoku Solver", "Hard", "Constraint Satisfaction"], ["Graph Coloring", "Medium", "Constraint Satisfaction"],
+    ["Word Break II", "Hard", "Memoized Backtracking"], ["Concatenated Words", "Hard", "Memoized Backtracking"], ["Remove Invalid Parentheses", "Hard", "Memoized Backtracking"],
+  ].map(([title, difficulty, pattern]) => patternQuestion(title, difficulty as Difficulty, pattern));
+}
+const dynamicProgrammingTopic = dsaCurriculum.find((topic) => topic.title === "Dynamic Programming");
+if (dynamicProgrammingTopic) {
+  dynamicProgrammingTopic.patterns = dynamicProgrammingPatternNames;
+  dynamicProgrammingTopic.questions = [...dynamicProgrammingRoadmap, ...additionalDynamicProgrammingRoadmap].map(([pattern, difficulty, title]) => ({
+    title,
+    difficulty,
+    tags: [pattern],
+    description: "Practice the " + pattern + " pattern with its defining recurrence and memoized state.",
+    repositoryKey: repositoryProblems.find((problem) => problem.slug === slugify(title))?.key,
+  }));
 }
 const learningOrder = ["Bitwise", "Math", "Two Pointers", "Sliding Window", "Intervals & Greedy", "Binary Search", "Heaps", "Arrays", "Strings", "Linked Lists", "Stack", "Queue", "Recursion", "Backtracking", "Dynamic Programming", "Trees", "Graphs"];
 dsaCurriculum.sort((left, right) => { const leftIndex = learningOrder.indexOf(left.title); const rightIndex = learningOrder.indexOf(right.title); return (leftIndex < 0 ? 999 : leftIndex) - (rightIndex < 0 ? 999 : rightIndex); });

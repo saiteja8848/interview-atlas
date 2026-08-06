@@ -9,6 +9,7 @@ import {
   Database,
   GitBranch,
   Layers3,
+  LayoutDashboard,
   ListTree,
   Network,
   PanelLeftClose,
@@ -70,6 +71,7 @@ export function CourseSidebar({ activeCourse = "dsa" }: { activeCourse?: "dsa" |
   const [expandedPattern, setExpandedPattern] = useState<string | null>(() => getDsaSidebarContext().pattern);
   const courseLabel = activeCourse === "dsa" ? "DSA course" : "System Design course";
   const visuallyCollapsed = collapsed;
+  const isDsaDashboard = typeof window !== "undefined" && window.location.pathname === "/dsa/dashboard";
 
   return (
     <aside className={`hidden shrink-0 border-r border-white/[.09] bg-[#09090b] transition-[width] duration-300 lg:block ${visuallyCollapsed ? "w-20" : "w-[18.75rem]"}`}>
@@ -93,11 +95,13 @@ export function CourseSidebar({ activeCourse = "dsa" }: { activeCourse?: "dsa" |
         {visuallyCollapsed ? (
           <nav className="mt-8 space-y-3" aria-label="Courses">
             <Link href="/dsa" title="DSA course" className={`grid h-11 place-items-center rounded-xl transition ${activeCourse === "dsa" ? "bg-indigo-500/15 text-indigo-200" : "text-zinc-500 hover:bg-white/[.06] hover:text-white"}`}><Code2 size={19} /></Link>
+            {activeCourse === "dsa" && <Link href="/dsa/dashboard" title="DSA progress dashboard" className={`grid h-11 place-items-center rounded-xl transition ${isDsaDashboard ? "bg-violet-500/15 text-violet-200" : "text-zinc-500 hover:bg-white/[.06] hover:text-white"}`}><LayoutDashboard size={19} /></Link>}
             <Link href="/system-design" title="System Design course" className={`grid h-11 place-items-center rounded-xl transition ${activeCourse === "system-design" ? "bg-cyan-400/10 text-cyan-200" : "text-zinc-500 hover:bg-white/[.06] hover:text-white"}`}><Layers3 size={19} /></Link>
           </nav>
         ) : activeCourse === "dsa" ? (
           <nav className="mt-8" aria-label="DSA topics">
             <p className="px-2 text-xs font-semibold uppercase tracking-[.14em] text-zinc-400">Learn</p>
+            <Link href="/dsa/dashboard" className={`mt-3 flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-medium tracking-[-.01em] transition ${isDsaDashboard ? "bg-violet-500/15 text-violet-100" : "text-zinc-300 hover:bg-white/[.055] hover:text-white"}`}><LayoutDashboard size={19} strokeWidth={1.8} className="text-violet-300" /><span>Progress dashboard</span><ChevronRight size={17} className="ml-auto text-zinc-500" /></Link>
             <div className="mt-3 space-y-1">
               {dsaCurriculum.map((topic) => {
                 const TopicIcon = topicIcons[topic.title] || BookOpen;
@@ -123,7 +127,7 @@ export function CourseSidebar({ activeCourse = "dsa" }: { activeCourse?: "dsa" |
                       <div className="ml-8 mb-2 mt-1 border-l border-white/[.08] pl-4 text-sm">
                         <Link href={`/dsa/${topicSlug}?tab=concepts`} className="block py-2 text-zinc-400 transition hover:text-indigo-200">Concepts</Link>
                         <div className="py-1">
-                          <p className="py-1 text-[10px] font-semibold uppercase tracking-[.14em] text-zinc-600">Patterns</p>
+                          <Link href={`/dsa/${topicSlug}?tab=patterns`} onClick={() => { setExpandedTopic(topic.title); setExpandedPattern(null); }} className="block py-1 text-[10px] font-semibold uppercase tracking-[.14em] text-zinc-600 transition hover:text-indigo-200">Patterns</Link>
                           <div className="mt-1 space-y-0.5">
                             {groups.map((group) => {
                               const patternKey = `${topic.title}::${group.pattern}`;

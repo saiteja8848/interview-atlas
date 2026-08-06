@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import HomePage from "@/app/page";
 import DsaPage from "@/app/dsa/page";
+import DsaDashboardPage from "@/app/dsa/dashboard/page";
 import TopicPage from "@/app/dsa/[topic]/page";
 import ProblemPage from "@/app/dsa/problems/[slug]/page";
 import SystemDesignPage from "@/app/system-design/page";
@@ -16,6 +17,7 @@ export function App() {
   const { pathname, search } = location;
   if (pathname === "/") return <HomePage />;
   if (pathname === "/dsa") return <DsaPage />;
+  if (pathname === "/dsa/dashboard") return <DsaDashboardPage />;
   if (pathname === "/system-design") return <SystemDesignPage />;
   const systemDesignTopic = pathname.match(/^\/system-design\/([^/]+)$/);
   if (systemDesignTopic) return <SystemDesignTopicPage topicSlug={decodeURIComponent(systemDesignTopic[1])} />;

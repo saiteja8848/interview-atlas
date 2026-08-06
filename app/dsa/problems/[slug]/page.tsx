@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@/components/link";
 import { NotFound } from "@/app/not-found";
 import {
@@ -25,6 +25,7 @@ import {
 import { SiteHeader } from "@/components/site-header";
 import { CourseSidebar } from "@/components/course-sidebar";
 import { CodeTabs } from "@/components/code-tabs";
+import { isQuestionCompleted, toggleQuestionCompletion } from "@/content/dsa-progress";
 
 const colors = {
   Easy: "bg-emerald-400/10 text-emerald-300",
@@ -177,22 +178,32 @@ function Editorial({ question }: { question: CurriculumQuestion }) {
   );
 }
 
-function Workspace({ question, study, lists }: { question: CurriculumQuestion; study: ReturnType<typeof getStudyContent>; lists: string[] }) {
+function Workspace({ question, study, lists, topicTitle }: { question: CurriculumQuestion; study: ReturnType<typeof getStudyContent>; lists: string[]; topicTitle: string }) {
   const [tab, setTab] = useState<"problem" | "editorial" | "video" | "code">("problem");
+  const [completed, setCompleted] = useState(false);
   const tabs = [["problem", "Problem"], ["editorial", "Editorial"], ["video", "Video"], ["code", "Code"]] as const;
+
+  useEffect(() => {
+    setCompleted(isQuestionCompleted(topicTitle, question.title));
+  }, [question.title, topicTitle]);
 
   return (
     <div className="rounded-3xl border border-white/[.09] bg-white/[.02]">
-      <div className="flex flex-wrap items-center gap-1 border-b border-white/[.08] px-3 pt-3">
-        {tabs.map(([value, label]) => (
-          <button
-            key={value}
-            onClick={() => setTab(value)}
-            className={`rounded-t-xl px-4 py-3 text-sm font-medium transition ${tab === value ? "bg-white/[.07] text-white" : "text-zinc-500 hover:bg-white/[.04] hover:text-zinc-300"}`}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/[.08] px-3 pt-3">
+        <div className="flex flex-wrap items-center gap-1">
+          {tabs.map(([value, label]) => (
+            <button
+              key={value}
+              onClick={() => setTab(value)}
+              className={`rounded-t-xl px-4 py-3 text-sm font-medium transition ${tab === value ? "bg-white/[.07] text-white" : "text-zinc-500 hover:bg-white/[.04] hover:text-zinc-300"}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <button onClick={() => setCompleted(toggleQuestionCompletion(topicTitle, question.title))} aria-pressed={completed} className={`mb-2 inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-semibold transition ${completed ? "border-emerald-300/30 bg-emerald-400/10 text-emerald-200 hover:bg-emerald-400/15" : "border-white/[.12] bg-white/[.04] text-zinc-300 hover:border-indigo-300/30 hover:bg-indigo-400/10 hover:text-indigo-100"}`}>
+          <CheckCircle2 size={15} /> {completed ? "Completed" : "Mark complete"}
+        </button>
       </div>
 
       <div className="p-5 md:p-7">
@@ -261,7 +272,7 @@ export default function ProblemPage({ slug }: { slug: string }) {
             <ArrowLeft size={16} /> Back to {topic.title} problems
           </Link>
           <div className="mx-auto mt-5 max-w-6xl">
-            <Workspace question={question} study={study} lists={getInterviewLists(question.title, topic.title)} />
+            <Workspace question={question} study={study} lists={getInterviewLists(question.title, topic.title)} topicTitle={topic.title} />
           </div>
         </article>
       </div>
