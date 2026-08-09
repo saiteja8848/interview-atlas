@@ -26,6 +26,7 @@ import { CodeTabs } from "@/components/code-tabs";
 import { isQuestionCompleted, toggleQuestionCompletion } from "@/content/dsa-progress";
 import { getProblemContent } from "@/content/problem-content";
 import type { ProblemContent } from "@/content/problem-content-types";
+import { STRIVER_A2Z_SHEET_URL } from "@/content/striver-a2z";
 
 const colors = {
   Easy: "bg-emerald-400/10 text-emerald-300",
@@ -95,7 +96,10 @@ function VideoPanel({ question }: { question: CurriculumQuestion }) {
   );
 }
 
-function Editorial({ question, content }: { question: CurriculumQuestion; content: ProblemContent }) {
+function Editorial({ question, content, lists, topicTitle }: { question: CurriculumQuestion; content: ProblemContent; lists: string[]; topicTitle: string }) {
+  const pattern = question.tags[0] || topicTitle;
+  const isStriverA2Z = lists.includes("Striver A2Z");
+
   return (
     <section>
       <p className="text-xs font-semibold uppercase tracking-[.16em] text-indigo-300">Editorial</p>
@@ -164,6 +168,41 @@ function Editorial({ question, content }: { question: CurriculumQuestion; conten
           ))}
         </ol>
       </section>
+
+      <section className="mt-5 rounded-2xl border border-cyan-300/20 bg-cyan-400/[.035] p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <Braces size={18} className="text-cyan-300" />
+            <h3 className="font-semibold">5. Connect the solution to its pattern</h3>
+          </div>
+          <span className="rounded-full border border-cyan-300/25 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-100">
+            {topicTitle} · {pattern}
+          </span>
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-white/[.08] bg-black/15 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[.12em] text-cyan-200">Recognize</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-300">
+              The brute-force drawback tells you what repeats. That repeated work is the clue to use the {pattern} pattern.
+            </p>
+          </div>
+          <div className="rounded-xl border border-white/[.08] bg-black/15 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[.12em] text-cyan-200">Apply</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-300">{content.optimized.explanation}</p>
+          </div>
+          <div className="rounded-xl border border-white/[.08] bg-black/15 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[.12em] text-cyan-200">Verify in code</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-300">
+              Follow the optimized steps above in order. Each step maps directly to the Java implementation in the Code tab.
+            </p>
+          </div>
+        </div>
+        {isStriverA2Z && (
+          <a href={STRIVER_A2Z_SHEET_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-cyan-200 transition hover:text-cyan-100">
+            <ExternalLink size={14} /> Also included in Striver's A2Z DSA Sheet
+          </a>
+        )}
+      </section>
     </section>
   );
 }
@@ -217,7 +256,7 @@ function Workspace({ question, content, lists, topicTitle }: { question: Curricu
                   rel="noreferrer"
                   className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-indigo-300 transition hover:text-indigo-200"
                 >
-                  <ExternalLink size={14} /> View original problem on LeetCode
+                  <ExternalLink size={14} /> View original problem
                 </a>
               )}
             </section>
@@ -232,7 +271,7 @@ function Workspace({ question, content, lists, topicTitle }: { question: Curricu
             <TestCases examples={content.examples} />
           </>
         )}
-        {tab === "editorial" && <Editorial question={question} content={content} />}
+        {tab === "editorial" && <Editorial question={question} content={content} lists={lists} topicTitle={topicTitle} />}
         {tab === "video" && <VideoPanel question={question} />}
         {tab === "code" && (
           <div className="space-y-6">

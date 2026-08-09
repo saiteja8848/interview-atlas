@@ -1,6 +1,7 @@
 import { repositoryProblems, repositorySolutions } from "@/content/repository-solutions";
 import { problemVideos } from "@/content/video-library";
 import { interview300Topics } from "@/content/interview-300";
+import { isStriverA2ZProblem } from "@/content/striver-a2z";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 export type CodeLanguage = "Java" | "Python" | "JavaScript" | "C++";
@@ -103,6 +104,10 @@ function ensureInterviewRows() {
   assign("Blind 75", blind75Canonical, 75);
   assign("LeetCode Top 150", leetCodeTop150Canonical, 150);
   assign("Top 100 Must-Do", top100Canonical, 100);
+  for (const row of rows) {
+    if (!isStriverA2ZProblem(row.title)) continue;
+    interviewRows.set(row.key, [...(interviewRows.get(row.key) || []), "Striver A2Z"]);
+  }
   interviewRowsReady = true;
 }
 export function getInterviewLists(title: string, topic?: string) {
@@ -575,7 +580,7 @@ dsaCurriculum.splice(
   })),
 );
 
-const learningOrder = ["Bitwise", "Math", "Two Pointers", "Sliding Window", "Intervals & Greedy", "Binary Search", "Heaps", "Arrays", "Strings", "Linked Lists", "Stack", "Queue", "Recursion", "Backtracking", "Dynamic Programming", "Trees", "Graphs"];
+const learningOrder = ["Recursion", "Backtracking", "Dynamic Programming", "Graphs", "Trees", "Heaps", "Two Pointers", "Sliding Window", "Intervals & Greedy", "Binary Search", "Arrays", "Strings", "Linked Lists", "Stack", "Queue", "Math", "Bitwise"];
 dsaCurriculum.sort((left, right) => { const leftIndex = learningOrder.indexOf(left.title); const rightIndex = learningOrder.indexOf(right.title); return (leftIndex < 0 ? 999 : leftIndex) - (rightIndex < 0 ? 999 : rightIndex); });
 export const patterns = ["Two Pointers", "Sliding Window", "Hash Map", "Binary Search", "DFS", "BFS", "Backtracking", "Dynamic Programming", "Intervals", "Greedy", "Trie"];
 export const systemDesignTopics = [

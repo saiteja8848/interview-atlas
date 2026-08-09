@@ -8,9 +8,9 @@ const difficultyStyle: Record<Difficulty, string> = {
   Medium: "bg-amber-400/10 text-amber-300",
   Hard: "bg-rose-400/10 text-rose-300",
 };
-type FilterTag = Difficulty | "Blind 75" | "LeetCode Top 150" | "Top 100 Must-Do";
+type FilterTag = Difficulty | "Blind 75" | "LeetCode Top 150" | "Top 100 Must-Do" | "Striver A2Z";
 const difficultyTags: Difficulty[] = ["Easy", "Medium", "Hard"];
-const interviewTags: FilterTag[] = ["Blind 75", "LeetCode Top 150", "Top 100 Must-Do"];
+const interviewTags: FilterTag[] = ["Blind 75", "LeetCode Top 150", "Top 100 Must-Do", "Striver A2Z"];
 const topicOptions = dsaCurriculum.map((topic) => topic.title);
 
 export function ProblemExplorer() {
