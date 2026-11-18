@@ -1,0 +1,31 @@
+﻿.atlas .map-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.atlas.atlas-galaxy{background:#0a0e20;color:#f2f1fb;--ink:#eeeef6;--muted:#bec1d6;--line:#31354b}
+.atlas-galaxy .atlas-main{min-height:100dvh;background:radial-gradient(85% 70% at 80% 30%,#1b1d3899,transparent 80%),#0b1020}
+.atlas-galaxy .atlas-top,.atlas-galaxy .atlas-side{background:#0f1425;border-color:#303449}.atlas-galaxy .atlas-side .side-label,.atlas-galaxy .atlas-top,.atlas-galaxy .search-trigger{color:#adb4c8}
+.atlas-galaxy .atlas-top b,.atlas-galaxy .brand{color:#eef1fa}.atlas-galaxy .brand>span:first-child{background:#222e46;color:#a6d6f8}
+.atlas-galaxy .atlas-side .side-link{color:#bec6db!important}.atlas-galaxy .side-link.selected,.atlas-galaxy .side-link:hover,.atlas-galaxy .search-trigger:hover{background:#25314b}
+.atlas-galaxy .subject-mark,.atlas-galaxy .search-trigger kbd{background:#222b41;color:#b9c7e9}.atlas-galaxy .side-bottom{background:#151d30;color:#dfebf7}.atlas-galaxy .side-bottom progress::-webkit-progress-bar{background:#344058}
+.atlas-galaxy .atlas-content{max-width:1480px}.atlas-galaxy .eyebrow{color:#b4c3ff}.atlas-galaxy .eyebrow>span{background:#8da4ef}
+.atlas-galaxy .atlas-intro,.atlas-galaxy .map-trail,.atlas-galaxy .map-hint{color:#b1b8cf}
+.atlas-galaxy .view-switch{background:#111727;border-color:#373d55}.atlas-galaxy .view-switch button{color:#b6c0d6}.atlas-galaxy .view-switch .on{background:#34415d;color:white}
+.galaxy-focus{display:flex;align-items:center;gap:7px;min-height:42px;padding:6px 12px;border:1px solid #404761;border-radius:8px;color:#d2daf1;font-size:12px!important}.galaxy-focus:hover{background:#27304c}
+.atlas-galaxy .search-box{color:#253449;--line:#d5dce1;--muted:#5f6b78}
+.galaxy-focused .atlas-side,.galaxy-focused .atlas-top{display:none}.galaxy-focused .atlas-content{max-width:none}.galaxy-focused .orbital-scene{height:clamp(480px,65dvh,910px)}
+.galaxy-map.graph{background:#090b1a;border-color:#353a54;border-radius:16px;box-shadow:0 18px 50px #0004}
+.galaxy-map .graph-bar,.galaxy-map .graph-footer{background:#13182b;border-color:#343a54}.galaxy-map .graph-bar svg,.galaxy-map .graph-bar small{color:#b4bdeb}.galaxy-map .graph-bar i{background:#aca3ea}
+.orbital-scene,.galaxy-map .mind-viewport{isolation:isolate;position:relative;background:radial-gradient(ellipse at 52% 50%,#5a466b7a 0%,transparent 24%),radial-gradient(ellipse at 23% 66%,#17475d66,transparent 46%),radial-gradient(ellipse at 76% 31%,#51296f80,transparent 47%),#080c1b}
+.orbital-scene{height:clamp(400px,53vh,680px);overflow:hidden}
+.galaxy-sky,.orbital-lines{position:absolute;inset:0;height:100%;width:100%;pointer-events:none}.galaxy-map .mind-viewport>div{position:relative}
+.orbital-lines{fill:none}.orbital-lines path{vector-effect:non-scaling-stroke;stroke-width:1.7;opacity:.78}.orbit-guide{stroke:#a2b1d3;stroke-opacity:.14;stroke-width:1;stroke-dasharray:4 8;vector-effect:non-scaling-stroke}
+.galaxy-core,.solar-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1}.galaxy-core{width:82px;height:82px}
+.sun{position:absolute;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 34% 29%,#fff8cf 4%,#ffcf84 29%,#da8755 65%,#824965 95%);box-shadow:inset -5px -5px 12px #96466c88,0 0 12px #ffcf87b8,0 0 32px #ffa67d77,0 0 72px #d882a568}
+.galaxy-core strong{position:relative;color:#422b39;font-size:15px;letter-spacing:.11em;text-shadow:0 1px 3px #ffdda7}
+.solar-node{width:105px;height:54px;text-align:center}.solar-node b{position:absolute;top:calc(50% + 14px);display:block;white-space:nowrap;line-height:1.35;padding:1px 5px;border-radius:5px;background:#101325d6;color:#eff3ff;font-size:13px;font-weight:600}
+.orbital-hub b{top:calc(50% + 23px);font-size:15px}
+.planet,.orbital-moon i{display:block;border-radius:50%;background:radial-gradient(circle at 30% 24%,#f1ffff, var(--orbit-color) 21%,color-mix(in srgb,var(--orbit-color) 49%,#101a37) 57%,#101326 86%);box-shadow:inset -2px -2px 5px #111a38aa,0 0 14px color-mix(in srgb,var(--orbit-color) 45%,transparent)}
+.planet{position:relative;width:35px;height:35px}.system-0 .planet:after{content:"";position:absolute;inset:11px -12px;border:2px solid #a1e8f4bb;border-top-color:#8bc6d099;border-radius:50%;transform:rotate(-23deg)}
+.orbital-moon i{height:14px;width:14px}.solar-node:hover b,.solar-node:focus-visible b{color:var(--orbit-color);text-decoration:underline}.solar-node:hover i{filter:brightness(1.25)}
+.galaxy-map .mind-root{background:radial-gradient(at 25% 25%,#46476a,#232543);border-color:#969aca;box-shadow:0 0 25px #b8aafe23}.galaxy-map .root-glyph{background:#4c506b;color:#e6e2ff;border-color:#7d81a8}.galaxy-map .mind-root small{color:#cfceec}
+.galaxy-map .mind-branch{background:color-mix(in srgb,var(--node-color) 12%,#15182b);border-radius:14px}.galaxy-map .mind-leaf{background:#1a2033;border-color:#424963;border-radius:24px}.galaxy-map .mind-wires{filter:drop-shadow(0 0 3px #8ab6fc66)}
+@container(max-width:679px){.orbital-scene{height:495px}.solar-node{width:92px}.solar-node b{font-size:12px}.orbital-hub b{font-size:14px}.sun{width:52px;height:52px}.orbit-guide{stroke-opacity:.1}}
+@media(max-width:760px){.atlas-galaxy .atlas-content{padding:20px 12px}.atlas .map-actions{gap:6px}.galaxy-focus{min-height:44px;padding:5px 9px}}
