@@ -1,0 +1,4060 @@
+[
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "DSA topics and complexity",
+    "page": 1,
+    "description": "Compare the growth of running time and auxiliary space. The handbook diagram shows where the structures and algorithms fit."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Subarray, substring, subsequence and subset",
+    "page": 2,
+    "description": "Subarrays and substrings are contiguous. Subsequences preserve order while allowing omissions. A subset is a selection without an order requirement."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Problem types",
+    "page": 3,
+    "description": "Start with what the question asks you to return. Use the diagram to compare counting, existence, construction and optimization problems."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Questions by data structure",
+    "page": 4,
+    "description": "Use the original overview to see how interview questions are distributed across structures."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Pattern mapping",
+    "page": 5,
+    "description": "Use the pattern map to connect the shape of a problem to a candidate approach."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Topic-wise questions ? chapters 1?8",
+    "page": 6,
+    "description": "The first eight chapter diagrams run from Math through Greedy."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Topic-wise questions ? chapters 9?19",
+    "page": 7,
+    "description": "The middle chapter diagrams connect Strings through Dynamic Programming to their patterns."
+  },
+  {
+    "topic": "Introduction",
+    "pattern": "Reference diagrams",
+    "title": "Topic-wise questions ? chapters 20?24",
+    "page": 8,
+    "description": "The final five chapter diagrams cover Matrix / Grid through Segment Tree / Fenwick Tree."
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Basic Bit Operations / Set-Bit Manipulation",
+    "title": "Minimum Bit Flips to Convert Number",
+    "page": 14
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Basic Bit Operations / Set-Bit Manipulation",
+    "title": "Swap All Odd and Even Bits",
+    "page": 14,
+    "target": "Swap Odd and Even Bits"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bit masking / Bit Patterns",
+    "title": "Longest Consecutive 1's",
+    "page": 14,
+    "target": "Longest Consecutive 1s"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bit masking / Bit Patterns",
+    "title": "Bitwise AND of Numbers Range",
+    "page": 14
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bit masking / Bit Patterns",
+    "title": "Copy Set Bits in a Range",
+    "page": 14
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bit masking / Bit Patterns",
+    "title": "Minimum Array End",
+    "page": 14
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Swap Two Numbers Using XOR",
+    "page": 14,
+    "target": "Swap Two Numbers Without Third Variable"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Maximum XOR Subset",
+    "page": 14,
+    "target": "Maximum Subset XOR"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "XOR of Numbers in a Given Range",
+    "page": 15,
+    "target": "XOR of 1 to N / XOR Range"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Single Number I",
+    "page": 15,
+    "target": "Single Number"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Single Number II",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Single Number III",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Missing Number",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Pattern",
+    "title": "Find the Duplicate Number",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Add Binary",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Sum of Two Integers Without + or -",
+    "page": 15,
+    "target": "Sum of Two Integers"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Pow(x, n) — Fast Exponentiation",
+    "page": 15,
+    "target": "Pow(x, n)"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Divisors of a Number",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Divide Two Integers Without *, / or %",
+    "page": 15,
+    "target": "Divide Two Integers"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Square of a Number Without *, / or pow()",
+    "page": 15,
+    "target": "Square Without *, /, pow()"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Complement of a Base 10 Number",
+    "page": 15,
+    "target": "Complement of Base 10 Integer"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Sum of Bit Differences Among All Pairs",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Print Prime Factors of a Number",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Bitwise Arithmetic / Number Theory",
+    "title": "Count Primes in Range L to R / Segmented Sieve",
+    "page": 15,
+    "target": "Count Primes in Range"
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Number-System Conversion",
+    "title": "Decimal to Binary",
+    "page": 15
+  },
+  {
+    "topic": "Bit Manipulation",
+    "pattern": "Number-System Conversion",
+    "title": "Binary to Decimal",
+    "page": 15
+  },
+  {
+    "topic": "Math",
+    "pattern": "Number problems",
+    "page": 18,
+    "title": "Palindrome Number"
+  },
+  {
+    "topic": "Math",
+    "pattern": "Number problems",
+    "page": 18,
+    "title": "Plus One"
+  },
+  {
+    "topic": "Math",
+    "pattern": "Number problems",
+    "page": 18,
+    "title": "Factorial Trailing Zeroes"
+  },
+  {
+    "topic": "Math",
+    "pattern": "Number problems",
+    "page": 18,
+    "title": "Sqrt(x)"
+  },
+  {
+    "topic": "Math",
+    "pattern": "Number problems",
+    "page": 18,
+    "title": "Pow(x, n)"
+  },
+  {
+    "topic": "Math",
+    "pattern": "Number problems",
+    "page": 18,
+    "title": "Max Points on a Line"
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Largest Element in an Array",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Second Largest Element",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Check if Array is Sorted",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Rotate Array",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Check if Array is Sorted and Rotated",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Max Consecutive Ones",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Rearrange Array Elements by Sign",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Leaders in an Array",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Basic Array Traversal / Manipulation",
+    "title": "Element with Left Side Smaller and Right Side Greater",
+    "page": 24,
+    "target": "Element With Left Smaller and Right Greater"
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Contains Duplicate",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Two Sum",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Majority Element I",
+    "page": 24,
+    "target": "Majority Element"
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Majority Element II",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Longest Consecutive Sequence",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Longest Palindrome",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Hashing / Frequency",
+    "title": "Logger Rate Limiter",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Prefix / Suffix",
+    "title": "Product of Array Except Self",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Prefix / Suffix",
+    "title": "Find Pivot Index",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Prefix / Suffix",
+    "title": "Subarray Sum Equals K",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Prefix / Suffix",
+    "title": "Longest Subarray with Sum K",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Prefix / Suffix",
+    "title": "Count Subarrays with XOR K",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Prefix / Suffix",
+    "title": "Largest Subarray with Sum 0",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Kadane / Running Best",
+    "title": "Maximum Subarray",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Kadane / Running Best",
+    "title": "Maximum Product Subarray",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Kadane / Running Best",
+    "title": "Best Time to Buy and Sell Stock I",
+    "page": 24,
+    "target": "Best Time to Buy and Sell Stock"
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Cyclic Sort / Index Placement",
+    "title": "Missing Number",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Cyclic Sort / Index Placement",
+    "title": "Find All Numbers Disappeared in an Array",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Cyclic Sort / Index Placement",
+    "title": "Find the Duplicate Number",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Cyclic Sort / Index Placement",
+    "title": "Find All Duplicates in an Array",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Cyclic Sort / Index Placement",
+    "title": "Set Mismatch",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Cyclic Sort / Index Placement",
+    "title": "First Missing Positive",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Array Rearrangement / Ordering",
+    "title": "Sort Colors",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Array Rearrangement / Ordering",
+    "title": "Next Permutation",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Array Rearrangement / Ordering",
+    "title": "Convert Array into Zig-Zag Fashion",
+    "page": 24,
+    "target": "Convert Array Into Zigzag Fashion"
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Array Rearrangement / Ordering",
+    "title": "Wiggle Sort",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Array Rearrangement / Ordering",
+    "title": "Wiggle Sort II",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Array Rearrangement / Ordering",
+    "title": "Rearrange Array Alternately",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Merge / Interval-Style Array Manipulation",
+    "title": "Merge Sorted Array",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Merge / Interval-Style Array Manipulation",
+    "title": "Merge Overlapping Intervals",
+    "page": 24,
+    "target": "Merge Intervals"
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Merge / Interval-Style Array Manipulation",
+    "title": "Merge Without Extra Space",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Inversion / Modified Merge Sort",
+    "title": "Count Inversions",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Inversion / Modified Merge Sort",
+    "title": "Reverse Pairs",
+    "page": 24
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Matrix / 2D Arrays",
+    "title": "Set Matrix Zeroes",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Matrix / 2D Arrays",
+    "title": "Rotate Image",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Matrix / 2D Arrays",
+    "title": "Spiral Matrix",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Matrix / 2D Arrays",
+    "title": "Spiral Matrix II",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Matrix / 2D Arrays",
+    "title": "Game of Life",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Matrix / 2D Arrays",
+    "title": "Valid Sudoku",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Pascal / Combinational Array",
+    "title": "Pascal's Triangle",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Pascal / Combinational Array",
+    "title": "Pascal's Triangle II",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Plus One",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Factorial Trailing Zeroes",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Palindrome Number",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Ugly Number",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Count Primes",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "GCD / LCM",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Max Points on a Line",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Math / Number Manipulation",
+    "title": "Fraction to Recurring Decimal",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Number / String Conversion",
+    "title": "Integer to Roman",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Number / String Conversion",
+    "title": "Roman to Integer",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Number / String Conversion",
+    "title": "Excel Sheet Column Title",
+    "page": 25
+  },
+  {
+    "topic": "Arrays / Hashing",
+    "pattern": "Number / String Conversion",
+    "title": "Excel Sheet Column Number",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Frequency / Hashing",
+    "title": "Valid Anagram",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Frequency / Hashing",
+    "title": "Group Anagrams",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Frequency / Hashing",
+    "title": "Ransom Note",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Frequency / Hashing",
+    "title": "Isomorphic Strings",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Frequency / Hashing",
+    "title": "Sort Characters by Frequency",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Palindrome",
+    "title": "Valid Palindrome",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Palindrome",
+    "title": "Valid Palindrome II",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Palindrome",
+    "title": "Longest Palindromic Substring",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Palindrome",
+    "title": "Minimum Insertion Steps to Make a String Palindrome",
+    "page": 25,
+    "target": "Minimum Insertion Steps to Make String Palindrome"
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Traversal / Manipulation",
+    "title": "Length of Last Word",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Traversal / Manipulation",
+    "title": "Reverse Words in a String",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Traversal / Manipulation",
+    "title": "Zigzag Conversion",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Traversal / Manipulation",
+    "title": "String Compression",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Traversal / Manipulation",
+    "title": "Count and Say",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Prefix / String Comparison",
+    "title": "Longest Common Prefix",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Prefix / String Comparison",
+    "title": "Compare Version Numbers",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Prefix / String Comparison",
+    "title": "Greatest Common Divisor of Strings",
+    "page": 25,
+    "target": "GCD of Strings"
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Pattern Matching",
+    "title": "Find the Index of the First Occurrence in a String",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Pattern Matching",
+    "title": "KMP Algorithm",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Pattern Matching",
+    "title": "Rabin-Karp / Rolling Hash",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Encoding / Decoding",
+    "title": "Encode and Decode Strings",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Encoding / Decoding",
+    "title": "String Compression",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Encoding / Decoding",
+    "title": "Count and Say",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Parsing / Validation",
+    "title": "String to Integer (atoi)",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Parsing / Validation",
+    "title": "Validate IP Address",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Parsing / Validation",
+    "title": "Compare Version Numbers",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Parsing / Validation",
+    "title": "Roman to Integer",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Parsing / Validation",
+    "title": "Integer to Roman",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Construction / Formatting",
+    "title": "Text Justification",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Construction / Formatting",
+    "title": "Zigzag Conversion",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Construction / Formatting",
+    "title": "Integer to Roman",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String Construction / Formatting",
+    "title": "Encode and Decode Strings",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Advanced Palindrome / DP",
+    "title": "Longest Palindromic Substring",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Advanced Palindrome / DP",
+    "title": "Longest Palindromic Subsequence",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Advanced Palindrome / DP",
+    "title": "Minimum Insertion Steps to Make a String Palindrome",
+    "page": 25,
+    "target": "Minimum Insertion Steps to Make String Palindrome"
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Special String Problems",
+    "title": "Excel Sheet Column Title",
+    "page": 25
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Special String Problems",
+    "title": "Excel Sheet Column Number",
+    "page": 26
+  },
+  {
+    "topic": "Strings",
+    "pattern": "Special String Problems",
+    "title": "Greatest Common Divisor of Strings",
+    "page": 26,
+    "target": "GCD of Strings"
+  },
+  {
+    "topic": "Matrix / Grid",
+    "pattern": "Matrix simulation and in-place transforms",
+    "title": "Spiral Matrix",
+    "page": 30
+  },
+  {
+    "topic": "Matrix / Grid",
+    "pattern": "Matrix simulation and in-place transforms",
+    "title": "Rotate Image",
+    "page": 30
+  },
+  {
+    "topic": "Matrix / Grid",
+    "pattern": "Matrix simulation and in-place transforms",
+    "title": "Set Matrix Zeroes",
+    "page": 30
+  },
+  {
+    "topic": "Matrix / Grid",
+    "pattern": "Matrix simulation and in-place transforms",
+    "title": "Game of Life",
+    "page": 30
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Word Pattern",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Longest Common Prefix",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Valid Anagram",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Group Anagrams",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Length of Last Word",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Encode and Decode Strings",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Ransom Note",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Isomorphic Strings",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Text Justification",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Zigzag Conversion",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Reverse Words in a String",
+    "page": 33
+  },
+  {
+    "topic": "Strings",
+    "pattern": "String revision",
+    "title": "Find the Index of the First Occurrence in a String",
+    "page": 33
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Design Linked List",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Delete Node in a Linked List",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Remove Linked List Elements",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Remove Duplicates from Sorted List",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Remove Duplicates from Sorted List II",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Partition List",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Basic Pointer Manipulation",
+    "title": "Odd Even Linked List",
+    "page": 40
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Reversal",
+    "title": "Reverse Linked List",
+    "page": 41
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Reversal",
+    "title": "Reverse Linked List II",
+    "page": 41
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Reversal",
+    "title": "Reverse Nodes in K Group",
+    "page": 41
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Reversal",
+    "title": "Reverse Nodes in Even Length Groups",
+    "page": 41
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Reversal",
+    "title": "Rotate List",
+    "page": 41
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Reversal",
+    "title": "Swap Nodes in Pairs",
+    "page": 41
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Fast & Slow Pointers",
+    "title": "Middle of the Linked List",
+    "page": 44,
+    "target": "Middle of Linked List"
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Fast & Slow Pointers",
+    "title": "Linked List Cycle",
+    "page": 44
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Fast & Slow Pointers",
+    "title": "Linked List Cycle II",
+    "page": 44
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Fast & Slow Pointers",
+    "title": "Palindrome Linked List",
+    "page": 44
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Fast & Slow Pointers",
+    "title": "Maximum Twin Sum of a Linked List",
+    "page": 44
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Fast & Slow Pointers",
+    "title": "Find the Duplicate Number",
+    "page": 44
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Split + Reverse + Merge",
+    "title": "Reorder List",
+    "page": 45
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Split + Reverse + Merge",
+    "title": "Palindrome Linked List",
+    "page": 45
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Split + Reverse + Merge",
+    "title": "Maximum Twin Sum of a Linked List",
+    "page": 45
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Two Linked Lists / Pointer Synchronization",
+    "title": "Intersection of Two Linked Lists",
+    "page": 45
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Two Linked Lists / Pointer Synchronization",
+    "title": "Merge Two Sorted Lists",
+    "page": 45
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Two Linked Lists / Pointer Synchronization",
+    "title": "Merge in Between Linked Lists",
+    "page": 45,
+    "target": "Merge In Between Linked Lists"
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Linked List Arithmetic",
+    "title": "Add Two Numbers",
+    "page": 46
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Linked List Arithmetic",
+    "title": "Add Two Numbers II",
+    "page": 46
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Linked List Arithmetic",
+    "title": "Convert Binary Number in a Linked List to Integer",
+    "page": 46,
+    "target": "Convert Binary Number in Linked List to Integer"
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Sorting / Merge Sort",
+    "title": "Sort List",
+    "page": 46
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Sorting / Merge Sort",
+    "title": "Merge Two Sorted Lists",
+    "page": 46
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Sorting / Merge Sort",
+    "title": "Merge K Sorted Lists",
+    "page": 46
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Dummy Node / Deletion / Position",
+    "title": "Remove Nth Node From End of List",
+    "page": 47
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Dummy Node / Deletion / Position",
+    "title": "Delete Middle Node of a Linked List",
+    "page": 47,
+    "target": "Delete Middle Node of Linked List"
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Dummy Node / Deletion / Position",
+    "title": "Swapping Nodes in a Linked List",
+    "page": 47
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Special Pointer Structure / Deep Copy",
+    "title": "Copy List with Random Pointer",
+    "page": 48,
+    "target": "Copy List With Random Pointer"
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Special Pointer Structure / Deep Copy",
+    "title": "Flatten a Linked List",
+    "page": 48
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Linked List + Tree",
+    "title": "Convert Sorted List to Binary Search Tree",
+    "page": 48
+  },
+  {
+    "topic": "Linked Lists",
+    "pattern": "Linked List + Tree",
+    "title": "Linked List in Binary Tree",
+    "page": 48
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Basic Stack / Queue Implementation",
+    "title": "Implement Stack Using Queues",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Basic Stack / Queue Implementation",
+    "title": "Implement Queue Using Stacks",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Basic Stack / Queue Implementation",
+    "title": "Min Stack",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Parentheses / Expression Validation",
+    "title": "Valid Parentheses",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Parentheses / Expression Validation",
+    "title": "Redundant Braces",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Parentheses / Expression Validation",
+    "title": "Minimum Add to Make Parentheses Valid",
+    "page": 51,
+    "target": "Minimum Add to Make Parentheses Valid (LeetCode 921)"
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Evaluate Reverse Polish Notation",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Basic Calculator I",
+    "page": 51,
+    "target": "Basic Calculator"
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Basic Calculator II",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Basic Calculator III",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Infix to Postfix",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Prefix / Postfix Conversion",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Expression Evaluation / Parsing",
+    "title": "Simplify Path",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Greater",
+    "title": "Next Greater Element I",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Greater",
+    "title": "Next Greater Element II",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Greater",
+    "title": "Previous Greater Element",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Greater",
+    "title": "Daily Temperatures",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Greater",
+    "title": "Online Stock Span",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Greater",
+    "title": "Stock Span Problem",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Smaller",
+    "title": "Next Smaller Element",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Smaller",
+    "title": "Previous Smaller Element",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Smaller",
+    "title": "Largest Rectangle in Histogram",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Smaller",
+    "title": "Maximal Rectangle",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Next / Previous Smaller",
+    "title": "Sum of Subarray Minimums",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Greedy / Pattern Detection",
+    "title": "Remove K Digits",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Greedy / Pattern Detection",
+    "title": "132 Pattern",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Greedy / Pattern Detection",
+    "title": "Remove Duplicate Letters",
+    "page": 51,
+    "target": "Remove Duplicate Letters (LeetCode 316)"
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Greedy / Pattern Detection",
+    "title": "Smallest Subsequence of Distinct Characters",
+    "page": 51,
+    "target": "Smallest Subsequence of Distinct Characters (LeetCode 1081)"
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Monotonic Stack: Greedy / Pattern Detection",
+    "title": "Asteroid Collision",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Stack Simulation / String Processing",
+    "title": "Remove All Adjacent Duplicates in String",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Stack Simulation / String Processing",
+    "title": "Remove All Adjacent Duplicates in String II",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Stack Simulation / String Processing",
+    "title": "Decode String",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Stack Simulation / String Processing",
+    "title": "Baseball Game",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Stack Simulation / String Processing",
+    "title": "Sort a Stack",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Queue / Stream Processing",
+    "title": "First Non-Repeating Character in a Stream",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Queue / Stream Processing",
+    "title": "Recent Counter",
+    "page": 51,
+    "target": "Number of Recent Calls"
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Queue / Stream Processing",
+    "title": "Number of Students Unable to Eat Lunch",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Deque / Monotonic Queue",
+    "title": "Sliding Window Maximum",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Deque / Monotonic Queue",
+    "title": "Longest Continuous Subarray With Absolute Diff ≤ Limit",
+    "page": 51,
+    "target": "Longest Continuous Subarray With Absolute Difference <= Limit"
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Deque / Monotonic Queue",
+    "title": "Shortest Subarray With Sum at Least K",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Circular Queue / Design",
+    "title": "Design Circular Queue",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Circular Queue / Design",
+    "title": "Design Circular Deque",
+    "page": 51
+  },
+  {
+    "topic": "Stack",
+    "pattern": "Stack + Boundary / Area Problems",
+    "title": "Trapping Rain Water",
+    "page": 51
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Search X in Sorted Array",
+    "page": 56,
+    "target": "Binary Search"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Lower Bound",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Upper Bound",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Search Insert Position",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Floor and Ceil in Sorted Array",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "First and Last Occurrence",
+    "page": 56,
+    "target": "Find First and Last Position in Sorted Array"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Count Occurrences in a Sorted Array",
+    "page": 56,
+    "target": "Count Occurrences in Sorted Array"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Search in Rotated Sorted Array I",
+    "page": 56,
+    "target": "Search in Rotated Sorted Array"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Search in Rotated Sorted Array II",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Find Minimum in Rotated Sorted Array",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Find How Many Times the Array is Rotated",
+    "page": 56,
+    "target": "Find out how many times the array is rotated"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Single Element in a Sorted Array",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Basic Binary Search / Bounds / Modified Sorted Array",
+    "title": "Find Peak Element",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on 2D Matrix",
+    "title": "Find Row with Maximum 1's",
+    "page": 56,
+    "target": "Find row with maximum 1's"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on 2D Matrix",
+    "title": "Search in a 2D Matrix",
+    "page": 56,
+    "target": "Search a 2D Matrix"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on 2D Matrix",
+    "title": "Search in 2D Matrix II",
+    "page": 56,
+    "target": "Search a 2D Matrix II"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on 2D Matrix",
+    "title": "Find Peak Element II",
+    "page": 56,
+    "target": "Find a Peak Element II"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on 2D Matrix",
+    "title": "Matrix Median",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Find Square Root of a Number",
+    "page": 56,
+    "target": "Sqrt(x)"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Find Nth Root of a Number",
+    "page": 56,
+    "target": "Nth Root of an Integer"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Koko Eating Bananas",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Minimum Days to Make M Bouquets",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Find the Smallest Divisor",
+    "page": 56,
+    "target": "Smallest Divisor Given a Threshold"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Capacity to Ship Packages Within D Days",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Kth Missing Positive Number",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Aggressive Cows",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Book Allocation Problem",
+    "page": 56,
+    "target": "Allocate Books"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Split Array Largest Sum",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Painter's Partition Problem",
+    "page": 56,
+    "target": "Painter's Partition"
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Answer / Feasibility",
+    "title": "Minimize Max Distance to Gas Station",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Partition",
+    "title": "Median of Two Sorted Arrays",
+    "page": 56
+  },
+  {
+    "topic": "Binary Search",
+    "pattern": "Binary Search on Partition",
+    "title": "Kth Element of Two Sorted Arrays",
+    "page": 56
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "Valid Palindrome",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "Two Sum II",
+    "page": 63,
+    "target": "Two Sum II - Input Array Is Sorted"
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "3Sum",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "3Sum Closest",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "4Sum",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "Container With Most Water",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "Valid Triangle Number",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Opposite Direction / Converging Pointers",
+    "title": "Trapping Rain Water",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Same Direction / Read-Write Pointers",
+    "title": "Move Zeroes",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Same Direction / Read-Write Pointers",
+    "title": "Remove Element",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Same Direction / Read-Write Pointers",
+    "title": "Remove Duplicates from Sorted Array",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Same Direction / Read-Write Pointers",
+    "title": "Remove Duplicates from Sorted Array II",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Same Direction / Read-Write Pointers",
+    "title": "Sort Colors",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Two Arrays / Two Sequences",
+    "title": "Merge Sorted Array",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Two Arrays / Two Sequences",
+    "title": "Intersection of Two Sorted Arrays",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Two Arrays / Two Sequences",
+    "title": "Interval List Intersections",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Difference / Distance Between Pointers",
+    "title": "K-diff Pairs in an Array",
+    "page": 63,
+    "target": "K-Diff Pairs in an Array"
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fast and Slow Pointers / Floyd Cycle Detection",
+    "title": "Middle of the Linked List",
+    "page": 63,
+    "target": "Middle of Linked List"
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fast and Slow Pointers / Floyd Cycle Detection",
+    "title": "Linked List Cycle",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fast and Slow Pointers / Floyd Cycle Detection",
+    "title": "Linked List Cycle II",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fast and Slow Pointers / Floyd Cycle Detection",
+    "title": "Happy Number",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fast and Slow Pointers / Floyd Cycle Detection",
+    "title": "Find the Duplicate Number",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fast and Slow Pointers / Floyd Cycle Detection",
+    "title": "Circular Array Loop",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fixed Gap / Nth From End",
+    "title": "Remove Nth Node From End of List",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Fixed Gap / Nth From End",
+    "title": "Swapping Nodes in a Linked List",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Linked List Pointer Synchronization",
+    "title": "Intersection of Two Linked Lists",
+    "page": 63
+  },
+  {
+    "topic": "Two Pointers",
+    "pattern": "Linked List Pointer Synchronization",
+    "title": "Palindrome Linked List",
+    "page": 63
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Maximum Average Subarray I",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Substrings of Size 3 with Distinct Characters",
+    "page": 69,
+    "target": "Substrings of Size Three With Distinct Characters"
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Contains Duplicate II",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Diet Plan Performance",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Find the K-Beauty of a Number",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Repeated DNA Sequences",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Grumpy Bookstore Owner",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Size Window",
+    "title": "Maximum Points You Can Obtain From Cards",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Window + Frequency / Anagram",
+    "title": "Find All Anagrams in a String",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Window + Frequency / Anagram",
+    "title": "Permutation in String",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Fixed Window + Frequency / Anagram",
+    "title": "Count Occurrences of Anagrams",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Longest Substring Without Repeating Characters",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Longest Substring with At Most K Distinct Characters",
+    "page": 69,
+    "target": "Longest Substring With At Most K Distinct Characters"
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Fruit Into Baskets",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Longest Repeating Character Replacement",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Max Consecutive Ones III",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Frequency of the Most Frequent Element",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Longest / Maximum",
+    "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+    "page": 69,
+    "target": "Longest Continuous Subarray With Absolute Difference <= Limit"
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Minimum",
+    "title": "Minimum Size Subarray Sum",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Minimum",
+    "title": "Minimum Window Substring",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Variable Window: Minimum",
+    "title": "Minimum Window Subsequence",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Count Subarrays / Exactly K (AtMost Pattern)",
+    "title": "Binary Subarrays With Sum",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Count Subarrays / Exactly K (AtMost Pattern)",
+    "title": "Subarrays With K Different Integers",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Count Subarrays / Exactly K (AtMost Pattern)",
+    "title": "Count Number of Nice Subarrays",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Count Subarrays / Exactly K (AtMost Pattern)",
+    "title": "Subarray Product Less Than K",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Monotonic Deque + Sliding Window",
+    "title": "Sliding Window Maximum",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Monotonic Deque + Sliding Window",
+    "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+    "page": 69,
+    "target": "Longest Continuous Subarray With Absolute Difference <= Limit"
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Advanced Sliding Window",
+    "title": "Sliding Window Median",
+    "page": 69
+  },
+  {
+    "topic": "Sliding Window",
+    "pattern": "Advanced Sliding Window",
+    "title": "Substring With Concatenation of All Words",
+    "page": 69
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Basic Local-Choice Greedy",
+    "title": "Assign Cookies",
+    "page": 75,
+    "target": "Assign Cookies (LeetCode 455)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Basic Local-Choice Greedy",
+    "title": "Lemonade Change",
+    "page": 75,
+    "target": "Lemonade Change (LeetCode 860)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Basic Local-Choice Greedy",
+    "title": "Can Place Flowers",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Basic Local-Choice Greedy",
+    "title": "Best Time to Buy and Sell Stock II",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Sort + Greedy Selection",
+    "title": "Boats to Save People",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Sort + Greedy Selection",
+    "title": "Maximum Units on a Truck",
+    "page": 75,
+    "target": "Maximum Units on a Truck (LeetCode 1710)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Sort + Greedy Selection",
+    "title": "Bag of Tokens",
+    "page": 75,
+    "target": "Bag of Tokens (LeetCode 948)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Sort + Greedy Selection",
+    "title": "Two City Scheduling",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Summary Ranges",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Non-overlapping Intervals",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Minimum Number of Arrows to Burst Balloons",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Merge Intervals",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Insert Interval",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Meeting Rooms I",
+    "page": 75,
+    "target": "Meeting Rooms"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Meeting Rooms II",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Car Pooling",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Intervals / Scheduling / Overlap",
+    "title": "Minimum Platforms",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Reachability / Jump Greedy",
+    "title": "Jump Game",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Reachability / Jump Greedy",
+    "title": "Jump Game II",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Reachability / Jump Greedy",
+    "title": "Gas Station",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Running Balance / Kadane-Style Greedy",
+    "title": "Maximum Subarray",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Running Balance / Kadane-Style Greedy",
+    "title": "Maximum Sum Circular Subarray",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Partition / Single-Pass Greedy State",
+    "title": "Partition Labels",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Partition / Single-Pass Greedy State",
+    "title": "Optimal Partition of String",
+    "page": 75,
+    "target": "Optimal Partition of String (LeetCode 2405)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Partition / Single-Pass Greedy State",
+    "title": "Merge Triplets to Form Target Triplet",
+    "page": 75,
+    "target": "Merge Triplets to Form Target Triplet (LeetCode 1899)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Partition / Single-Pass Greedy State",
+    "title": "Increasing Triplet Subsequence",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Partition / Single-Pass Greedy State",
+    "title": "Find the Celebrity",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Frequency + Greedy / Rearrangement",
+    "title": "Task Scheduler",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Frequency + Greedy / Rearrangement",
+    "title": "Reorganize String",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Frequency + Greedy / Rearrangement",
+    "title": "Hand of Straights",
+    "page": 75,
+    "target": "Hand of Straights (LeetCode 846)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Frequency + Greedy / Rearrangement",
+    "title": "Divide Array in Sets of K Consecutive Numbers",
+    "page": 75,
+    "target": "Divide Array in Sets of K Consecutive Numbers (LeetCode 1296)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Frequency + Greedy / Rearrangement",
+    "title": "Distribute Candies",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Heap-Assisted Greedy",
+    "title": "Minimum Number of Refueling Stops",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Heap-Assisted Greedy",
+    "title": "Furthest Building You Can Reach",
+    "page": 75,
+    "target": "Furthest Building You Can Reach (LeetCode 1642)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Heap-Assisted Greedy",
+    "title": "IPO",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Heap-Assisted Greedy",
+    "title": "Course Schedule III",
+    "page": 75,
+    "target": "Course Schedule III (LeetCode 630)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Heap-Assisted Greedy",
+    "title": "Maximum Performance of a Team",
+    "page": 75,
+    "target": "Maximum Performance of a Team (LeetCode 1383)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Sorting + Custom Ordering",
+    "title": "Queue Reconstruction by Height",
+    "page": 75,
+    "target": "Queue Reconstruction by Height (LeetCode 406)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Sorting + Custom Ordering",
+    "title": "Largest Number",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Monotonic Stack + Greedy",
+    "title": "Remove K Digits",
+    "page": 75
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Monotonic Stack + Greedy",
+    "title": "Remove Duplicate Letters",
+    "page": 75,
+    "target": "Remove Duplicate Letters (LeetCode 316)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Monotonic Stack + Greedy",
+    "title": "Smallest Subsequence of Distinct Characters",
+    "page": 75,
+    "target": "Smallest Subsequence of Distinct Characters (LeetCode 1081)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Parentheses / Balance Greedy",
+    "title": "Valid Parenthesis String",
+    "page": 75,
+    "target": "Valid Parenthesis String (LeetCode 678)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Parentheses / Balance Greedy",
+    "title": "Minimum Add to Make Parentheses Valid",
+    "page": 75,
+    "target": "Minimum Add to Make Parentheses Valid (LeetCode 921)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Parentheses / Balance Greedy",
+    "title": "Minimum Swaps to Make String Balanced",
+    "page": 75,
+    "target": "Minimum Swaps to Make String Balanced (LeetCode 1963)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Classic / Specialized Greedy",
+    "title": "Candy",
+    "page": 76
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Classic / Specialized Greedy",
+    "title": "Wiggle Subsequence",
+    "page": 76,
+    "target": "Wiggle Subsequence (LeetCode 376)"
+  },
+  {
+    "topic": "Greedy",
+    "pattern": "Classic / Specialized Greedy",
+    "title": "Minimum Deletions to Make Character Frequencies Unique",
+    "page": 76,
+    "target": "Minimum Deletions to Make Character Frequencies Unique (LeetCode 1647)"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Sort by Start / Merge",
+    "page": 89,
+    "title": "Merge Intervals"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Sort by Start / Merge",
+    "page": 89,
+    "title": "Insert Interval"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Interval Intersection",
+    "page": 92,
+    "title": "Interval List Intersections"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Sort by End / Maximum Non-overlap",
+    "page": 94,
+    "title": "Non-overlapping Intervals"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Sort by End / Maximum Non-overlap",
+    "page": 94,
+    "title": "Minimum Number of Arrows to Burst Balloons"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Maximum Simultaneous Intervals",
+    "page": 96,
+    "title": "Meeting Rooms"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Maximum Simultaneous Intervals",
+    "page": 96,
+    "title": "Meeting Rooms II"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Maximum Simultaneous Intervals",
+    "page": 96,
+    "title": "Minimum Platforms"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Free Intervals",
+    "page": 107,
+    "title": "Employee Free Time"
+  },
+  {
+    "topic": "Intervals",
+    "pattern": "Range Construction",
+    "page": 110,
+    "title": "Summary Ranges"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Build, maintain and sort a heap",
+    "title": "Build Heap",
+    "page": 113
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Build, maintain and sort a heap",
+    "title": "Heap Sort",
+    "page": 113
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Kth Smallest / Kth Largest",
+    "title": "Kth Largest Element in an Array",
+    "page": 119
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Kth Smallest / Kth Largest",
+    "title": "Kth Largest Element in a Stream",
+    "page": 119
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Kth Smallest / Kth Largest",
+    "title": "K Closest Points to Origin",
+    "page": 119
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Kth Smallest / Kth Largest",
+    "title": "Kth Smallest Element in a Sorted Matrix",
+    "page": 119
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Top K / Frequency",
+    "title": "Top K Frequent Elements",
+    "page": 119
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Top K / Frequency",
+    "title": "Top K Frequent Words",
+    "page": 119
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Top K / Frequency",
+    "title": "Sort Characters By Frequency",
+    "page": 120,
+    "target": "Sort Characters by Frequency"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Top K / Frequency",
+    "title": "K Closest Points to Origin",
+    "page": 120
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Two Heaps / Median",
+    "title": "Find Median from Data Stream",
+    "page": 120,
+    "target": "Find Median From Data Stream"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Two Heaps / Median",
+    "title": "Sliding Window Median",
+    "page": 120
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "K-Way Merge / Multiple Sorted Lists",
+    "title": "Merge K Sorted Lists",
+    "page": 120
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "K-Way Merge / Multiple Sorted Lists",
+    "title": "Find K Pairs with Smallest Sums",
+    "page": 120,
+    "target": "Find K Pairs With Smallest Sums"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "K-Way Merge / Multiple Sorted Lists",
+    "title": "Kth Smallest Element in a Sorted Matrix",
+    "page": 121
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "K-Way Merge / Multiple Sorted Lists",
+    "title": "Smallest Range Covering Elements from K Lists",
+    "page": 121
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "K-Way Merge / Multiple Sorted Lists",
+    "title": "Find the Kth Smallest Sum of a Matrix With Sorted Rows",
+    "page": 121,
+    "target": "Find Kth Smallest Sum of Matrix With Sorted Rows"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "K-Way Merge / Multiple Sorted Lists",
+    "title": "Design Twitter",
+    "page": 121
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Frequency + Max Heap / Rearrangement",
+    "title": "Reorganize String",
+    "page": 122
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Frequency + Max Heap / Rearrangement",
+    "title": "Rearrange String K Distance Apart",
+    "page": 122
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Frequency + Max Heap / Rearrangement",
+    "title": "Task Scheduler",
+    "page": 122
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Frequency + Max Heap / Rearrangement",
+    "title": "Longest Happy String",
+    "page": 122
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Greedy",
+    "title": "IPO",
+    "page": 123
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Greedy",
+    "title": "Minimum Cost to Hire K Workers",
+    "page": 123
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Greedy",
+    "title": "Minimum Number of Refueling Stops",
+    "page": 123
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Greedy",
+    "title": "Furthest Building You Can Reach",
+    "page": 123,
+    "target": "Furthest Building You Can Reach (LeetCode 1642)"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Greedy",
+    "title": "Course Schedule III",
+    "page": 123,
+    "target": "Course Schedule III (LeetCode 630)"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Greedy",
+    "title": "Maximum Performance of a Team",
+    "page": 124,
+    "target": "Maximum Performance of a Team (LeetCode 1383)"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Scheduling / Simulation",
+    "title": "Meeting Rooms II",
+    "page": 124
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Scheduling / Simulation",
+    "title": "Task Scheduler",
+    "page": 124
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Scheduling / Simulation",
+    "title": "Single-Threaded CPU",
+    "page": 124,
+    "target": "Single Threaded CPU"
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Scheduling / Simulation",
+    "title": "Process Tasks Using Servers",
+    "page": 125
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Heap + Scheduling / Simulation",
+    "title": "The Number of the Smallest Unoccupied Chair",
+    "page": 125
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Basic Min Heap / Max Heap Simulation",
+    "title": "Last Stone Weight",
+    "page": 125
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Basic Min Heap / Max Heap Simulation",
+    "title": "Take Gifts From the Richest Pile",
+    "page": 125
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Basic Min Heap / Max Heap Simulation",
+    "title": "Seat Reservation Manager",
+    "page": 126
+  },
+  {
+    "topic": "Heap / Priority Queue",
+    "pattern": "Basic Min Heap / Max Heap Simulation",
+    "title": "Maximum Product After K Increments",
+    "page": 126
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Factorial",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Fibonacci",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Towers of Hanoi",
+    "page": 130,
+    "target": "Tower of Hanoi"
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Josephus Problem / Find the Winner of the Circular Game",
+    "page": 130,
+    "target": "Josephus Problem"
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Special Keyboard",
+    "page": 130,
+    "target": "Special Keyboard / Four Keys Keyboard"
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Integer to Number",
+    "page": 130,
+    "description": "Page 130 lists this revision prompt without an input type, output type, or conversion rule."
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Integer to Roman",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Roman to Integer",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Pow(x , n)",
+    "page": 130,
+    "target": "Pow(x, n)"
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Count Good Numbers",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Basic recursion",
+    "title": "Count Good Number of Arrays",
+    "page": 130,
+    "description": "Page 130 lists this prompt without defining a good array or giving the counting constraints."
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Take / Not Take",
+    "title": "Subsets I",
+    "page": 130,
+    "target": "Subsets"
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Take / Not Take",
+    "title": "Subsets II",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Take / Not Take",
+    "title": "Combination Sum",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Take / Not Take",
+    "title": "Combination Sum III",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Take / Not Take",
+    "title": "Remove Invalid Parentheses",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Combinations",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Combination Sum II",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Combination Sum IV",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Letter Combinations of a Phone Number",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Permutations",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Permutations II",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Palindrome Partitioning",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Restore IP Addresses",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Word Search",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Rat in a Maze",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "N-Queens",
+    "page": 130
+  },
+  {
+    "topic": "Recursion / Backtracking",
+    "pattern": "Multiple Choices / For Loop",
+    "title": "Sudoku Solver",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Climbing Stairs",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Minimum Cost Climbing Stairs",
+    "page": 130,
+    "target": "Min Cost Climbing Stairs"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Frog Jump II",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "House Robber I",
+    "page": 130,
+    "target": "House Robber"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "House Robber II",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "House Robber III",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Coin Change II",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Target Sum",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Coin Change I",
+    "page": 130,
+    "target": "Coin Change"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Partition Equal Subset Sum",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Partition to K Equal Sum Subsets",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Matchsticks to Square",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Partition Array for Maximum Sum",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Partition Array Into Two Arrays to Minimize Sum Difference",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Best Time to Buy and Sell Stock with Cooldown",
+    "page": 130,
+    "target": "Best Time to Buy and Sell Stock With Cooldown"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 1D",
+    "title": "Best Time to Buy and Sell Stock with Transaction Fee",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Unique Paths I",
+    "page": 130,
+    "target": "Unique Paths"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Unique Paths II",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Unique Paths III",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Minimum Path Sum",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Triangle",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Maximum Rectangle",
+    "page": 130,
+    "target": "Maximal Rectangle"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Arrays - 2D",
+    "title": "Count Square Submatrices with All Ones",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Partition Problem",
+    "title": "Matrix Chain Multiplication",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Partition Problem",
+    "title": "Minimum Cost to Cut a Stick",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Partition Problem",
+    "title": "Burst Balloons",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Partition Problem",
+    "title": "Parsing a Boolean Expression",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Edit Distance",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Delete Operation for Two Strings",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Wildcard Matching",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Minimum Insertions to Make a String Palindrome",
+    "page": 130,
+    "target": "Minimum Insertion Steps to Make String Palindrome"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Longest Palindromic Subsequence",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Word Break",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "String",
+    "title": "Word Break II",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Partition Problem",
+    "title": "Decode Ways",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Partition Problem",
+    "title": "Palindrome Partitioning II",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Longest Increasing Subsequence — Find",
+    "page": 130,
+    "target": "Longest Increasing Subsequence"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Number of Longest Increasing Subsequences — Count",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Distinct Subsequences",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Longest Common Subsequence",
+    "page": 130
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Longest Common Substring",
+    "page": 131
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Longest String Chain",
+    "page": 131
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Include / Exclude / Subsequence",
+    "title": "Largest Divisible Subset",
+    "page": 131
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Triangle"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Minimum Path Sum"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Unique Paths II"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Longest Palindromic Substring"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Interleaving String"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Edit Distance"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Best Time to Buy and Sell Stock III"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Best Time to Buy and Sell Stock IV"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Maximal Square"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Unique Paths"
+  },
+  {
+    "topic": "Dynamic Programming",
+    "pattern": "Grid and sequence revision",
+    "page": 134,
+    "title": "Palindromic Substrings"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Traversals",
+    "title": "BFS or Level Order",
+    "page": 136,
+    "target": "Binary Tree Level Order Traversal"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Traversals",
+    "title": "DFS",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Traversals",
+    "title": "Morris Tree Traversal",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Traversals",
+    "title": "Zig-Zag or Spiral",
+    "page": 136,
+    "target": "Binary Tree Zigzag Level Order Traversal"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Traversals",
+    "title": "Vertical or Column Wise",
+    "page": 136,
+    "target": "Vertical Order Traversal"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Traversals",
+    "title": "Boundary Tree Traversal",
+    "page": 136,
+    "target": "Boundary Traversal"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Properties",
+    "title": "Height",
+    "page": 136,
+    "target": "Height of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Properties",
+    "title": "Depth",
+    "page": 136,
+    "target": "Maximum Depth of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Properties",
+    "title": "Diameter",
+    "page": 136,
+    "target": "Diameter of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Properties",
+    "title": "Width",
+    "page": 136,
+    "target": "Maximum Width of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Properties",
+    "title": "Balanced Tree",
+    "page": 136,
+    "target": "Balanced Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Views",
+    "title": "Left View",
+    "page": 136,
+    "target": "Left View of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Views",
+    "title": "Right View",
+    "page": 136,
+    "target": "Binary Tree Right Side View"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Views",
+    "title": "Top View",
+    "page": 136,
+    "target": "Top View of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Views",
+    "title": "Bottom View",
+    "page": 136,
+    "target": "Bottom View of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Tree Views",
+    "title": "Bottom Left View",
+    "page": 136,
+    "target": "Find Bottom Left Tree Value"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Level Order / BFS",
+    "title": "Average of Levels in Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Level Order / BFS",
+    "title": "Maximum Level Sum of a Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Level Order / BFS",
+    "title": "Populating Next Right Pointers in Each Node",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Level Order / BFS",
+    "title": "All Nodes Distance K in Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Level Order / BFS",
+    "title": "Burning Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Balanced Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Diameter of Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Same Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Symmetric Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Subtree of Another Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Children Sum Property",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Lowest Common Ancestor of a Binary Tree",
+    "page": 136,
+    "target": "Lowest Common Ancestor of Binary Tree"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Binary Tree Maximum Path Sum",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "House Robber III",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Post-order/Bottom-up",
+    "title": "Count Complete Tree Nodes",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Pre-order / Top-down",
+    "title": "Path Sum",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Pre-order / Top-down",
+    "title": "Path Sum II",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Pre-order / Top-down",
+    "title": "Binary Tree Paths",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Pre-order / Top-down",
+    "title": "Sum Root to Leaf Numbers",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Pre-order / Top-down",
+    "title": "Count Good Nodes in Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Pre-order / Top-down",
+    "title": "Flatten Binary Tree to Linked List",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Recursion / Tree Construction",
+    "title": "Invert Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Recursion / Tree Construction",
+    "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Recursion / Tree Construction",
+    "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+    "page": 136,
+    "target": "Construct Binary Tree From Inorder + Postorder"
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Recursion / Tree Construction",
+    "title": "Serialize and Deserialize Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trees",
+    "pattern": "Recursion / Tree Construction",
+    "title": "Largest BST in Binary Tree",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Validate Binary Search Tree",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Kth Smallest Element in a BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Minimum Absolute Difference in BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Floor in BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Ceil in BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Inorder Successor in BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Inorder Predecessor in BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Two Sum IV — Input is a BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "BST Iterator",
+    "page": 136,
+    "target": "Binary Search Tree Iterator"
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "DFS — In-order",
+    "title": "Recover Binary Search Tree",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "BST Recursion / Search",
+    "title": "Search in a Binary Search Tree",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "BST Recursion / Search",
+    "title": "Insert into a Binary Search Tree",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "BST Recursion / Search",
+    "title": "Delete Node in a BST",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "BST Recursion / Search",
+    "title": "Lowest Common Ancestor of a Binary Search Tree",
+    "page": 136,
+    "target": "Lowest Common Ancestor of BST"
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "BST Construction",
+    "title": "Construct Binary Search Tree from Preorder Traversal",
+    "page": 136
+  },
+  {
+    "topic": "Binary Search Tree",
+    "pattern": "BST Construction",
+    "title": "Convert Sorted Array to Binary Search Tree",
+    "page": 136
+  },
+  {
+    "topic": "Trie",
+    "pattern": "Tries",
+    "title": "Trie — Insert, Update, Search, Delete",
+    "page": 136
+  },
+  {
+    "topic": "Trie",
+    "pattern": "Tries",
+    "title": "Design Add and Search Words Data Structure",
+    "page": 136
+  },
+  {
+    "topic": "Trie",
+    "pattern": "Tries",
+    "title": "Word Search II",
+    "page": 136
+  },
+  {
+    "topic": "Trie",
+    "pattern": "Tries",
+    "title": "Longest Common Prefix",
+    "page": 136
+  },
+  {
+    "topic": "Divide and Conquer",
+    "pattern": "Divide and conquer",
+    "page": 142,
+    "title": "Convert Sorted Array to BST"
+  },
+  {
+    "topic": "Divide and Conquer",
+    "pattern": "Divide and conquer",
+    "page": 142,
+    "title": "Sort List"
+  },
+  {
+    "topic": "Divide and Conquer",
+    "pattern": "Divide and conquer",
+    "page": 142,
+    "title": "Construct Quad Tree"
+  },
+  {
+    "topic": "Divide and Conquer",
+    "pattern": "Divide and conquer",
+    "page": 142,
+    "title": "Merge K Sorted Lists"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "About Graphs & Types",
+    "title": "Directed / Undirected",
+    "page": 144,
+    "description": "A directed edge A → B permits travel from A to B. An undirected edge A — B permits travel in both directions."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "About Graphs & Types",
+    "title": "Cyclic / Acyclic",
+    "page": 144,
+    "description": "A cycle returns to its start along a nonempty path without repeating other vertices. A tree is connected and acyclic."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "About Graphs & Types",
+    "title": "Weighted / Unweighted",
+    "page": 144,
+    "description": "A weighted edge carries a cost. BFS minimizes edge count. Dijkstra minimizes total nonnegative cost."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "About Graphs & Types",
+    "title": "Connected / Disconnected",
+    "page": 144,
+    "description": "In an undirected graph, one traversal reaches every vertex exactly when the graph is connected. Otherwise each fresh traversal discovers another component."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "About Graphs & Types",
+    "title": "DAG (Directed Acyclic Graph)",
+    "page": 144,
+    "description": "A directed acyclic graph has a topological ordering. Draw A → C and B → C: both prerequisites must precede C."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Representation",
+    "title": "Adjacency Matrix",
+    "page": 144,
+    "description": "Represent V vertices with a V × V table. Row u, column v records edge u → v. Testing one edge takes O(1), while storage takes O(V²)."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Representation",
+    "title": "Adjacency List",
+    "page": 144,
+    "description": "Store a list of outgoing neighbors per vertex. Enumerating neighbors costs O(outdegree), and the whole structure uses O(V+E) space."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Representation",
+    "title": "Edge List",
+    "page": 144,
+    "description": "Store each edge as (source, destination, weight). Iterating edges is direct, which suits Bellman-Ford and sorting edges for Kruskal."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Breadth First Search",
+    "title": "BFS of Graph",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Breadth First Search",
+    "title": "Shortest Path in Unweighted Graph",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Breadth First Search",
+    "title": "Word Ladder I",
+    "page": 144,
+    "target": "Word Ladder"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Depth First Search",
+    "title": "DFS of Graph",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Depth First Search",
+    "title": "Find if Path Exists in Graph",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Depth First Search",
+    "title": "Keys and Rooms",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Multi-source BFS",
+    "title": "Rotting Oranges",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Multi-source BFS",
+    "title": "01 Matrix",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Multi-source BFS",
+    "title": "Walls and Gates",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Traversals — Multi-source BFS",
+    "title": "As Far from Land as Possible",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Number of Provinces",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Number of Connected Components in Undirected Graph",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Number of Islands",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Max Area of Island",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Flood Fill",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Surrounded Regions",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Number of Enclaves",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Connected Components",
+    "title": "Pacific Atlantic Water Flow",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Cycle Detection — Undirected",
+    "title": "Detect Cycle in Undirected Graph using DFS",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Cycle Detection — Undirected",
+    "title": "Detect Cycle in Undirected Graph using BFS",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Cycle Detection — Undirected",
+    "title": "Redundant Connection",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Topological Sort using DFS",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Kahn's Algorithm / BFS",
+    "page": 144
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Topological Sort",
+    "page": 144,
+    "target": "Kahn's Algorithm / BFS"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Course Schedule",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Course Schedule II",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Alien Dictionary",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Find Eventual Safe States",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Topological Sort",
+    "title": "Find All Possible Recipes from Given Supplies",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bipartite Graph Check",
+    "title": "Is Graph Bipartite?",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bipartite Graph Check",
+    "title": "Possible Bipartition",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bipartite Graph Check",
+    "title": "Bipartite Check using BFS",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bipartite Graph Check",
+    "title": "Bipartite Check using DFS",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Operations",
+    "title": "Path Compression",
+    "page": 145,
+    "description": "During find(x), reconnect traversed nodes to the representative. A chain 4 → 3 → 1 becomes 4 → 1 and 3 → 1 after finding 4."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Operations",
+    "title": "Union by Rank",
+    "page": 145,
+    "description": "Attach the lower-rank root beneath the higher-rank root. Increase rank only when joining two equal-rank roots."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Operations",
+    "title": "Union by Size",
+    "page": 145,
+    "description": "Maintain component sizes at their roots. Attach the smaller component to the larger one and add their sizes."
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Number of Provinces using DSU",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Redundant Connection",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Number of Operations to Make Network Connected",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Accounts Merge",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Most Stones Removed with Same Row or Column",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Making a Large Island",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Number of Islands II",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Disjoint Set — Problems",
+    "title": "Swim in Rising Water",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree — Kruskal's",
+    "title": "Kruskal's Algorithm",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree — Kruskal's",
+    "title": "Minimum Spanning Tree",
+    "page": 145,
+    "target": "Kruskal's Algorithm"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree — Kruskal's",
+    "title": "Min Cost to Connect All Points",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree — Prim's",
+    "title": "Prim's Algorithm",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree — Prim's",
+    "title": "Minimum Spanning Tree",
+    "page": 145,
+    "target": "Kruskal's Algorithm"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree — Prim's",
+    "title": "Min Cost to Connect All Points",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — BFS",
+    "title": "Shortest Path in Undirected Graph",
+    "page": 145,
+    "target": "Shortest Path in Unweighted Graph"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — BFS",
+    "title": "Shortest Path in Binary Matrix",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — BFS",
+    "title": "Word Ladder I",
+    "page": 145,
+    "target": "Word Ladder"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — BFS",
+    "title": "Word Ladder II",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Dijkstra",
+    "title": "Dijkstra's Algorithm",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Dijkstra",
+    "title": "Network Delay Time",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Dijkstra",
+    "title": "Path With Minimum Effort",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Dijkstra",
+    "title": "Cheapest Flights Within K Stops",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Dijkstra",
+    "title": "Number of Ways to Arrive at Destination",
+    "page": 145
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Dijkstra",
+    "title": "Swim in Rising Water",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Bellman-Ford",
+    "title": "Bellman-Ford Algorithm",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Bellman-Ford",
+    "title": "Negative Weight Cycle Detection",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Floyd-Warshall",
+    "title": "Floyd-Warshall Algorithm",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Shortest Path — Floyd-Warshall",
+    "title": "Find the City With Smallest Number of Neighbors at a Threshold Distance",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Strongly Connected Components — Kosaraju's",
+    "title": "Strongly Connected Components",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Strongly Connected Components — Tarjan's",
+    "title": "Strongly Connected Components",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bridges & Articulation Points",
+    "title": "Bridges in Graph",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bridges & Articulation Points",
+    "title": "Critical Connections in a Network",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Bridges & Articulation Points",
+    "title": "Articulation Points",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Network Flow — Max Flow / Min Cut",
+    "title": "Ford-Fulkerson Algorithm",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Network Flow — Max Flow / Min Cut",
+    "title": "Edmonds-Karp Algorithm",
+    "page": 146
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Network Flow — Max Flow / Min Cut",
+    "title": "Maximum Flow",
+    "page": 146,
+    "target": "Edmonds-Karp Algorithm"
+  },
+  {
+    "topic": "Graphs",
+    "pattern": "Network Flow — Max Flow / Min Cut",
+    "title": "Minimum Cut",
+    "page": 146
+  },
+  {
+    "topic": "Design Data Structures",
+    "pattern": "Design exercises",
+    "page": 161,
+    "title": "Min Stack"
+  },
+  {
+    "topic": "Design Data Structures",
+    "pattern": "Design exercises",
+    "page": 161,
+    "title": "Insert Delete GetRandom O(1)"
+  },
+  {
+    "topic": "Design Data Structures",
+    "pattern": "Design exercises",
+    "page": 161,
+    "title": "LRU Cache"
+  },
+  {
+    "topic": "Design Data Structures",
+    "pattern": "Design exercises",
+    "page": 161,
+    "title": "LFU Cache"
+  }
+]

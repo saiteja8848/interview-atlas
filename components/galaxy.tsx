@@ -1,7 +1,7 @@
 ﻿import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Expand, Minimize, Orbit } from "lucide-react";
 import { Link } from "./link";
-import { dsa, mapUrl } from "@/content/atlas";
+import { design, dsa, mapUrl } from "@/content/atlas";
 
 export function GalaxySky() {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -52,7 +52,7 @@ function curve(a:Point,b:Point,vertical:boolean){
 function location([x,y]:Point,color:string):CSSProperties {
   return {left:x+"%",top:y+"%","--orbit-color":color} as CSSProperties;
 }
-export function GalaxyOverview(){
+export function GalaxyOverview({system=false}:{system?:boolean}){
   const scene=useRef<HTMLDivElement>(null);
   const [vertical,setVertical]=useState(false);
   useEffect(()=>{
@@ -65,6 +65,14 @@ export function GalaxyOverview(){
   function satellite(side:number,i:number):Point{
     if(vertical)return [i%2===0?23:77,side===0?(i<2?7:20):(i<2?81:94)];
     return [side===0?(i===0||i===3?17:10):(i===0||i===3?83:90),[13,37,63,87][i]];
+  }
+  if(system){
+    const positions:Point[]=vertical?[[27,18],[73,27],[25,72],[73,80]]:[[22,22],[77,26],[22,73],[77,76]];
+    return <div className="orbital-scene design-orbits" ref={scene}><GalaxySky/>
+      <svg className="orbital-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="50" rx="37" ry="35" className="orbit-guide"/>{positions.map((p,i)=><path key={i} d={curve(root,p,vertical)} stroke={orbitColors[i%2]}/>)}</svg>
+      <div className="galaxy-core" style={location(root,"#f5cf98")}><i className="sun"/><strong>System<br/>Design</strong></div>
+      {design.children.map((module,i)=><Link className={"orbital-hub solar-node system-"+i%2} style={location(positions[i],orbitColors[i%2])} key={module.title} href={mapUrl("system-design",[module.title])}><i className="planet"/><b>{module.title}</b></Link>)}
+    </div>
   }
   return <div className="orbital-scene" ref={scene}>
     <GalaxySky/>
@@ -85,3 +93,4 @@ export function GalaxyOverview(){
 export function GalaxyFocus({active,toggle}:{active:boolean;toggle:()=>void}){
   return <button className="galaxy-focus" onClick={toggle} aria-pressed={active}>{active?<Minimize size={15}/>:<Expand size={15}/>}<span>{active?"Exit focus":"Focus map"}</span></button>
 }
+

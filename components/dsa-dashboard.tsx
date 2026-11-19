@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,8 +11,6 @@ import {
   Trophy,
 } from "lucide-react";
 import { Link } from "@/components/link";
-import { CourseSidebar } from "@/components/course-sidebar";
-import { SiteHeader } from "@/components/site-header";
 import { dsaCurriculum, slugify } from "@/content/library";
 import { dsaProgressEvent, getCompletedQuestionKeys, getQuestionProgressKey } from "@/content/dsa-progress";
 
@@ -64,10 +62,8 @@ export function DsaDashboard() {
   const nextTopic = topicProgress.find((topic) => topic.nextQuestion);
 
   return (
-    <main className="min-h-screen course-page">
-      <SiteHeader />
+    <section className="atlas-legacy-page">
       <div className="mx-auto flex w-full max-w-[1800px]">
-        <CourseSidebar />
         <div className="min-w-0 flex-1 px-5 py-8 md:px-10 md:py-10 lg:px-14">
           <div className="mx-auto max-w-6xl">
             <Link href="/dsa" className="inline-flex items-center gap-2 text-sm text-zinc-500 transition hover:text-white">
@@ -126,6 +122,7 @@ export function DsaDashboard() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }
+

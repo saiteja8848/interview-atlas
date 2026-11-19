@@ -1,8 +1,6 @@
-import { ArrowLeft, BookOpenCheck, Braces, Lightbulb, Target, Wrench } from "lucide-react";
+﻿import { ArrowLeft, BookOpenCheck, Braces, Lightbulb, Target, Wrench } from "lucide-react";
 import { Link } from "@/components/link";
 import { CodeTabs } from "@/components/code-tabs";
-import { CourseSidebar } from "@/components/course-sidebar";
-import { SiteHeader } from "@/components/site-header";
 import { dsaConcepts, type ConceptLesson } from "@/content/dsa-concepts";
 import { dsaCurriculum, slugify, type CodeLanguage } from "@/content/library";
 import { NotFound } from "@/app/not-found";
@@ -34,10 +32,8 @@ export function ConceptGuide({ topicSlug }: { topicSlug: string }) {
   const code = javaOnly(lesson.java);
 
   return (
-    <main className="min-h-screen course-page">
-      <SiteHeader />
+    <section className="atlas-legacy-page">
       <div className="mx-auto flex w-full max-w-[1800px]">
-        <CourseSidebar />
         <article className="min-w-0 flex-1 px-5 py-10 md:px-10 lg:px-14">
           <div className="mx-auto max-w-5xl">
             <Link href="/dsa" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition hover:text-white">
@@ -138,6 +134,7 @@ export function ConceptGuide({ topicSlug }: { topicSlug: string }) {
           </div>
         </article>
       </div>
-    </main>
+    </section>
   );
 }
+

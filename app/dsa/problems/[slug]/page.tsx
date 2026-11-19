@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link } from "@/components/link";
 import { NotFound } from "@/app/not-found";
 import {
@@ -20,8 +20,6 @@ import {
   slugify,
   type CurriculumQuestion,
 } from "@/content/library";
-import { SiteHeader } from "@/components/site-header";
-import { CourseSidebar } from "@/components/course-sidebar";
 import { CodeTabs } from "@/components/code-tabs";
 import { isQuestionCompleted, toggleQuestionCompletion } from "@/content/dsa-progress";
 import { getProblemContent } from "@/content/problem-content";
@@ -299,10 +297,8 @@ export default function ProblemPage({ slug }: { slug: string }) {
 
   const content = getProblemContent(question.title);
   return (
-    <main className="min-h-screen">
-      <SiteHeader />
+    <section className="atlas-legacy-page">
       <div className="mx-auto flex max-w-[1800px]">
-        <CourseSidebar />
         <article className="min-w-0 flex-1 px-4 py-7 md:px-8">
           <Link href={`/dsa/${slugify(topic.title)}?tab=problems`} className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white">
             <ArrowLeft size={16} /> Back to {topic.title} problems
@@ -312,6 +308,7 @@ export default function ProblemPage({ slug }: { slug: string }) {
           </div>
         </article>
       </div>
-    </main>
+    </section>
   );
 }
+

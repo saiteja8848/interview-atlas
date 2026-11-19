@@ -39,8 +39,9 @@ const practiceNotes: Record<string,Note> = {
 practiceNotes["Divide Array in Sets of K Consecutive Numbers"]=practiceNotes["Hand of Straights"];
 practiceNotes["Smallest Subsequence of Distinct Characters"]=practiceNotes["Remove Duplicate Letters"];
 export function lessonFor(item:AtlasNode):VisualLesson {
+  if(item.visual)return item.visual;
   if(item.lesson)return {...item.lesson,statement:item.lesson.description};
-  const custom=practiceNotes[item.title.replace(/ \(LeetCode \d+\)$/,"")];
+  const custom=practiceNotes[(item.readerTitle||item.title).replace(/ \(LeetCode \d+\)$/,"")];
   if(custom){const [statement,example,brute,bruteCost,optimized,optimizedCost]=custom;return {statement,example,brute,bruteCost,optimized,optimizedCost}}
   const data=getProblemContent(item.readerTitle||item.title);
   const first=data.examples[0];
@@ -51,3 +52,5 @@ export function hasCodeReader(item:AtlasNode){
   const input=getProblemContent(item.readerTitle).examples[0].input;
   return !/PDF problem|Use the example/.test(input);
 }
+
+

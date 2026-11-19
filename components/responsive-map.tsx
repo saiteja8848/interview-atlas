@@ -21,8 +21,8 @@ export function ResponsiveMap({ item, subject, path, outline }: {
   const [zoom, setZoom] = useState(100);
   const [wires, setWires] = useState<Wire[]>([]);
   const plane = useRef<HTMLDivElement>(null);
-  const galaxy=subject==="dsa";
-  const overview=galaxy && path.length===0;
+
+  const overview=(subject==="dsa"||subject==="system-design") && path.length===0;
   const start = page * pageSize;
   const visible = item.children.slice(start, start + pageSize);
   const url = (...names: string[]) => mapUrl(subject, [...path, ...names]);
@@ -68,10 +68,10 @@ export function ResponsiveMap({ item, subject, path, outline }: {
     return () => observer.disconnect();
   }, [item, start, outline, zoom]);
 
-  return <section className={"graph mind-map"+(galaxy?" galaxy-map":"")} aria-label={item.title+" mind map"}>
-    <header className="graph-bar"><span><Waypoints size={17}/>{outline?"Map outline":galaxy?"DSA galaxy":"Interactive mind map"}</span><small><i/>{count(item)}</small></header>
+  return <section className="graph mind-map galaxy-map" aria-label={item.title+" mind map"}>
+    <header className="graph-bar"><span><Waypoints size={17}/>{outline?"Map outline":subject==="system-design"?"System Design galaxy":subject==="dsa"?"DSA galaxy":"Topic map"}</span><small><i/>{count(item)}</small></header>
     {outline ? <div className="outline">{item.children.map(child=><Link key={child.title} href={url(child.title)}><b>{child.title}</b><small>{count(child)}</small><ChevronRight size={14}/></Link>)}</div> :
-      overview ? <GalaxyOverview/> : <div className="mind-viewport">{galaxy&&<GalaxySky/>}<div style={{width:zoom+"%"}}><div className="mind-plane" ref={plane} style={{zoom:zoom/100}}>
+      overview ? <GalaxyOverview system={subject==="system-design"}/> : <div className="mind-viewport"><GalaxySky/><div style={{width:zoom+"%"}}><div className="mind-plane" ref={plane} style={{zoom:zoom/100}}>
         <svg className="mind-wires" aria-hidden="true">{wires.map((w,i)=><path key={i} d={w.path} stroke={w.color}/>)}</svg>
         <div className="root-node mind-root"><div className="root-glyph"><RootIcon size={20}/></div><small>{item.kind}</small><strong>{item.title}</strong></div>
         <div className="mind-limbs">{visible.map((child,i)=>{
@@ -85,4 +85,6 @@ export function ResponsiveMap({ item, subject, path, outline }: {
     {!outline&&!overview&&<footer className="graph-footer"><div className="map-pages">{item.children.length>pageSize&&<><button aria-label="Previous branches" disabled={!page} onClick={()=>setPage(page-1)}><ChevronLeft size={16}/></button><small aria-live="polite">{start+1}–{start+visible.length} of {item.children.length}</small><button aria-label="Next branches" disabled={start+pageSize>=item.children.length} onClick={()=>setPage(page+1)}><ChevronRight size={16}/></button></>}</div><div className="zoom"><button aria-label="Zoom out" disabled={zoom<=75} onClick={()=>setZoom(zoom-25)}><Minus size={15}/></button><small>{zoom}%</small><button aria-label="Zoom in" disabled={zoom>=175} onClick={()=>setZoom(zoom+25)}><Plus size={15}/></button><button aria-label="Fit map" onClick={()=>setZoom(100)}><Maximize size={15}/></button></div></footer>}
   </section>;
 }
+
+
 

@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronRight, Layers3 } from "lucide-react";
 import { NotFound } from "@/app/not-found";
-import { CourseSidebar } from "@/components/course-sidebar";
 import { Link } from "@/components/link";
-import { SiteHeader } from "@/components/site-header";
 import { dsaCurriculum, dynamicProgrammingPatternGuide, getPatternGroups, slugify } from "@/content/library";
 
 const difficultyClass = {
@@ -34,10 +32,8 @@ export default function TopicPage({ topicSlug, tab = "patterns", selectedPattern
   };
 
   return (
-    <main className="min-h-screen course-page">
-      <SiteHeader />
+    <section className="atlas-legacy-page">
       <div className="mx-auto flex w-full max-w-[1800px]">
-        <CourseSidebar />
         <div className="min-w-0 flex-1 px-5 py-10 md:px-10 lg:px-14">
           <div className="mx-auto max-w-5xl">
             <Link href="/dsa" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition hover:text-white">
@@ -104,6 +100,7 @@ export default function TopicPage({ topicSlug, tab = "patterns", selectedPattern
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }
+

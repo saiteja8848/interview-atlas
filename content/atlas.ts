@@ -1,4 +1,7 @@
-﻿import book from "./book-questions.json";
+﻿import outlines from "./pdf-outlines.json";
+import outlineLessons from "./outline-lessons.json";
+import type { VisualLesson } from "./visual-lessons";
+import book from "./book-questions.json";
 import { dsaCurriculum, slugify } from "./library";
 import { systemDesignCurriculum } from "./system-design";
 
@@ -12,6 +15,8 @@ export type AtlasNode = {
   href?: string;
   readerTitle?: string;
   lesson?: BookLesson;
+  visual?: VisualLesson;
+  outlinePage?: number;
   progress?: [string, string];
   notes?: string[];
 };
@@ -77,6 +82,39 @@ for(const topic of dsaCurriculum)for(const q of topic.questions){
     pattern.children.push(item);readerNodes.set(slugify(q.title),item);
   }
 }
+export const topics=node("Topic by topic","Subject");
+const sources=new Map<string,AtlasNode>();
+for(const [slug,item] of readerNodes){sources.set(normalize(slug),item);sources.set(normalize(item.title),item)}
+for(const list of bookNodes.values())for(const item of list)sources.set(normalize(item.title),item);
+const extra:Record<string,VisualLesson>=outlineLessons;
+for(const row of outlines){
+  const topic=branch(topics,row.topic,"Topic");
+  const pattern=branch(topic,row.pattern,"Pattern");
+  const title=row.target||row.title;
+  const previous=sources.get(normalize(title));
+  const visual=extra[title];
+  let item:AtlasNode;
+  if(previous)item={...previous,title:row.title,outlinePage:row.page};
+  else if(visual){
+    item={...node(row.title,"Question"),visual,description:visual.statement,progress:[row.topic,title],outlinePage:row.page};
+    sources.set(normalize(title),item);
+  }else if(row.description)item={...node(row.title,"Study note"),description:row.description,outlinePage:row.page};
+  else throw new Error("Missing PDF outline lesson: "+row.title);
+  pattern.children.push(item);
+}
+// Bring in the detailed index after each topic's own revision patterns.
+for(const chapter of handbook.children){
+  const topic=branch(topics,chapter.title,"Topic");
+  for(const pattern of chapter.children){
+    const group=branch(topic,pattern.title,"Pattern");
+    for(const q of pattern.children){
+      if(!group.children.some(child=>child.title===q.title))group.children.push(q);
+    }
+  }
+}
+function outlinePatterns(topic:string) {
+  return topics.children.find(t=>t.title===topic)?.children.filter(p=>p.children.some(q=>q.outlinePage))||[];
+}
 const chapters = new Map(handbook.children.map(c => [c.title, c]));
 function chapter(title: string) {
   const result = chapters.get(title);
@@ -102,6 +140,9 @@ const arrays = structure("Arrays", "Indexed sequences, strings, matrices, and th
   "Arrays / Hashing", "Binary Search", "Two Pointers", "Sliding Window", "Intervals", "Greedy", "Strings",
   "Dynamic Programming", "Matrix / Grid", "Divide and Conquer", "Sweep Line / Difference Array"
 ].includes(c.title)),arrayRecursion,chapterSelection("Design Data Structures",p=>p.title==="HashMap + Array"?p.children:[])].sort((a,b)=>handbook.children.findIndex(c=>c.title===a.title)-handbook.children.findIndex(c=>c.title===b.title)));
+for(const [i,c] of arrays.children.entries()){
+  if(c===chapters.get(c.title))arrays.children[i]=topics.children.find(t=>t.title===c.title)??c;
+}
 const lists = structure("Linked Lists", "Follow links between nodes, then explore reversal, merging, and pointer patterns.", [...chapter("Linked Lists").children,...selectedPatterns("Design Data Structures",["HashMap + Doubly Linked List","HashMap + Frequency Lists"])]);
 const stacks = structure("Stacks", "Work from the top of the stack through matching, evaluation, and monotonic boundaries.", [
   ...chapter("Stack").children, chapter("Monotonic Stack"),
@@ -119,6 +160,14 @@ const trees = structure("Trees", "Trace parent–child links, ordered searches, 
 ]);
 const tries = structure("Tries", "Walk a shared prefix one character at a time.", chapter("Trie").children);
 const graphs = structure("Graphs", "Follow edges between vertices to explore connectivity, dependencies, and paths.", chapter("Graphs").children);
+// Preserve existing structure paths and expose the PDF's original pattern branches in each structure.
+for(const [structureNode,topicName] of [[arrays,"Arrays / Hashing"],[lists,"Linked Lists"],[stacks,"Stack"],[heaps,"Heap / Priority Queue"],[trees,"Trees"],[tries,"Trie"],[graphs,"Graphs"]] as const){
+  const patterns=outlinePatterns(topicName);
+  const original=structureNode.children;
+  structureNode.children=[...patterns,...original.filter(c=>!patterns.some(p=>p.title===c.title))];
+}
+const queuePatterns=outlinePatterns("Stack").filter(p=>/Queue|Deque/.test(p.title));
+queues.children=[...queuePatterns,...queues.children.filter(c=>!queuePatterns.some(p=>p.title===c.title))];
 export const dsa=node("DSA","Subject",[
   {...node("Linear","Family",[arrays,lists,stacks,queues]),description:"Explore structures that arrange elements in a sequence."},
   {...node("Non-linear","Family",[heaps,trees,tries,graphs]),description:"Explore hierarchical structures and networks of connected nodes."},
@@ -133,9 +182,18 @@ function entries(item:AtlasNode,subject:string,path:string[]=[]): Entry[] {
   return [{item,subject,path},...item.children.flatMap(c=>entries(c,subject,[...path,c.title]))];
 }
 const catalog = [...entries(handbook,"dsa/handbook"),...entries(practice,"practice"),...entries(design,"system-design")];
-export const index = [...catalog,...entries(dsa,"dsa").filter(e=>e.item.kind==="Family"||e.item.kind==="Structure")];
+const topicEntries=entries(topics,"dsa/topics");
+export const index = [...catalog,...topicEntries,...entries(dsa,"dsa").filter(e=>e.item.kind==="Family"||e.item.kind==="Structure")];
 export const questionsIndex = catalog.filter(e=>e.item.kind==="Question");
+const listed = new Set(questionsIndex.map(e=>JSON.stringify(e.item.progress)));
+for(const e of topicEntries){
+  const key=JSON.stringify(e.item.progress);
+  if(e.item.kind==="Question"&&!listed.has(key)){questionsIndex.push(e);listed.add(key)}
+}
 export const mapUrl = (subject:string,path:string[]) => "/"+subject+(path.length?"?"+new URLSearchParams(path.map(p=>["node",p])).toString():"");
+
+
+
 
 
 

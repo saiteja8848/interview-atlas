@@ -1,0 +1,850 @@
+{
+  "Minimum Array End": {
+    "statement": "Find the smallest final element of n strictly increasing positive integers whose bitwise AND equals x.",
+    "example": "Input: n=3, x=4 Output: 6 ([4,5,6])",
+    "brute": "Try larger integers in order, keeping those whose set bits contain x.",
+    "optimized": "Place the bits of n−1 into the zero-bit positions of x, from least significant upward. The resulting number is the nth valid value.",
+    "bruteCost": "O(last value)",
+    "optimizedCost": "O(log(last value))"
+  },
+  "Divisors of a Number": {
+    "statement": "List all positive divisors of n.",
+    "example": "Input: 12 Output: [1,2,3,4,6,12]",
+    "brute": "Test every integer up to n for divisibility.",
+    "optimized": "For each divisor d up to √n, emit d and n/d, counting a square root once.",
+    "bruteCost": "O(n)",
+    "optimizedCost": "O(√n) before ordering"
+  },
+  "Largest Element in an Array": {
+    "statement": "Return the greatest element of a nonempty array.",
+    "example": "Input: [3,8,2] Output: 8",
+    "brute": "Sort and take the final element.",
+    "optimized": "Carry a running maximum. Replace it whenever the next element is larger.",
+    "bruteCost": "O(n log n)",
+    "optimizedCost": "O(n)"
+  },
+  "Second Largest Element": {
+    "statement": "Find the second-largest distinct value.",
+    "example": "Input: [7,7,4,2] Output: 4",
+    "brute": "Sort distinct values and take the runner-up.",
+    "optimized": "Track the largest and second largest. A new maximum shifts the old maximum into second place. Skip equal values.",
+    "bruteCost": "O(n log n)",
+    "optimizedCost": "O(n)"
+  },
+  "Check if Array is Sorted": {
+    "statement": "Decide whether values are in nondecreasing order.",
+    "example": "Input: [1,3,2] Output: false",
+    "brute": "Sort a copy and compare it with the original.",
+    "optimized": "Compare neighbors from left to right. The pair 3,2 already proves the order fails.",
+    "bruteCost": "O(n log n)",
+    "optimizedCost": "O(n)"
+  },
+  "Rearrange Array Elements by Sign": {
+    "statement": "Alternate positive and negative elements, starting positive, while preserving order within each sign. Assume equal counts.",
+    "example": "Input: [3,1,-2,-5] Output: [3,-2,1,-5]",
+    "brute": "Repeatedly find and remove the next required sign from the remaining input.",
+    "optimized": "Write positives to even output positions and negatives to odd positions, advancing each index by two.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Leaders in an Array": {
+    "statement": "Return values at least as large as everything to their right.",
+    "example": "Input: [16,17,4,3,5,2] Output: [17,5,2]",
+    "brute": "Check each candidate against its whole suffix.",
+    "optimized": "Scan right to left carrying the greatest suffix value. Collect matching leaders and reverse their order.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Count Subarrays with XOR K": {
+    "statement": "Count contiguous subarrays whose XOR equals k.",
+    "example": "Input: a=[4,2,2,6,4], k=6 Output: 4",
+    "brute": "Extend every start position and update the XOR for each end.",
+    "optimized": "Track prefix XOR frequencies, initially one zero. At prefix p, add the count of p XOR k before recording p.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n) expected"
+  },
+  "Largest Subarray with Sum 0": {
+    "statement": "Find the longest nonempty zero-sum interval and return its length.",
+    "example": "Input: [1,-1,3,-3,2] Output: 4",
+    "brute": "Accumulate sums for every start and end pair.",
+    "optimized": "Store the earliest index of each prefix sum, including zero before the array. Equal prefix sums enclose a zero-sum interval.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n) expected"
+  },
+  "Merge Without Extra Space": {
+    "statement": "Merge two sorted arrays while retaining their original capacities.",
+    "example": "Input: [1,5] and [2,4] Output: [1,2] and [4,5]",
+    "brute": "Concatenate, sort, and copy back.",
+    "optimized": "Treat both arrays as one sequence. Compare and swap entries a shrinking gap apart, ending with gap one.",
+    "bruteCost": "O(N log N), O(N) extra",
+    "optimizedCost": "O(N log N), O(1) extra"
+  },
+  "Count Inversions": {
+    "statement": "Count pairs i<j with a[i]>a[j].",
+    "example": "Input: [2,4,1,3,5] Output: 3",
+    "brute": "Compare every pair.",
+    "optimized": "Merge sorted halves. When the right value is smaller, every remaining left value contributes an inversion.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n log n)"
+  },
+  "Reverse Pairs": {
+    "statement": "Count pairs i<j with a[i]>2×a[j].",
+    "example": "Input: [1,3,2,3,1] Output: 2",
+    "brute": "Test the inequality for every pair using wide arithmetic.",
+    "optimized": "For each sorted left half, advance a pointer through the sorted right half to count qualifying cross-pairs before merging.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n log n)"
+  },
+  "Pascal's Triangle II": {
+    "statement": "Return the zero-indexed kth row of Pascal's triangle.",
+    "example": "Input: k=4 Output: [1,4,6,4,1]",
+    "brute": "Build every preceding row by summing adjacent entries.",
+    "optimized": "Start with 1. From coefficient c at position i compute the next as c×(k−i)/(i+1) with adequate precision.",
+    "bruteCost": "O(k²)",
+    "optimizedCost": "O(k) arithmetic operations"
+  },
+  "KMP Algorithm": {
+    "statement": "Find the first occurrence of a pattern in text.",
+    "example": "Input: text=abababc, pattern=ababc Output: 2",
+    "brute": "Restart matching at each possible start.",
+    "optimized": "Build the pattern's prefix table. On mismatch keep the longest matched suffix that is also a prefix, then continue scanning.",
+    "bruteCost": "O(nm)",
+    "optimizedCost": "O(n+m)"
+  },
+  "Rabin-Karp / Rolling Hash": {
+    "statement": "Locate a pattern in a text using equal-length windows.",
+    "example": "Input: text=hello, pattern=ell Output: 1",
+    "brute": "Compare the pattern at every possible start.",
+    "optimized": "Roll the window hash by removing the departing character and adding the new one. Verify characters on a hash match.",
+    "bruteCost": "O(nm)",
+    "optimizedCost": "Expected O(n+m), worst O(nm)"
+  },
+  "Design Linked List": {
+    "statement": "Support indexed reads, insertions and deletions in a list.",
+    "example": "Input: append 2, prepend 1, delete index 1 Output: get(0) = 1",
+    "brute": "Keep a packed array and shift elements on front insertion or deletion.",
+    "optimized": "Use a sentinel head and a size counter. Walk to the predecessor and rewire one link. Maintain a tail for constant-time append.",
+    "bruteCost": "O(n) front insertion",
+    "optimizedCost": "O(1) end insertion, O(n) indexed access"
+  },
+  "Remove Linked List Elements": {
+    "statement": "Remove every node holding the target value.",
+    "example": "Input: 1 → 2 → 2 → 3, target=2 Output: 1 → 3",
+    "brute": "Copy the values that survive into a new list.",
+    "optimized": "Start at a sentinel. When the next node matches, bypass it without advancing the predecessor.",
+    "bruteCost": "O(n) time, O(n) space",
+    "optimizedCost": "O(n) time, O(1) extra"
+  },
+  "Add Two Numbers II": {
+    "statement": "Add two lists of decimal digits stored most significant first.",
+    "example": "Input: 7→2→4→3 plus 5→6→4 Output: 7→8→0→7",
+    "brute": "Convert both lists to arbitrary-precision integers, add, and convert back.",
+    "optimized": "Push digits onto two stacks. Pop from the units end, carry to the next column, and prepend each result digit.",
+    "bruteCost": "Linear digits of temporary storage",
+    "optimizedCost": "O(m+n) time and space"
+  },
+  "Flatten a Linked List": {
+    "statement": "Flatten sorted chains joined by bottom pointers into one sorted chain.",
+    "example": "Input: [1,4], [2,5], [3] Output: 1→2→3→4→5",
+    "brute": "Collect all values and sort them.",
+    "optimized": "Keep one head per chain in a min-heap. Relink the smallest node and insert its bottom successor.",
+    "bruteCost": "O(N log N)",
+    "optimizedCost": "O(N log k) for k chains"
+  },
+  "Infix to Postfix": {
+    "statement": "Move each operator after its operands while preserving precedence.",
+    "example": "Input: A+B*C Output: ABC*+",
+    "brute": "Build an expression tree and emit a postorder traversal.",
+    "optimized": "Send operands directly to output. Hold operators on a stack, popping by precedence and associativity, with parentheses delimiting groups.",
+    "bruteCost": "O(n) time and tree space",
+    "optimizedCost": "O(n) time, one operator stack"
+  },
+  "Prefix / Postfix Conversion": {
+    "statement": "Convert a prefix expression with binary operators into postfix.",
+    "example": "Input: *+ABC Output: AB+C*",
+    "brute": "Build an expression tree and traverse it postorder.",
+    "optimized": "Scan right to left. Push operands. At an operator pop left then right and form left, right, operator. Use token sequences to avoid repeated string copies.",
+    "bruteCost": "O(n) tree nodes",
+    "optimizedCost": "O(n) with linked token sequences"
+  },
+  "Previous Greater Element": {
+    "statement": "For each position return the nearest strictly greater value to its left, or −1.",
+    "example": "Input: [3,1,4,2] Output: [-1,3,-1,4]",
+    "brute": "Scan left from every index.",
+    "optimized": "Keep a decreasing stack. Pop values at most the current one. The surviving top is its answer.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Next Smaller Element": {
+    "statement": "Find the nearest strictly smaller value to the right, or −1.",
+    "example": "Input: [4,2,3,1] Output: [2,1,1,-1]",
+    "brute": "Scan right until a smaller value appears.",
+    "optimized": "Scan from right to left. Pop values at least as large as the current value, read the top, then push the current value.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Previous Smaller Element": {
+    "statement": "Find the nearest strictly smaller value to the left, or −1.",
+    "example": "Input: [4,2,3,1] Output: [-1,-1,2,-1]",
+    "brute": "Scan left from every index.",
+    "optimized": "Scan forward with an increasing stack. Pop larger or equal entries before reading the nearest smaller value.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Sum of Subarray Minimums": {
+    "statement": "Sum the minimum values of all nonempty contiguous subarrays, modulo 1,000,000,007.",
+    "example": "Input: [3,1,2,4] Output: 17",
+    "brute": "Extend every subarray and track its minimum.",
+    "optimized": "Find each value's previous strictly smaller and next smaller-or-equal boundaries. Multiply its value by its number of possible left and right endpoints.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Baseball Game": {
+    "statement": "Apply score operations: + sums the last two, D doubles the last, C cancels it.",
+    "example": "Input: 5, 2, C, D, + Output: 30",
+    "brute": "Replay earlier operations whenever a previous score is needed.",
+    "optimized": "Maintain a stack of valid scores. The example leaves 5, 10 and 15, whose sum is 30.",
+    "bruteCost": "Repeated replay",
+    "optimizedCost": "O(n)"
+  },
+  "Number of Students Unable to Eat Lunch": {
+    "statement": "Count students left when nobody accepts the next sandwich.",
+    "example": "Input: students=[1,1,0,0], sandwiches=[0,1,0,1] Output: 0",
+    "brute": "Simulate rotating the queue until a full rotation fails.",
+    "optimized": "Count preferences of each type. Consume sandwiches in order while the corresponding count is positive.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Shortest Subarray With Sum at Least K": {
+    "statement": "Find the shortest nonempty subarray reaching k, allowing negative values.",
+    "example": "Input: [2,-1,2], k=3 Output: 3",
+    "brute": "Enumerate starts and ends with a running sum.",
+    "optimized": "Keep prefix indices in increasing prefix-sum order. Remove valid fronts to shorten the interval and discard dominated backs.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Intersection of Two Sorted Arrays": {
+    "statement": "Return the common values of two sorted arrays, including repeated matches.",
+    "example": "Input: [1,2,2,4], [2,2,3] Output: [2,2]",
+    "brute": "Search the second array for each unused match.",
+    "optimized": "Advance the pointer with the smaller value. On equality emit the value and advance both pointers.",
+    "bruteCost": "O(mn)",
+    "optimizedCost": "O(m+n)"
+  },
+  "Binary Subarrays With Sum": {
+    "statement": "Count binary subarrays summing to the target.",
+    "example": "Input: [1,0,1,0,1], goal=2 Output: 4",
+    "brute": "Extend a running sum from every start.",
+    "optimized": "Count earlier prefix sums equal to currentSum−goal. Seed zero with frequency one.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Count Number of Nice Subarrays": {
+    "statement": "Count subarrays containing exactly k odd numbers.",
+    "example": "Input: [1,1,2,1,1], k=3 Output: 2",
+    "brute": "Count odds as each candidate interval expands.",
+    "optimized": "Treat each odd number as one and each even as zero. Count pairs of prefix totals separated by k.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Longest Happy String": {
+    "statement": "Build a longest string from given letter counts with no run of three equal letters.",
+    "example": "Input: a=1,b=1,c=3 Output: ccabc (one answer)",
+    "brute": "Enumerate legal strings and keep the longest.",
+    "optimized": "Take the most frequent legal letter from a max-heap. If it would form a triple, use the next choice and restore the blocked one.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(output length) for 3 letters"
+  },
+  "Process Tasks Using Servers": {
+    "statement": "Assign arrivals to the free server of lowest weight, breaking ties by index.",
+    "example": "Input: weights=[3,1], durations=[3,1,1] Output: [1,0,0]",
+    "brute": "Scan all servers to find the next eligible one for each task.",
+    "optimized": "Use a free heap by weight/index and a busy heap by finish time. Release all servers finishing by the assignment time.",
+    "bruteCost": "O(tasks × servers)",
+    "optimizedCost": "O((tasks+servers) log servers)"
+  },
+  "The Number of the Smallest Unoccupied Chair": {
+    "statement": "Find the chair assigned to a target arrival when everyone takes the smallest free index.",
+    "example": "Input: visits=[[1,4],[2,3],[4,6]], target=2 Output: 0",
+    "brute": "Scan chairs from zero at each arrival.",
+    "optimized": "Sort arrivals, freeing departures at or before each arrival. Keep released chairs in a min-heap and allocate the lowest available.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n log n)"
+  },
+  "Last Stone Weight": {
+    "statement": "Repeatedly smash the two heaviest stones, returning the final weight or zero.",
+    "example": "Input: [2,7,4,1,8,1] Output: 1",
+    "brute": "Repeatedly sort the remaining weights.",
+    "optimized": "Use a max-heap. Pop the two largest stones and push their difference when it is positive.",
+    "bruteCost": "O(n² log n)",
+    "optimizedCost": "O(n log n)"
+  },
+  "Take Gifts From the Richest Pile": {
+    "statement": "Repeat k times: replace the largest pile with the integer square root of its size. Return the total.",
+    "example": "Input: [25,16], k=2 Output: 9",
+    "brute": "Scan every pile for the maximum in each round.",
+    "optimized": "Heapify once. Pop 25 and push 5, then pop 16 and push 4. Sum the remaining weights.",
+    "bruteCost": "O(kn)",
+    "optimizedCost": "O(n+k log n)"
+  },
+  "Seat Reservation Manager": {
+    "statement": "Reserve the lowest available numbered seat and support releasing seats.",
+    "example": "Input: reserve, reserve, release 1, reserve Output: 1, 2, 1",
+    "brute": "Scan occupied seats from the start at each reservation.",
+    "optimized": "Track the next previously unused seat and a min-heap of released seats. Reuse the smallest released seat first.",
+    "bruteCost": "O(n) per reservation",
+    "optimizedCost": "O(log n) per operation"
+  },
+  "Maximum Product After K Increments": {
+    "statement": "Spend k unit increments on nonnegative numbers to maximize their product, then reduce modulo 1,000,000,007.",
+    "example": "Input: [0,4], k=5 Output: 20",
+    "brute": "Try every distribution of the increments.",
+    "optimized": "Use a min-heap to increment the smallest value each time. Equalizing small factors gives the greatest product.",
+    "bruteCost": "Combinatorial",
+    "optimizedCost": "O(n+k log n)"
+  },
+  "House Robber III": {
+    "statement": "Maximize the sum of selected tree nodes while excluding parent-child pairs.",
+    "example": "Input: tree=[3,2,3,null,3,null,1] Output: 7",
+    "brute": "Try feasible subsets of nodes.",
+    "optimized": "Return two totals per subtree: taking the root forces both children to be skipped, while skipping permits each child's better total.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(n)"
+  },
+  "Partition Array for Maximum Sum": {
+    "statement": "Partition into blocks of at most k and replace each block with its maximum value. Maximize the sum.",
+    "example": "Input: [1,15,7,9,2,5,10], k=3 Output: 84",
+    "brute": "Try all valid partitions.",
+    "optimized": "For each prefix try the last 1..k elements as one block. Track its maximum and combine its contribution with the earlier optimum.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(nk)"
+  },
+  "Partition Array Into Two Arrays to Minimize Sum Difference": {
+    "statement": "Split 2n values into two size-n groups with minimum absolute sum difference.",
+    "example": "Input: [3,9,7,3] Output: 2",
+    "brute": "Enumerate all size-n subsets.",
+    "optimized": "Split the input in halves. Group subset sums by selected count, then binary-search a complementary sum of the required size near half the total.",
+    "bruteCost": "O(n × C(2n,n))",
+    "optimizedCost": "O(n × 2ⁿ)"
+  },
+  "Best Time to Buy and Sell Stock with Transaction Fee": {
+    "statement": "Maximize profit across trades while paying the fee once per sale.",
+    "example": "Input: prices=[1,3,2,8,4,9], fee=2 Output: 8",
+    "brute": "Try buy, sell and wait on every day subject to ownership.",
+    "optimized": "Carry the best cash and holding states. Update each using the preceding day's states, subtracting the fee on sale.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(n)"
+  },
+  "Count Square Submatrices with All Ones": {
+    "statement": "Count all square submatrices containing only ones.",
+    "example": "Input: [[1,1],[1,1]] Output: 5",
+    "brute": "Check every possible square cell by cell.",
+    "optimized": "For each one, its largest square ending there is one plus the minimum of top, left and diagonal sizes. Sum these sizes.",
+    "bruteCost": "Up to O(rc × min(r,c)³)",
+    "optimizedCost": "O(rc)"
+  },
+  "Matrix Chain Multiplication": {
+    "statement": "Choose parentheses that minimize scalar multiplications for compatible matrices.",
+    "example": "Input: dimensions=[10,30,5,60] Output: 4500",
+    "brute": "Try every parenthesization.",
+    "optimized": "For each interval test the last split k. Add the two optimal subcosts and the cost of multiplying their results.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(n³)"
+  },
+  "Parsing a Boolean Expression": {
+    "statement": "Evaluate nested boolean operators !, & and or with comma-separated operands.",
+    "example": "Input: !(f) Output: true",
+    "brute": "Repeatedly find and replace the innermost completed expression.",
+    "optimized": "Parse once with an index or stack. At a closing parenthesis combine all values belonging to that operator.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Delete Operation for Two Strings": {
+    "statement": "Find the fewest deletions required to make two strings equal.",
+    "example": "Input: sea, eat Output: 2",
+    "brute": "Try all pairs of retained subsequences.",
+    "optimized": "Compute the longest common subsequence length L. Delete all other characters, for a total m+n−2L.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(mn)"
+  },
+  "Number of Longest Increasing Subsequences — Count": {
+    "statement": "Count index-distinct subsequences with maximum strictly increasing length.",
+    "example": "Input: [1,3,5,4,7] Output: 2",
+    "brute": "Enumerate all increasing subsequences, keeping counts at the greatest length.",
+    "optimized": "At each endpoint store its best length and count. A better predecessor replaces the count, and an equally long predecessor adds to it.",
+    "bruteCost": "O(n × 2ⁿ)",
+    "optimizedCost": "O(n²)"
+  },
+  "Longest String Chain": {
+    "statement": "Find the longest chain where each new word inserts exactly one character.",
+    "example": "Input: [a,ba,bda,bdca] Output: 4",
+    "brute": "Try all word sequences and check predecessor relations.",
+    "optimized": "Sort by length. Delete each character in turn and look up the best chain ending at the resulting shorter word.",
+    "bruteCost": "Factorial",
+    "optimizedCost": "O(nL²+n log n)"
+  },
+  "Largest Divisible Subset": {
+    "statement": "Return a largest subset of distinct positive integers where every pair is divisible in one direction.",
+    "example": "Input: [1,2,4,8] Output: [1,2,4,8]",
+    "brute": "Test every subset for pairwise divisibility.",
+    "optimized": "Sort ascending and run longest-chain DP using divisibility as the predecessor rule. Trace parent indices to recover the subset.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(n²)"
+  },
+  "DFS": {
+    "statement": "Visit a binary tree in depth-first preorder, processing root, left subtree, then right subtree.",
+    "example": "Input: tree=[2,1,3] Output: [2,1,3]",
+    "brute": "Use recursive calls to visit each subtree.",
+    "optimized": "A stack makes the same order explicit. Push right before left so the left child is popped first.",
+    "bruteCost": "O(n), O(h) call stack",
+    "optimizedCost": "O(n), O(h) explicit stack"
+  },
+  "Morris Tree Traversal": {
+    "statement": "Traverse a binary tree inorder using constant auxiliary space and restore its original links.",
+    "example": "Input: tree=[2,1,3] Output: [1,2,3]",
+    "brute": "Use recursion or an explicit ancestor stack.",
+    "optimized": "Thread each left subtree's rightmost node back to its parent. On the second encounter remove the temporary thread and visit the parent.",
+    "bruteCost": "O(n), O(h) space",
+    "optimizedCost": "O(n), O(1) extra space"
+  },
+  "Maximum Level Sum of a Binary Tree": {
+    "statement": "Return the smallest one-based level with the highest sum.",
+    "example": "Input: tree=[1,7,0,7,-8] Output: 2",
+    "brute": "Visit the tree once per level to compute that level's sum.",
+    "optimized": "Process complete queue layers. Compare the layer sum before advancing and retain the earliest best level.",
+    "bruteCost": "O(nh)",
+    "optimizedCost": "O(n)"
+  },
+  "All Nodes Distance K in Binary Tree": {
+    "statement": "Return values exactly k edges from a target node.",
+    "example": "Input: tree=[1,2,3,4,5], target=2, k=1 Output: [1,4,5]",
+    "brute": "For each node determine the length of its path to the target.",
+    "optimized": "Index parent links, then run BFS from the target over parent and children. Return the frontier after k expansions.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Burning Tree": {
+    "statement": "Fire spreads one edge per time step. Find when the whole tree has burned.",
+    "example": "Input: tree=[1,2,3,4], start=4 Output: 3",
+    "brute": "Repeatedly scan all edges to find newly burning neighbors.",
+    "optimized": "Index each parent and start BFS at the ignition node. The last occupied layer gives the burn time.",
+    "bruteCost": "O(nh)",
+    "optimizedCost": "O(n)"
+  },
+  "Children Sum Property": {
+    "statement": "Check whether each internal node equals the sum of its immediate children, treating missing children as zero.",
+    "example": "Input: tree=[10,8,2] Output: true",
+    "brute": "Create a list of internal nodes, then check each local equation.",
+    "optimized": "During one traversal compare each internal node with its child sum and stop at the first failure.",
+    "bruteCost": "O(n) time and list space",
+    "optimizedCost": "O(n) time, O(h) stack"
+  },
+  "Binary Tree Paths": {
+    "statement": "Return all root-to-leaf paths.",
+    "example": "Input: tree=[1,2,3,null,5] Output: [1→2→5,1→3]",
+    "brute": "Build a new path copy for every recursive call.",
+    "optimized": "Push each visited node onto one path buffer. Copy only at leaves and pop on return.",
+    "bruteCost": "Up to O(nh) copying",
+    "optimizedCost": "O(n + output size)"
+  },
+  "Count Good Nodes in Binary Tree": {
+    "statement": "Count nodes at least as large as every ancestor on their root path.",
+    "example": "Input: tree=[3,1,4,3,null,1,5] Output: 4",
+    "brute": "Walk the ancestor path for each node to find its maximum.",
+    "optimized": "Pass the maximum seen so far down the tree and count nodes meeting it.",
+    "bruteCost": "O(nh)",
+    "optimizedCost": "O(n)"
+  },
+  "Largest BST in Binary Tree": {
+    "statement": "Return the node count of the largest subtree that is a strict binary search tree.",
+    "example": "Input: tree=[10,5,15,1,8,null,7] Output: 3",
+    "brute": "Validate and count the subtree rooted at every node.",
+    "optimized": "In postorder return validity, minimum, maximum and size. Join children only if their ranges fit strictly around the root.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n)"
+  },
+  "Floor in BST": {
+    "statement": "Return the greatest BST key no larger than the target.",
+    "example": "Input: tree=[8,4,12], target=6 Output: 4",
+    "brute": "Scan all keys and track the best eligible key.",
+    "optimized": "At a key ≤ target save it and go right. At a larger key go left.",
+    "bruteCost": "O(n)",
+    "optimizedCost": "O(h)"
+  },
+  "Ceil in BST": {
+    "statement": "Return the smallest BST key at least the target.",
+    "example": "Input: tree=[8,4,12], target=6 Output: 8",
+    "brute": "Scan every key and compare eligible candidates.",
+    "optimized": "Save a key ≥ target and go left to improve it. Otherwise go right.",
+    "bruteCost": "O(n)",
+    "optimizedCost": "O(h)"
+  },
+  "Inorder Predecessor in BST": {
+    "statement": "Find the largest BST key strictly less than a given key.",
+    "example": "Input: tree=[8,4,12,2,6], key=8 Output: 6",
+    "brute": "Materialize an inorder traversal and locate the previous key.",
+    "optimized": "Descend from the root, saving smaller keys before moving right. For a greater or equal key, go left.",
+    "bruteCost": "O(n)",
+    "optimizedCost": "O(h)"
+  },
+  "Two Sum IV — Input is a BST": {
+    "statement": "Determine whether two distinct tree nodes sum to k.",
+    "example": "Input: tree=[5,3,6,2,4,null,7], k=9 Output: true",
+    "brute": "Test every pair of distinct nodes.",
+    "optimized": "Walk the tree with a seen set. Before inserting v, check for k−v, so one node cannot pair with itself.",
+    "bruteCost": "O(n²)",
+    "optimizedCost": "O(n) expected"
+  },
+  "Recover Binary Search Tree": {
+    "statement": "Restore the BST after the values of two nodes were swapped.",
+    "example": "Input: tree=[3,1,4,null,null,2] Output: inorder [1,2,3,4]",
+    "brute": "Sort all values and rewrite the inorder sequence.",
+    "optimized": "Scan inorder for decreasing adjacent pairs. Swap the first offending predecessor with the last offending current node.",
+    "bruteCost": "O(n log n)",
+    "optimizedCost": "O(n)"
+  },
+  "Search in a Binary Search Tree": {
+    "statement": "Return the node with a requested key if it exists.",
+    "example": "Input: tree=[8,4,12], key=12 Output: node 12",
+    "brute": "Visit nodes without using their ordering.",
+    "optimized": "Compare at the root and retain only the left or right subtree indicated by the key.",
+    "bruteCost": "O(n)",
+    "optimizedCost": "O(h)"
+  },
+  "Insert into a Binary Search Tree": {
+    "statement": "Insert a new distinct key while preserving BST order.",
+    "example": "Input: tree=[8,4,12], key=6 Output: 6 becomes the right child of 4",
+    "brute": "Collect and sort keys, then rebuild the tree.",
+    "optimized": "Follow comparisons to a missing child and attach the new leaf there.",
+    "bruteCost": "O(n log n)",
+    "optimizedCost": "O(h)"
+  },
+  "Delete Node in a BST": {
+    "statement": "Delete a key while preserving search order.",
+    "example": "Input: tree=[5,3,7,2,4], key=3 Output: tree=[5,4,7,2]",
+    "brute": "Copy all remaining keys and rebuild.",
+    "optimized": "Find the key. Splice out a node with at most one child. With two children, replace its key with its inorder successor and delete that successor.",
+    "bruteCost": "O(n) or more",
+    "optimizedCost": "O(h)"
+  },
+  "Construct Binary Search Tree from Preorder Traversal": {
+    "statement": "Reconstruct a BST with distinct keys from its preorder sequence.",
+    "example": "Input: [8,5,1,7,10,12] Output: tree=[8,5,10,1,7,null,12]",
+    "brute": "Insert the keys one by one into a new BST.",
+    "optimized": "Read preorder once with a shared cursor. Each subtree consumes the next keys that fit its permitted range.",
+    "bruteCost": "O(n²) worst case",
+    "optimizedCost": "O(n)"
+  },
+  "Trie — Insert, Update, Search, Delete": {
+    "statement": "Maintain a word dictionary through character-by-character paths.",
+    "example": "Input: insert car, insert cart, delete car Output: contains car=false, cart=true",
+    "brute": "Store words in a list and compare whole strings for each lookup.",
+    "optimized": "Follow one edge per character and mark terminal nodes. Update terminal data in place. Delete by unmarking and pruning only unused suffixes.",
+    "bruteCost": "O(number of words × L) lookup",
+    "optimizedCost": "O(L) per operation with constant-time child lookup"
+  },
+  "BFS of Graph": {
+    "statement": "Visit vertices reachable from a source in increasing edge distance.",
+    "example": "Input: A→B, A→C, B→D; start A Output: A, B, C, D",
+    "brute": "Repeatedly scan all vertices and edges for the next distance layer.",
+    "optimized": "Use a queue and mark vertices when enqueuing them. Expand every outgoing edge once.",
+    "bruteCost": "O(V(V+E)) worst case",
+    "optimizedCost": "O(V+E)"
+  },
+  "Shortest Path in Unweighted Graph": {
+    "statement": "Find the fewest edges from a source to every reachable vertex.",
+    "example": "Input: A—B—C, A—C; start A Output: A:0, B:1, C:1",
+    "brute": "Enumerate simple paths and keep the shortest to each vertex.",
+    "optimized": "Run BFS and assign each vertex its distance on first discovery.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(V+E)"
+  },
+  "DFS of Graph": {
+    "statement": "Explore reachable vertices by following each path as far as possible before backtracking.",
+    "example": "Input: A→B, A→C, B→D; visit B first Output: A, B, D, C",
+    "brute": "Recursively scan a full adjacency matrix for neighbors.",
+    "optimized": "Store adjacency lists and a visited set. Recurse or use explicit stack frames to finish each neighbor before moving to the next.",
+    "bruteCost": "O(V²) matrix scan",
+    "optimizedCost": "O(V+E)"
+  },
+  "Find if Path Exists in Graph": {
+    "statement": "Decide whether two vertices in an undirected graph are connected.",
+    "example": "Input: edges=[[0,1],[1,2]], start=0, end=2 Output: true",
+    "brute": "Enumerate simple paths until a connection appears.",
+    "optimized": "Start DFS or BFS at the source and mark each vertex on discovery. Stop when the destination is found.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(V+E)"
+  },
+  "Keys and Rooms": {
+    "statement": "Starting in room zero, use collected keys to determine whether every room can be opened.",
+    "example": "Input: rooms=[[1],[2],[]] Output: true",
+    "brute": "Repeat full scans of unlocked rooms looking for new keys.",
+    "optimized": "Treat keys as directed edges. Visit each newly unlocked room once and compare the visited count to the total.",
+    "bruteCost": "Up to O(V(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "As Far from Land as Possible": {
+    "statement": "In a binary land/water grid, find the water cell farthest from its nearest land by Manhattan distance.",
+    "example": "Input: [[1,0,0],[0,0,0],[0,0,0]] Output: 4",
+    "brute": "Compare each water cell against every land cell.",
+    "optimized": "Start BFS from all land cells at once. The final water layer has the greatest nearest-land distance. Handle all-land and all-water grids separately.",
+    "bruteCost": "O((rc)²)",
+    "optimizedCost": "O(rc)"
+  },
+  "Number of Enclaves": {
+    "statement": "Count land cells unable to reach the grid boundary by four-directional moves.",
+    "example": "Input: [[0,0,0],[0,1,0],[0,0,0]] Output: 1",
+    "brute": "Test boundary reachability separately from each land cell.",
+    "optimized": "Flood all boundary land inward, then count land untouched by that flood.",
+    "bruteCost": "O((rc)²)",
+    "optimizedCost": "O(rc)"
+  },
+  "Detect Cycle in Undirected Graph using DFS": {
+    "statement": "Detect a cycle in a simple undirected graph using depth-first traversal.",
+    "example": "Input: A—B, B—C, C—A Output: cycle",
+    "brute": "Remove each edge and test whether its endpoints remain connected.",
+    "optimized": "In each component use DFS with a parent. A visited neighbor other than the parent closes a cycle.",
+    "bruteCost": "O(E(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "Detect Cycle in Undirected Graph using BFS": {
+    "statement": "Detect a cycle in a simple undirected graph while exploring by layers.",
+    "example": "Input: A—B, B—C, C—A Output: cycle",
+    "brute": "Remove each edge and test whether another path joins its ends.",
+    "optimized": "Queue vertex-parent pairs and mark on discovery. A seen neighbor other than the parent proves a cycle.",
+    "bruteCost": "O(E(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "Topological Sort using DFS": {
+    "statement": "Order vertices of a directed acyclic graph so each dependency comes before its dependent.",
+    "example": "Input: A→C, B→C Output: B, A, C (one order)",
+    "brute": "Try permutations and validate the direction of every edge.",
+    "optimized": "Track unseen, active and finished vertices. An active back-edge signals a cycle. Otherwise reverse the finish order.",
+    "bruteCost": "Factorial",
+    "optimizedCost": "O(V+E)"
+  },
+  "Kahn's Algorithm / BFS": {
+    "statement": "Produce a dependency order by removing vertices with no unsatisfied prerequisites.",
+    "example": "Input: A→B, A→C Output: A, B, C (one order)",
+    "brute": "Repeatedly scan remaining edges to find an eligible vertex.",
+    "optimized": "Queue all zero-indegree vertices. Remove one, decrement its neighbors' indegrees, and enqueue any that reach zero. A short output signals a cycle.",
+    "bruteCost": "O(V(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "Find All Possible Recipes from Given Supplies": {
+    "statement": "Determine which recipes can be made when each completed recipe becomes an ingredient.",
+    "example": "Input: supplies=[flour], bread needs flour, toast needs bread Output: [bread,toast]",
+    "brute": "Repeatedly retry every unmet recipe against available ingredients.",
+    "optimized": "Count each recipe's unavailable requirements. Propagate newly available supplies through ingredient-to-recipe edges and release recipes reaching zero.",
+    "bruteCost": "Repeated full scans",
+    "optimizedCost": "O(recipes + requirements + supplies)"
+  },
+  "Possible Bipartition": {
+    "statement": "Split people into two groups so every dislike edge joins opposite groups.",
+    "example": "Input: dislikes=[[1,2],[1,3],[2,4]] Output: true",
+    "brute": "Try every two-group assignment.",
+    "optimized": "Two-color each connected component. Assign every neighbor the opposite color and reject a same-color edge.",
+    "bruteCost": "O(2ⱽ × E)",
+    "optimizedCost": "O(V+E)"
+  },
+  "Bipartite Check using BFS": {
+    "statement": "Determine whether a graph is two-colorable using a queue.",
+    "example": "Input: triangle 0—1—2—0 Output: false",
+    "brute": "Try every assignment of two colors.",
+    "optimized": "Queue a starting vertex per component. Color newly seen neighbors oppositely and reject a color conflict.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(V+E)"
+  },
+  "Bipartite Check using DFS": {
+    "statement": "Determine whether a graph is two-colorable using depth-first traversal.",
+    "example": "Input: path 0—1—2 Output: true",
+    "brute": "Try all partitions and test the edges.",
+    "optimized": "DFS with an expected color. Recurse into each unseen neighbor with the opposite color and verify already colored neighbors.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(V+E)"
+  },
+  "Number of Provinces using DSU": {
+    "statement": "Count connected groups in an adjacency matrix.",
+    "example": "Input: [[1,1,0],[1,1,0],[0,0,1]] Output: 2",
+    "brute": "Compute transitive closure, then group reachable cities.",
+    "optimized": "Start with one set per city. Union connected pairs from the matrix, decrementing the group count on successful merges.",
+    "bruteCost": "O(n³)",
+    "optimizedCost": "O(n² α(n))"
+  },
+  "Number of Operations to Make Network Connected": {
+    "statement": "Find the fewest redundant cables to move so all n computers are connected, or return −1.",
+    "example": "Input: n=4, edges=[[0,1],[0,2],[1,2]] Output: 1",
+    "brute": "Try cable moves and recompute connectivity after each trial.",
+    "optimized": "If there are fewer than n−1 cables, connecting all nodes is impossible. Otherwise count components and return components−1.",
+    "bruteCost": "Combinatorial",
+    "optimizedCost": "O(V+E) traversal"
+  },
+  "Most Stones Removed with Same Row or Column": {
+    "statement": "Remove a stone if another remaining stone shares its row or column. Maximize removals.",
+    "example": "Input: [(0,0),(0,1),(1,0)] Output: 2",
+    "brute": "Try every valid removal order.",
+    "optimized": "Union row and column identifiers separately for each stone. Every connected component can retain exactly one stone.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(n α(n)) expected"
+  },
+  "Making a Large Island": {
+    "statement": "Flip at most one zero in a binary grid to maximize a four-connected island.",
+    "example": "Input: [[1,0],[0,1]] Output: 3",
+    "brute": "Flip each zero in turn and flood-fill the entire grid.",
+    "optimized": "Label islands and record their sizes once. For each zero add one and the sizes of distinct neighboring island labels.",
+    "bruteCost": "O((rc)²)",
+    "optimizedCost": "O(rc)"
+  },
+  "Number of Islands II": {
+    "statement": "Report island counts after each land insertion, ignoring duplicate insertions.",
+    "example": "Input: 2×2 grid, add (0,0),(1,1),(0,1) Output: [1,2,1]",
+    "brute": "Recount connected components after every insertion.",
+    "optimized": "Give each new cell its own DSU set and increment the count. Each successful union with a land neighbor reduces it by one.",
+    "bruteCost": "O(krc)",
+    "optimizedCost": "O(k α(rc)) after initialization"
+  },
+  "Swim in Rising Water": {
+    "statement": "Find the earliest time at which start and finish connect through cells with elevation at most the time.",
+    "example": "Input: [[0,2],[1,3]] Output: 3",
+    "brute": "Test every distinct water level with a fresh flood-fill.",
+    "optimized": "Use a priority queue for a minimax path: extending a path costs the larger of its current level and the new cell's elevation.",
+    "bruteCost": "O((rc)²)",
+    "optimizedCost": "O(rc log(rc))"
+  },
+  "Kruskal's Algorithm": {
+    "statement": "Connect a weighted undirected graph with minimum total spanning-tree weight.",
+    "example": "Input: AB=1, BC=2, AC=4 Output: 3 via AB and BC",
+    "brute": "Enumerate spanning trees and compare totals.",
+    "optimized": "Sort edges by weight. Use disjoint sets to accept only edges that join different components until V−1 edges are chosen.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(E log E)"
+  },
+  "Prim's Algorithm": {
+    "statement": "Grow a minimum spanning tree in a connected undirected weighted graph.",
+    "example": "Input: AB=1, AC=4, BC=2 Output: 3",
+    "brute": "Try spanning trees and compare their total weights.",
+    "optimized": "Grow from one vertex. Repeatedly accept the lightest crossing edge from a heap, skipping stale edges whose endpoints are already in the tree.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(E log E) with an edge heap"
+  },
+  "Word Ladder II": {
+    "statement": "Return all shortest single-letter transformation sequences through dictionary words.",
+    "example": "Input: hit→cog; hot,dot,dog,lot,log,cog Output: hit-hot-dot-dog-cog and hit-hot-lot-log-cog",
+    "brute": "Enumerate all simple transformation paths, then retain the shortest.",
+    "optimized": "BFS by levels and record every predecessor on a shortest path. Backtrack that predecessor graph from the target.",
+    "bruteCost": "Exponential exploration",
+    "optimizedCost": "BFS graph work plus output enumeration"
+  },
+  "Dijkstra's Algorithm": {
+    "statement": "Compute single-source distances in a graph with nonnegative edge weights.",
+    "example": "Input: A→B:5, A→C:1, C→B:2 Output: A=0, C=1, B=3",
+    "brute": "Scan all unsettled vertices to select the one with the smallest distance.",
+    "optimized": "Use a min-heap keyed by tentative distance. Skip stale entries and relax outgoing edges from each best-known state.",
+    "bruteCost": "O(V²+E)",
+    "optimizedCost": "O((V+E) log V) for a simple graph"
+  },
+  "Number of Ways to Arrive at Destination": {
+    "statement": "Count minimum-time routes in a positive-weight road network, modulo 1,000,000,007.",
+    "example": "Input: 0—1—3 and 0—2—3, all edges 1 Output: 2",
+    "brute": "Enumerate simple paths while keeping the best cost and tie count.",
+    "optimized": "Run Dijkstra with a count per vertex. A shorter route replaces the count, an equally short route adds to it.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O((V+E) log V)"
+  },
+  "Bellman-Ford Algorithm": {
+    "statement": "Compute distances from one source even with negative edges, and detect reachable negative cycles.",
+    "example": "Input: A→B:4, A→C:5, B→C:−2 Output: A=0, B=4, C=2",
+    "brute": "Enumerate all simple paths for each destination when there is no reachable negative cycle.",
+    "optimized": "Relax every edge up to V−1 rounds. A further reachable improvement proves a negative cycle.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(VE)"
+  },
+  "Negative Weight Cycle Detection": {
+    "statement": "Detect whether any directed cycle in a weighted graph has negative total weight.",
+    "example": "Input: A→B:1, B→A:−3 Output: true",
+    "brute": "Enumerate simple cycles and sum their weights.",
+    "optimized": "Initialize every distance to zero, equivalent to a super-source. A relaxation on the Vth round of Bellman-Ford proves a negative cycle.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(VE)"
+  },
+  "Floyd-Warshall Algorithm": {
+    "statement": "Find all-pairs shortest distances when there is no negative cycle.",
+    "example": "Input: A→B:2, B→C:3, A→C:8 Output: distance A→C = 5",
+    "brute": "Run Bellman-Ford independently from every source.",
+    "optimized": "For each intermediate k update d[i,j] with min(d[i,j], d[i,k]+d[k,j]). Put the k loop outermost.",
+    "bruteCost": "O(V²E)",
+    "optimizedCost": "O(V³)"
+  },
+  "Find the City With Smallest Number of Neighbors at a Threshold Distance": {
+    "statement": "Find the city reaching the fewest other cities within a distance threshold. Break ties by larger city index.",
+    "example": "Input: roads 0—1:2, 1—2:2; threshold=2 Output: 2",
+    "brute": "Enumerate paths to test reachability for every city pair.",
+    "optimized": "Compute shortest distances, count entries within the threshold excluding the city itself, then apply the tie rule.",
+    "bruteCost": "Exponential",
+    "optimizedCost": "O(V³) with Floyd-Warshall"
+  },
+  "Strongly Connected Components": {
+    "statement": "Partition a directed graph into maximal groups whose vertices reach one another.",
+    "example": "Input: A→B, B→A, B→C Output: {A,B}, {C}",
+    "brute": "Test mutual reachability for every vertex using repeated traversals.",
+    "optimized": "Kosaraju uses DFS finish order then traversal on reversed edges. Tarjan uses discovery indices, low links and an active stack to emit each component in one DFS.",
+    "bruteCost": "O(V(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "Bridges in Graph": {
+    "statement": "Find undirected edges whose deletion disconnects their component.",
+    "example": "Input: triangle ABC with edge C—D Output: C—D",
+    "brute": "Remove each edge and recount components.",
+    "optimized": "During DFS store discovery and low-link times. A tree edge to child v is a bridge if low[v] exceeds discovery[parent]. Track the parent edge by identity.",
+    "bruteCost": "O(E(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "Articulation Points": {
+    "statement": "Find vertices whose deletion increases the number of connected components.",
+    "example": "Input: A—B—C Output: B",
+    "brute": "Delete each vertex and recount components.",
+    "optimized": "A non-root DFS vertex is a cut point if a child cannot reach any earlier ancestor. A DFS root needs at least two tree children.",
+    "bruteCost": "O(V(V+E))",
+    "optimizedCost": "O(V+E)"
+  },
+  "Ford-Fulkerson Algorithm": {
+    "statement": "Maximize feasible source-to-sink flow in a network with integer capacities.",
+    "example": "Input: s→a:3, a→t:2, s→t:1 Output: 3",
+    "brute": "Enumerate feasible integer edge flows and test conservation.",
+    "optimized": "Find a residual s-to-t path, push its bottleneck, and add reverse capacity so earlier choices can be revised. Stop when no path remains.",
+    "bruteCost": "Combinatorial",
+    "optimizedCost": "O(EF) for integral maximum flow F"
+  },
+  "Edmonds-Karp Algorithm": {
+    "statement": "Compute maximum flow by augmenting along shortest residual paths in edge count.",
+    "example": "Input: s→a:3, a→t:2, s→t:1 Output: 3",
+    "brute": "Try all source-side cuts and select the smallest capacity.",
+    "optimized": "Use BFS to find each residual augmenting path. Push its bottleneck and update forward and reverse edges until the sink is unreachable.",
+    "bruteCost": "O(2ⱽ E) by cut enumeration",
+    "optimizedCost": "O(VE²)"
+  },
+  "Minimum Cut": {
+    "statement": "Partition source and sink to minimize total capacity of edges leaving the source's side.",
+    "example": "Input: s→a:3, a→t:2, s→t:1 Output: cut {s,a} → {t}, capacity 3",
+    "brute": "Try every vertex partition with source and sink on opposite sides.",
+    "optimized": "Compute maximum flow. In the final residual network mark vertices reachable from the source. Original edges leaving that set form a minimum cut.",
+    "bruteCost": "O(2ⱽ E)",
+    "optimizedCost": "Max-flow time plus O(V+E)"
+  },
+  "Build Heap": {
+    "statement": "Turn an unsorted array into a max-heap. Every parent must be at least as large as its children.",
+    "example": "Input: [1,3,2] Output: [3,1,2]",
+    "brute": "Insert values one at a time, bubbling each up to its position.",
+    "optimized": "Start at the last internal node and sift each parent down. Short subtrees dominate the total work.",
+    "bruteCost": "O(n log n)",
+    "optimizedCost": "O(n)"
+  },
+  "Heap Sort": {
+    "statement": "Sort an array in ascending order using its own storage.",
+    "example": "Input: [3,1,2] Output: [1,2,3]",
+    "brute": "Repeatedly scan the unsorted prefix to find its maximum and move it to the end.",
+    "optimized": "Build a max-heap. Swap the maximum into the last unsorted position, shrink the heap, and sift its new root down.",
+    "bruteCost": "O(n?)",
+    "optimizedCost": "O(n log n), O(1) extra with iterative sift-down"
+  }
+}
