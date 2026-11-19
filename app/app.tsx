@@ -1,4 +1,5 @@
-﻿import { useEffect, useState } from "react";
+﻿import { HomeGalaxy } from "@/components/home-galaxy";
+import { useEffect, useState } from "react";
 import { index, readerNodes, mapUrl } from "@/content/atlas";
 import { Atlas } from "@/components/atlas";
 import DsaDashboardPage from "@/app/dsa/dashboard/page";
@@ -14,7 +15,8 @@ export function App() {
   const [location, setLocation] = useState(currentLocation);
   useEffect(() => { const update = () => setLocation(currentLocation()); window.addEventListener("popstate", update); return () => window.removeEventListener("popstate", update); }, []);
   const { pathname, search } = location;
-  if (["/", "/dsa", "/dsa/handbook", "/dsa/topics", "/system-design", "/library", "/practice"].includes(pathname)) return <Atlas pathname={pathname} search={search} />;
+  if (pathname === "/" || pathname === "/software-engineering") return <HomeGalaxy software={pathname === "/software-engineering"} />;
+  if (["/dsa", "/dsa/handbook", "/dsa/topics", "/system-design", "/library", "/practice"].includes(pathname)) return <Atlas pathname={pathname} search={search} />;
   if (pathname === "/dsa/dashboard") return <Atlas pathname={pathname} search={search}><DsaDashboardPage /></Atlas>;
   const systemDesignTopic = pathname.match(/^\/system-design\/([^/]+)$/);
   if (systemDesignTopic) {
@@ -41,6 +43,8 @@ export function App() {
   }
   return <Atlas pathname={pathname} search={search}><NotFound /></Atlas>;
 }
+
+
 
 
 

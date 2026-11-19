@@ -1,4 +1,4 @@
-﻿import { GalaxyOverview, GalaxySky } from "./galaxy";
+﻿import { GalaxyOverview, GalaxySky, OrbitScene } from "./galaxy";
 import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { Binary, Boxes, ChevronLeft, ChevronRight, Database, GitBranch, Layers3, Maximize, Minus, Plus, Waypoints, Workflow } from "lucide-react";
 import { Link } from "./link";
@@ -23,6 +23,7 @@ export function ResponsiveMap({ item, subject, path, outline }: {
   const plane = useRef<HTMLDivElement>(null);
 
   const overview=(subject==="dsa"||subject==="system-design") && path.length===0;
+  const orbitalLevel=subject==="dsa" && path.length===1 && item.kind==="Family";
   const start = page * pageSize;
   const visible = item.children.slice(start, start + pageSize);
   const url = (...names: string[]) => mapUrl(subject, [...path, ...names]);
@@ -71,20 +72,24 @@ export function ResponsiveMap({ item, subject, path, outline }: {
   return <section className="graph mind-map galaxy-map" aria-label={item.title+" mind map"}>
     <header className="graph-bar"><span><Waypoints size={17}/>{outline?"Map outline":subject==="system-design"?"System Design galaxy":subject==="dsa"?"DSA galaxy":"Topic map"}</span><small><i/>{count(item)}</small></header>
     {outline ? <div className="outline">{item.children.map(child=><Link key={child.title} href={url(child.title)}><b>{child.title}</b><small>{count(child)}</small><ChevronRight size={14}/></Link>)}</div> :
-      overview ? <GalaxyOverview system={subject==="system-design"}/> : <div className="mind-viewport"><GalaxySky/><div style={{width:zoom+"%"}}><div className="mind-plane" ref={plane} style={{zoom:zoom/100}}>
+      overview ? <GalaxyOverview system={subject==="system-design"}/> : orbitalLevel ? <OrbitScene title={item.title} items={item.children.map(child=>({title:child.title,href:url(child.title)}))}/> : <div className="mind-viewport"><GalaxySky/><div style={{width:zoom+"%"}}><div className="mind-plane" ref={plane} style={{zoom:zoom/100}}>
         <svg className="mind-wires" aria-hidden="true">{wires.map((w,i)=><path key={i} d={w.path} stroke={w.color}/>)}</svg>
         <div className="root-node mind-root"><div className="root-glyph"><RootIcon size={20}/></div><small>{item.kind}</small><strong>{item.title}</strong></div>
         <div className="mind-limbs">{visible.map((child,i)=>{
           const Icon=icons[(start+i)%icons.length];
           return <div className="mind-limb" key={child.title} style={{"--node-color":colors[(start+i)%colors.length]} as CSSProperties}>
             <Link className="branch-node mind-branch" href={url(child.title)}><span className="port left"/><span className="branch-icon"><Icon size={17}/></span><span><b>{child.title}</b><small>{count(child)}</small></span><ChevronRight size={14} className="chev"/></Link>
-            <div className="mind-leaves">{child.children.slice(0,2).map(leaf=><Link className="leaf-node mind-leaf" key={leaf.title} href={url(child.title,leaf.title)}><i/>{leaf.title}</Link>)}</div>
+            <div className="mind-leaves">{(subject.startsWith("dsa")?[]:child.children.slice(0,2)).map(leaf=><Link className="leaf-node mind-leaf" key={leaf.title} href={url(child.title,leaf.title)}><i/>{leaf.title}</Link>)}</div>
           </div>;
         })}</div>
       </div></div></div>}
-    {!outline&&!overview&&<footer className="graph-footer"><div className="map-pages">{item.children.length>pageSize&&<><button aria-label="Previous branches" disabled={!page} onClick={()=>setPage(page-1)}><ChevronLeft size={16}/></button><small aria-live="polite">{start+1}–{start+visible.length} of {item.children.length}</small><button aria-label="Next branches" disabled={start+pageSize>=item.children.length} onClick={()=>setPage(page+1)}><ChevronRight size={16}/></button></>}</div><div className="zoom"><button aria-label="Zoom out" disabled={zoom<=75} onClick={()=>setZoom(zoom-25)}><Minus size={15}/></button><small>{zoom}%</small><button aria-label="Zoom in" disabled={zoom>=175} onClick={()=>setZoom(zoom+25)}><Plus size={15}/></button><button aria-label="Fit map" onClick={()=>setZoom(100)}><Maximize size={15}/></button></div></footer>}
+    {!outline&&!overview&&!orbitalLevel&&<footer className="graph-footer"><div className="map-pages">{item.children.length>pageSize&&<><button aria-label="Previous branches" disabled={!page} onClick={()=>setPage(page-1)}><ChevronLeft size={16}/></button><small aria-live="polite">{start+1}–{start+visible.length} of {item.children.length}</small><button aria-label="Next branches" disabled={start+pageSize>=item.children.length} onClick={()=>setPage(page+1)}><ChevronRight size={16}/></button></>}</div><div className="zoom"><button aria-label="Zoom out" disabled={zoom<=75} onClick={()=>setZoom(zoom-25)}><Minus size={15}/></button><small>{zoom}%</small><button aria-label="Zoom in" disabled={zoom>=175} onClick={()=>setZoom(zoom+25)}><Plus size={15}/></button><button aria-label="Fit map" onClick={()=>setZoom(100)}><Maximize size={15}/></button></div></footer>}
   </section>;
 }
+
+
+
+
 
 
 

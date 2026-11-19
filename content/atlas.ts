@@ -104,6 +104,7 @@ for(const row of outlines){
 }
 // Bring in the detailed index after each topic's own revision patterns.
 for(const chapter of handbook.children){
+  if(chapter.title==="Binary Search") continue;
   const topic=branch(topics,chapter.title,"Topic");
   for(const pattern of chapter.children){
     const group=branch(topic,pattern.title,"Pattern");
@@ -115,6 +116,9 @@ for(const chapter of handbook.children){
 function outlinePatterns(topic:string) {
   return topics.children.find(t=>t.title===topic)?.children.filter(p=>p.children.some(q=>q.outlinePage))||[];
 }
+const binarySearch=topics.children.find(topic=>topic.title==="Binary Search");
+const handbookBinary=handbook.children.find(topic=>topic.title==="Binary Search");
+if(binarySearch&&handbookBinary) handbookBinary.children=binarySearch.children;
 const chapters = new Map(handbook.children.map(c => [c.title, c]));
 function chapter(title: string) {
   const result = chapters.get(title);
@@ -128,21 +132,15 @@ function selectedPatterns(title: string, names: string[]) {
   return chapter(title).children.filter(p => names.includes(p.title));
 }
 // A handbook question can appear in more than one structure. Reuse its lesson and progress key.
-function chapterSelection(title:string, keep:(pattern:AtlasNode)=>AtlasNode[]) {
-  const source=chapter(title);
-  const patterns=source.children.map(p=>({...p,children:keep(p)})).filter(p=>p.children.length);
-  return {...source,children:patterns};
-}
-const arrayMath = chapterSelection("Math", p=>p.children.filter(q=>["Plus One","Pascal's Triangle","Max Points on a Line"].includes(q.title)));
-const arrayBits = chapterSelection("Bit Manipulation", p=>p.children.filter(q=>["Counting Bits","Single Number","Single Number II","Single Number III","Missing Number","Maximum Subset XOR","Power Set Using Bits"].includes(q.title)));
-const arrayRecursion = chapterSelection("Recursion / Backtracking", p=>["Take / Skip","Multiple Choices Per Level","Grid Backtracking","Partition Backtracking"].includes(p.title)?p.children:[]);
-const arrays = structure("Arrays", "Indexed sequences, strings, matrices, and the patterns that operate on them.", [arrayMath,arrayBits,...handbook.children.filter(c => [
-  "Arrays / Hashing", "Binary Search", "Two Pointers", "Sliding Window", "Intervals", "Greedy", "Strings",
-  "Dynamic Programming", "Matrix / Grid", "Divide and Conquer", "Sweep Line / Difference Array"
-].includes(c.title)),arrayRecursion,chapterSelection("Design Data Structures",p=>p.title==="HashMap + Array"?p.children:[])].sort((a,b)=>handbook.children.findIndex(c=>c.title===a.title)-handbook.children.findIndex(c=>c.title===b.title)));
-for(const [i,c] of arrays.children.entries()){
-  if(c===chapters.get(c.title))arrays.children[i]=topics.children.find(t=>t.title===c.title)??c;
-}
+const arrayTopic=topics.children.find(topic=>topic.title==="Arrays / Hashing")!;
+const matrixTopic=topics.children.find(topic=>topic.title==="Matrix / Grid")!;
+const arrays = structure("Arrays", "Explore one-dimensional arrays and matrices.", [
+  {...arrayTopic,title:"1D Arrays"},
+  {...matrixTopic,title:"2D Arrays"},
+]);
+const algorithmTopics = ["Math","Bit Manipulation","Binary Search","Two Pointers","Sliding Window","Intervals","Greedy","Strings","Recursion / Backtracking","Dynamic Programming","Divide and Conquer","Sweep Line / Difference Array","Design Data Structures"]
+  .map(title=>topics.children.find(topic=>topic.title===title)!)
+  .filter(Boolean);
 const lists = structure("Linked Lists", "Follow links between nodes, then explore reversal, merging, and pointer patterns.", [...chapter("Linked Lists").children,...selectedPatterns("Design Data Structures",["HashMap + Doubly Linked List","HashMap + Frequency Lists"])]);
 const stacks = structure("Stacks", "Work from the top of the stack through matching, evaluation, and monotonic boundaries.", [
   ...chapter("Stack").children, chapter("Monotonic Stack"),
@@ -161,7 +159,7 @@ const trees = structure("Trees", "Trace parent–child links, ordered searches, 
 const tries = structure("Tries", "Walk a shared prefix one character at a time.", chapter("Trie").children);
 const graphs = structure("Graphs", "Follow edges between vertices to explore connectivity, dependencies, and paths.", chapter("Graphs").children);
 // Preserve existing structure paths and expose the PDF's original pattern branches in each structure.
-for(const [structureNode,topicName] of [[arrays,"Arrays / Hashing"],[lists,"Linked Lists"],[stacks,"Stack"],[heaps,"Heap / Priority Queue"],[trees,"Trees"],[tries,"Trie"],[graphs,"Graphs"]] as const){
+for(const [structureNode,topicName] of [[lists,"Linked Lists"],[stacks,"Stack"],[heaps,"Heap / Priority Queue"],[trees,"Trees"],[tries,"Trie"],[graphs,"Graphs"]] as const){
   const patterns=outlinePatterns(topicName);
   const original=structureNode.children;
   structureNode.children=[...patterns,...original.filter(c=>!patterns.some(p=>p.title===c.title))];
@@ -171,6 +169,7 @@ queues.children=[...queuePatterns,...queues.children.filter(c=>!queuePatterns.so
 export const dsa=node("DSA","Subject",[
   {...node("Linear","Family",[arrays,lists,stacks,queues]),description:"Explore structures that arrange elements in a sequence."},
   {...node("Non-linear","Family",[heaps,trees,tries,graphs]),description:"Explore hierarchical structures and networks of connected nodes."},
+  {...node("Algorithms","Family",algorithmTopics),description:"Explore algorithms and the patterns used to solve problems."},
 ]);
 export const design = node("System Design","Subject",systemDesignCurriculum.map(m=>({
   ...node(m.title,"Module",m.sections.map(s=>({
@@ -191,6 +190,10 @@ for(const e of topicEntries){
   if(e.item.kind==="Question"&&!listed.has(key)){questionsIndex.push(e);listed.add(key)}
 }
 export const mapUrl = (subject:string,path:string[]) => "/"+subject+(path.length?"?"+new URLSearchParams(path.map(p=>["node",p])).toString():"");
+
+
+
+
 
 
 

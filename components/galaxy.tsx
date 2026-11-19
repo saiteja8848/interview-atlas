@@ -41,56 +41,26 @@ export function GalaxySky() {
   return <canvas className="galaxy-sky" ref={canvas} aria-hidden="true"/>;
 }
 
-const orbitColors=["#6bd9e5","#bd9aff"];
-type Point=[number,number];
-function curve(a:Point,b:Point,vertical:boolean){
-  const [x,y]=a,[endX,endY]=b;
-  if(vertical){const mid=(y+endY)/2;return `M${x},${y} C${x},${mid} ${endX},${mid} ${endX},${endY}`}
-  const mid=(x+endX)/2;
-  return `M${x},${y} C${mid},${y} ${mid},${endY} ${endX},${endY}`;
-}
-function location([x,y]:Point,color:string):CSSProperties {
-  return {left:x+"%",top:y+"%","--orbit-color":color} as CSSProperties;
-}
-export function GalaxyOverview({system=false}:{system?:boolean}){
-  const scene=useRef<HTMLDivElement>(null);
-  const [vertical,setVertical]=useState(false);
-  useEffect(()=>{
-    if(!scene.current)return;
-    const observer=new ResizeObserver(([e])=>setVertical(e.contentRect.width<680));
-    observer.observe(scene.current);return ()=>observer.disconnect();
-  },[]);
-  const root:Point=[50,50];
-  const hubs:Point[]=vertical?[[50,29],[50,71]]:[[30,50],[70,50]];
-  function satellite(side:number,i:number):Point{
-    if(vertical)return [i%2===0?23:77,side===0?(i<2?7:20):(i<2?81:94)];
-    return [side===0?(i===0||i===3?17:10):(i===0||i===3?83:90),[13,37,63,87][i]];
-  }
-  if(system){
-    const positions:Point[]=vertical?[[27,18],[73,27],[25,72],[73,80]]:[[22,22],[77,26],[22,73],[77,76]];
-    return <div className="orbital-scene design-orbits" ref={scene}><GalaxySky/>
-      <svg className="orbital-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="50" rx="37" ry="35" className="orbit-guide"/>{positions.map((p,i)=><path key={i} d={curve(root,p,vertical)} stroke={orbitColors[i%2]}/>)}</svg>
-      <div className="galaxy-core" style={location(root,"#f5cf98")}><i className="sun"/><strong>System<br/>Design</strong></div>
-      {design.children.map((module,i)=><Link className={"orbital-hub solar-node system-"+i%2} style={location(positions[i],orbitColors[i%2])} key={module.title} href={mapUrl("system-design",[module.title])}><i className="planet"/><b>{module.title}</b></Link>)}
-    </div>
-  }
-  return <div className="orbital-scene" ref={scene}>
+const orbitColors=["#6bd9e5","#bd9aff","#f5bf80","#a5d8ad"];
+export type OrbitItem={title:string;href:string};
+export function OrbitScene({title,items}:{title:string;items:OrbitItem[]}){
+  const [page,setPage]=useState(0);
+  const visible=items.slice(page*4,page*4+4);
+  return <div className="orbital-scene orbit-scene">
     <GalaxySky/>
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="orbital-lines" aria-hidden="true">
-      <ellipse cx="50" cy="50" rx="42" ry="33" className="orbit-guide"/>
-      <ellipse cx="50" cy="50" rx="33" ry="23" className="orbit-guide"/>
-      {dsa.children.map((family,side)=><g key={family.title} stroke={orbitColors[side]}>
-        <path d={curve(root,hubs[side],vertical)}/>{family.children.map((structure,i)=><path key={structure.title} d={curve(hubs[side],satellite(side,i),vertical)}/>)}
-      </g>)}
-    </svg>
-    <div className="galaxy-core" style={location(root,"#f5cf98")}><i className="sun"/><strong>DSA</strong></div>
-    {dsa.children.map((family,side)=><div key={family.title}>
-      <Link className={"orbital-hub solar-node system-"+side} style={location(hubs[side],orbitColors[side])} href={mapUrl("dsa",[family.title])}><i className="planet"/><b>{family.title}</b></Link>
-      {family.children.map((structure,i)=><Link className="orbital-moon solar-node" key={structure.title} href={mapUrl("dsa",[family.title,structure.title])} style={location(satellite(side,i),orbitColors[side])}><i/><b>{structure.title}</b></Link>)}
-    </div>)}
+    <div className="orbit-center"><i className="sun"/><strong>{title}</strong></div>
+    <div className="orbit-track" aria-label={title+" branches"}>
+      {visible.map((item,i)=><Link className="orbit-planet" key={item.href} style={{"--orbit-color":orbitColors[i],"animationDelay":(-32*i/visible.length)+"s"} as CSSProperties} href={item.href}><i/><b>{item.title}</b></Link>)}
+    </div>
+    {items.length>4&&<nav className="orbit-pages" aria-label="Orbit pages"><button disabled={page===0} onClick={()=>setPage(page-1)}>Previous</button><span>{page+1} / {Math.ceil(items.length/4)}</span><button disabled={(page+1)*4>=items.length} onClick={()=>setPage(page+1)}>Next</button></nav>}
   </div>
 }
-export function GalaxyFocus({active,toggle}:{active:boolean;toggle:()=>void}){
-  return <button className="galaxy-focus" onClick={toggle} aria-pressed={active}>{active?<Minimize size={15}/>:<Expand size={15}/>}<span>{active?"Exit focus":"Focus map"}</span></button>
+export function GalaxyOverview({system=false}:{system?:boolean}){
+  const root=system?design:dsa;
+  const subject=system?"system-design":"dsa";
+  return <OrbitScene title={root.title} items={root.children.map(child=>({title:child.title,href:mapUrl(subject,[child.title])}))}/>;
 }
+
+
+
 
